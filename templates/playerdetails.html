@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <style>
+        .player-container {
+            width: 90%;
+            flex: 0.65;
+        }
+
+        .team-container {
+            width: 90%;
+            flex: 0.30;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            column-gap: 10px;
+        }
+
+        .name-width {
+            flex: 0.9;
+        }
+
+        .centering {
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .box-header {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Players
+            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+        </h1>
+
+        <div class="flex">
+            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Edit Tournament</h2>
+
+            <form method="POST" action="{{ url_for('editplayer', pl_tourneyid = tourneyid, pl_playerid = selectedplayer[0]) }}">
+                <label for="pl_name">Player Name</label><br>
+                <input class="input-bars" type="text" name="pl_name" value="{{selectedplayer[1]}}" required><br>
+
+                <label for="pl_pokepaste">Pokepaste Link</label><br>
+                <input class="input-bars" type="text" name="pl_pokepaste"><br>
+
+                <input class="submit-button" type="submit" name="editplayer" value="Submit">
+                <a href="#inner-popup" class="submit-button">Delete</a>
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+    </div>
+
+    <div id="inner-popup" class="popup">
+        <div class="popup-content">
+            <h2>Are you sure?</h2>
+            <form method="POST" action="{{ url_for('editplayer', pl_tourneyid = tourneyid, pl_playerid = selectedplayer[0]) }}">
+                <button class="submit-button" type="submit" name="deleteplayer" value="Submit">Delete</button>
+            </form>
+            <a href="#popup" class="submit-button">Return</a>
+        </div>
+    </div>
+
+    <div class="flex">
+        <div class="container player-container">
+            <h2 class="box-header">{{ selectedplayer[1] }}'s Player Profile</h2>
+            <div>{{ selectedplayer[2] }} Type</div>
+            <div>
+                {{ selectedplayer[5] }} - {{ selectedplayer[6] }}
+            </div>
+        </div>
+
+        <div class="container team-container">
+            <h2 class="box-header">{{ selectedplayer[1] }}'s Team</h2>
+            <div class="results team-grid">
+                {% if pokemonteam is not none and pokemonteam|length > 0 %}
+                {% for result in pokemonteam %}
+                <div class="poke-player-results">
+                    <div class="flex  centering">
+                        <div class="name-width">
+                            {{ result[3]}}
+                            {% if result[7] == True %}
+                            <i class='fas fa-star small-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
+                            {% endif %}
+                        </div>
+                        <div>
+                            Tier: {{ result[6]}}
+                        </div>
+                    </div>
+                    <div class="flex centering">
+                        <button class="view-details" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Details</button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No results found. Please reset or try a different search.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

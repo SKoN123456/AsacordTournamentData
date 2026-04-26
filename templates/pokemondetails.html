@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <style>
+
+        .base-window {
+            margin-right: 30px;
+            flex: 0.35;
+            border-radius: 0px 20px 20px 0px;
+        }
+
+        .stats-window {
+            margin-bottom: 10px;
+            flex: 0.45;
+        }
+
+        .move-window {
+            width: 60%;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-evenly;
+            row-gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .usage-window {
+            margin-bottom: 20px;
+            flex: 0.45;
+        }
+
+        img {
+            border: 1px solid black;
+            width: 85%;
+            margin-left: 7%;
+        }
+
+        .right-side {
+            flex: 0.65;
+            gap: 30px;
+        }
+
+        .sub-container {
+            margin: 0 auto;
+            margin-bottom: 15px;
+            padding: 25px;
+            background-color: var(--sub-container-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 22%;
+        }
+
+        .usage-container {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .move-container {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .data-header {
+            width: 100%;
+            text-align: center;
+        }
+
+        .highlight-data {
+            font-weight: bold;
+            font-size: 36pt;
+            width: 100%;
+            text-align: center;
+        }
+
+        .highlight-percent {
+            font-size: 28pt;
+        }
+
+        .detail-button-gap {
+            margin-left: 15%
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Pokemon
+            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+        </h1>
+
+        <div class="flex">
+            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Edit Tournament</h2>
+
+            <form method="POST" action="{{ url_for('editpokemon', po_tourneyid = tourneyid, po_pokeid = selectedpokemon[0]) }}">
+                <label for="p_name">Pokemon Name</label><br>
+                <input class="input-bars" type="text" name="p_name" value="{{selectedpokemon[3]}}" required><br>
+
+
+                <input class="submit-button" type="submit" name="editpokemon" value="Submit">
+                <a href="#inner-popup" class="submit-button">Delete</a>
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+    </div>
+
+    <div id="inner-popup" class="popup">
+        <div class="popup-content">
+            <h2>Are you sure?</h2>
+            <form method="POST" action="{{ url_for('editpokemon', po_tourneyid = tourneyid, po_pokeid = selectedpokemon[0]) }}">
+                <button class="submit-button" type="submit" name="deletepokemon" value="Submit">Delete</button>
+            </form>
+            <a href="#popup" class="submit-button">Return</a>
+        </div>
+    </div>
+
+
+
+    <div class="flex">
+        <div class="container base-window">
+            <h2 class="flex">
+                <div class="flex-vertical">
+                    <div>{{selectedpokemon[2]}}'s {{selectedpokemon[3]}}</div>
+                    <div>A.K.A {{selectedpokemon[18]}}</div>
+                </div>
+                {% if selectedpokemon[7] == True %}
+                <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
+                {% endif %}
+                <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
+            </h2>
+
+            {% if selectedpokemon[24] == True %}
+                <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
+            {% else %}
+                <img class="sub-color" src="{{ pokemon_api.imagealt }}">
+            {% endif %}
+
+            <div>
+                Type: {{ selectedpokemon[4]}}
+                {% if selectedpokemon[5] != "N/A" %}
+                <span>/{{ selectedpokemon[5]}}</span>
+                {% endif %}
+            </div>
+            <div>
+                Tier: {{selectedpokemon[6]}}
+            </div>
+            <div>
+                Ability: {{selectedpokemon[16]}}
+            </div>
+            <div>
+                Item: {{selectedpokemon[17]}}
+            </div>
+            <div>
+                Nature: {{selectedpokemon[23]}}
+            </div>
+        </div>
+
+        <div class="flex right-side">
+            <div class="flex-vertical stats-window">
+                <div class="container stats-window">
+                    <h2>Performance</h2>
+                    <div class="stats-grid">
+                        <div class="sub-container flex-vertical">
+                            <div class="data-header">Kills</div>
+                            <div class="highlight-data">{{selectedpokemon[8]}}</div>
+                        </div>
+                        <div class="sub-container flex-vertical">
+                            <div class="data-header">Deaths</div>
+                            <div class="highlight-data">{{selectedpokemon[9]}}</div>
+                        </div>
+                        <div class="sub-container flex-vertical">
+                            <div class="data-header">Kill Streak</div>
+                            <div class="highlight-data">{{selectedpokemon[11]}}</div>
+                        </div>
+                        <div class="sub-container flex-vertical">
+                            <div class="data-header">KDR</div>
+                            <div class="highlight-data">{{selectedpokemon[12]}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container move-window">
+                    <h2>Moveset</h2>
+                    <div class="sub-container move-container">
+                        {{selectedpokemon[19]}}
+                    </div>
+                    <div class="sub-container move-container">
+                        {{selectedpokemon[20]}}
+                    </div>
+                    <div class="sub-container move-container">
+                        {{selectedpokemon[21]}}
+                    </div>
+                    <div class="sub-container move-container">
+                        {{selectedpokemon[22]}}
+                    </div>
+                </div>
+            </div>
+            <div class="flex-vertical usage-window">
+                <div class="container usage-window">
+                    <h2>Usage</h2>
+                    <div class="stats-grid">
+                        <div class="sub-container usage-container flex-vertical">
+                            <div class="data-header">This Pokemon has been brought to</div>
+                            <div class="highlight-data">{{selectedpokemon[10]}}</div>
+                            <div class="data-header">matches</div>
+                        </div>
+                        <div class="sub-container usage-container flex-vertical">
+                            <div class="data-header">This is</div>
+                            <div class="highlight-data highlight-percent">{{(selectedpokemon[13] * 100) | round(2)}}%</div>
+                            <div class="data-header"> of {{selectedpokemon[2]}}'s matches</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container usage-window">
+                    {%  if pokemon_api is not none %}
+                    <h2>Base Stats</h2>
+                    <div>HP: {{ pokemon_api.stats.hp }}</div>
+                    <div>Attack: {{ pokemon_api.stats.attack }}</div>
+                    <div>Defense: {{ pokemon_api.stats.defense }}</div>
+                    <div>Sp. Attack: {{ pokemon_api.stats.sp_attack }}</div>
+                    <div>Sp. Defense: {{ pokemon_api.stats.sp_defense }}</div>
+                    <div>Speed: {{ pokemon_api.stats.speed }}</div>
+                    <div>BST: {{ pokemon_api.stats.hp + pokemon_api.stats.attack + pokemon_api.stats.defense + pokemon_api.stats.sp_attack + pokemon_api.stats.sp_defense + pokemon_api.stats.speed }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

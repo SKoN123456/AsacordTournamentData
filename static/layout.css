@@ -1,0 +1,79 @@
+﻿:root {
+    --background-color: #2B3033;
+    --header-color: #38586E;
+    --container-color: #38586E;
+    --sub-container-color: #1E73AC;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+}
+
+header {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px 0;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    background-color: var(--header-color);
+    text-align: center;
+    z-index: 1;
+}
+
+.flex {
+    display: flex;
+    align-items: flex-start;
+}
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stretch-box {
+    align-items: stretch;
+}
+
+
+.first-color {
+    background-color: gold;
+}
+
+.second-color {
+    background-color: silver;
+}
+
+.third-color {
+    background-color: saddlebrown;
+}
+
+.sub-color {
+    background-color: var(--sub-container-color);
+}
+
+.container {
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--container-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+
+.poke-player-results {
+    margin: 0 auto;
+    padding: 10px;
+    background-color: var(--sub-container-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 20px;
+}

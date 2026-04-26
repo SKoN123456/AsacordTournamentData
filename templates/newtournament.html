@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <style>
+        .new-tournament-container {
+            width: 40%;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Home Page</h1>
+
+        <div class="flex">
+            <button type="button" class="navigation-button" disabled>Matches</button>
+            <button type="button" class="navigation-button" disabled>Players</button>
+            <button type="button" class="home-button" disabled>Home</button>
+            <button type="button" class="navigation-button" disabled>Tournament</button>
+            <button type="button" class="navigation-button" disabled>Pokemon</button>
+        </div>
+    </header>
+
+    <div class="container new-tournament-container">
+        <h2>Create New Tournament</h2>
+
+        <form method="POST" action="{{ url_for('newtournament') }}">
+            <label for="t_name">Tournament Name</label><br>
+            <input type="text" name="t_name" required><br>
+            <label for="t_format">Format</label><br>
+            <input type="text" name="t_format" required> <br>
+
+            <input class="submit-button" type="submit" name="addtournament" value="Submit">
+            <button class="submit-button" onclick="document.location='{{ url_for('index') }}'">Back</button>
+        </form>
+    </div>
+</body>
+</html>

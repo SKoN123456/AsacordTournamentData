@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <style>
+        .player-container {
+            width: 90%;
+        }
+
+        .results {
+            margin-top: 20px;
+            max-height: 430px;
+            overflow-y: auto;
+            padding-right: 10px;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+
+        .player-name {
+            font-size: 30px;
+            font-weight: bold;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 5px;
+            flex: 0.4;
+        }
+
+        .detail-button-gap {
+            flex: 0.95;
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Players
+        </h1>
+
+        <div class="flex">
+            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button type="button" class="navigation-button" disabled>Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div class="container player-container">
+        <h2>Players</h2>
+
+        <div class="results">
+            {% if player_results is not none and player_results|length > 0 %}
+            {% for result in player_results %}
+            <div class="poke-player-results">
+                <div class="player-name flex">
+                    <div>{{ result[1]}}</div>
+                    <div class="detail-button-gap">
+                        <button class="view-details" onclick="document.location='{{ url_for('playerdetails', pl_tourneyid = tourneyid, pl_playerid = result[0]) }}'">View Details</button>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No results found</p>
+            {% endif %}
+        </div>
+        <a href="#newplayer" class="view-details">Add Player</a>
+    </div>
+
+    <div id="newplayer" class="popup">
+    <div class="popup-content">
+        <h2>Edit Tournament</h2>
+
+        <form method="POST" action="{{ url_for('newplayer', pl_tourneyid = tourneyid) }}">
+            <label for="pl_name">Player Name</label><br>
+            <input class="input-bars" type="text" name="pl_name" required><br>
+
+            <label for="pl_type">Constraint</label><br>
+            <input class="input-bars" type="text" name="pl_type" required><br>
+
+            <label for="pl_pokepaste">Pokepaste Link</label><br>
+            <input class="input-bars" type="text" name="pl_pokepaste" required><br>
+
+            <input class="submit-button" type="submit" name="editplayer" value="Submit">
+            <a href="" class="submit-button">Close</a>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

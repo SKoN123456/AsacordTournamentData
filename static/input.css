@@ -1,0 +1,46 @@
+﻿
+.navigation-button {
+    flex: 0.21;
+    background-color: var(--sub-container-color);
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.navigation-button:hover {
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.home-button {
+    flex: 0.36;
+    background-color: var(--sub-container-color);
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.home-button:hover {
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.view-details {
+    box-shadow: 4px 4px 3px 3px rgba(0, 0, 0, 0.61);
+    border-radius: 60px 20px;
+    padding: 10px 30px;
+    margin-top: auto;
+    background: linear-gradient(to bottom right, #667eea 0%, #5becbb 100%);
+}
+
+.view-details:hover {
+    font-weight: bold;
+}
+
+.submit-button {
+    background: linear-gradient(to bottom right, #667eea 0%, #5becbb 100%);
+}
+
+.submit-button:hover {
+    font-weight: bold;
+}

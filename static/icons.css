@@ -1,0 +1,78 @@
+﻿:root {
+    --background-color: #2B3033;
+    --header-color: #38586E;
+    --container-color: #38586E;
+    --sub-container-color: #1E73AC;
+}
+
+.dropdown-content {
+    font-family: Arial, sans-serif;
+    color: black;
+    font-weight: 100;
+    font-size: 16px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+}
+
+.fa-star {
+    color: red;
+    position: relative;
+}
+
+.fa-star:hover .dropdown-content {
+    display: block;
+}
+
+.big-star {
+    font-size: 24px;
+}
+
+.small-star {
+    font-size: 18px;
+}
+
+.gear {
+    color: gray;
+    font-size: 24px;
+}
+
+.settings {
+    font-size: 20pt;
+    background-color: var(--container-color);
+    border: none;
+}
+
+.settings:hover {
+    background-color: var(--sub-container-color);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.popup-content {
+    background-color: var(--container-color);
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.popup:target {
+    display: flex;
+}
+
+

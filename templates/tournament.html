@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <style>
+        .tournament-container {
+            width: 40%;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .ranking-results {
+            margin: 0 auto;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: 8% 25% 15% 10% 8% 8% 16% 10%;
+        }
+
+        .ranking-header {
+            font-weight: bold;
+            border-bottom: 3px solid black;
+        }
+
+        .ranking-border {
+            border: 1px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .view-details {
+            margin-left: 70%;
+            box-shadow: 4px 4px 3px 3px rgba(0, 0, 0, 0.61);
+            border-radius: 60px 20px;
+            padding: 10px 30px;
+            margin-top: auto;
+        }
+
+        .input-bars {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            {{tournament[1]}}
+            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+        </h1>
+
+        <div class="flex">
+            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tournament[0]) }}'">Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button type="button" class="navigation-button" disabled>Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tournament[0]) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Edit Tournament</h2>
+
+            <form method="POST" action="{{ url_for('edittournament', t_tourneyid = tournament[0]) }}">
+                <label for="t_name">Tournament Name</label><br>
+                <input class="input-bars" type="text" name="t_name" value="{{tournament[1]}}" required><br>
+                <label for="t_format">Format</label><br>
+                <input class="input-bars" type="text" name="t_format" value="{{tournament[2]}}" required> <br>
+
+                <input class="submit-button" type="submit" name="edittournament" value="Submit">
+                <a href="#inner-popup" class="submit-button">Delete</a>
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+    </div>
+
+    <div id="inner-popup" class="popup">
+        <div class="popup-content">
+            <h2>Are you sure?</h2>
+            <form method="POST" action="{{ url_for('edittournament', t_tourneyid = tournament[0]) }}">
+                <button class="submit-button" type="submit" name="deletetournament" value="Submit">Delete</button>
+            </form>
+            <a href="#popup" class="submit-button">Return</a>
+        </div>
+    </div>
+
+    <div class="flex">
+        <div class="container tournament-container">
+            <h2>Pokemon Rankings</h2>
+            <div class="results">
+                {% if rankings is not none and rankings|length > 0 %}
+                <div class="ranking-results ranking-header">
+                    <div>Rank</div>
+                    <div>Name</div>
+                    <div>Player</div>
+                    <div>Tier</div>
+                    <div>K</div>
+                    <div>D</div>
+                    <div>Kill Streak</div>
+                    <div>R</div>
+                </div>
+                {% for result in rankings %}
+                <div class="ranking-results ranking-border {{ 'first-color' if loop.index == 1
+                       else 'second-color' if loop.index == 2
+                       else 'third-color' if loop.index == 3
+                       else 'sub-color' }}">
+                    <div>{{loop.index}}</div>
+                    <div>
+                        {{result[3]}}
+                        {% if result[7] == True %}
+                        <i class='fas fa-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
+                        {% endif %}
+                    </div>
+                    <div>{{result[2]}}</div>
+                    <div>{{result[6]}}</div>
+                    <div>{{result[8]}}</div>
+                    <div>{{result[9]}}</div>
+                    <div>{{result[11]}}</div>
+                    <div>{{result[12]}}</div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No results found. Please reset or try a different search.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="container tournament-container">
+            <h2>Player Rankings</h2>
+            <div class="results">
+                {% if rankings is not none and rankings|length > 0 %}
+                <div class="ranking-results ranking-header">
+                    <div>Rank</div>
+                    <div>Name</div>
+                    <div>Player</div>
+                    <div>Tier</div>
+                    <div>K</div>
+                    <div>D</div>
+                    <div>Kill Streak</div>
+                    <div>R</div>
+                </div>
+                {% for result in rankings %}
+                <div class="ranking-results ranking-border {{ 'first-color' if loop.index == 1
+                       else 'second-color' if loop.index == 2
+                       else 'third-color' if loop.index == 3
+                       else 'sub-color' }}">
+                    <div>{{loop.index}}</div>
+                    <div>
+                        {{result[3]}}
+                        {% if result[7] == True %}
+                        <i class='fas fa-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
+                        {% endif %}
+                    </div>
+                    <div>{{result[2]}}</div>
+                    <div>{{result[6]}}</div>
+                    <div>{{result[8]}}</div>
+                    <div>{{result[9]}}</div>
+                    <div>{{result[11]}}</div>
+                    <div>{{result[12]}}</div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No results found. Please reset or try a different search.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
