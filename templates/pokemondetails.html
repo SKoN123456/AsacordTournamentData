@@ -101,7 +101,7 @@
         </h1>
 
         <div class="flex">
-            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
             <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
@@ -115,7 +115,7 @@
 
             <form method="POST" action="{{ url_for('editpokemon', po_tourneyid = tourneyid, po_pokeid = selectedpokemon[0]) }}">
                 <label for="p_name">Pokemon Name</label><br>
-                <input class="input-bars" type="text" name="p_name" value="{{selectedpokemon[3]}}" required><br>
+                <input class="input-bars" type="text" name="p_name" value="{{selectedpokemon[1]}}" required><br>
 
 
                 <input class="submit-button" type="submit" name="editpokemon" value="Submit">
@@ -141,38 +141,38 @@
         <div class="container base-window">
             <h2 class="flex">
                 <div class="flex-vertical">
-                    <div>{{selectedpokemon[2]}}'s {{selectedpokemon[3]}}</div>
-                    <div>A.K.A {{selectedpokemon[18]}}</div>
+                    <div>{{selectedpokemon[2]}}'s {{selectedpokemon[1]}}</div>
+                    <div>A.K.A {{selectedpokemon[13]}}</div>
                 </div>
-                {% if selectedpokemon[7] == True %}
+                {% if selectedpokemon[6] == True %}
                 <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
                 {% endif %}
                 <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
             </h2>
 
-            {% if selectedpokemon[24] == True %}
+            {% if selectedpokemon[19] == True %}
                 <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
             {% else %}
                 <img class="sub-color" src="{{ pokemon_api.imagealt }}">
             {% endif %}
 
             <div>
-                Type: {{ selectedpokemon[4]}}
-                {% if selectedpokemon[5] != "N/A" %}
-                <span>/{{ selectedpokemon[5]}}</span>
+                Type: {{ selectedpokemon[3]}}
+                {% if selectedpokemon[4] != "N/A" %}
+                <span>/{{ selectedpokemon[4]}}</span>
                 {% endif %}
             </div>
             <div>
-                Tier: {{selectedpokemon[6]}}
+                Tier: {{selectedpokemon[5]}}
             </div>
             <div>
-                Ability: {{selectedpokemon[16]}}
+                Ability: {{selectedpokemon[11]}}
             </div>
             <div>
-                Item: {{selectedpokemon[17]}}
+                Item: {{selectedpokemon[12]}}
             </div>
             <div>
-                Nature: {{selectedpokemon[23]}}
+                Nature: {{selectedpokemon[18]}}
             </div>
         </div>
 
@@ -183,35 +183,35 @@
                     <div class="stats-grid">
                         <div class="sub-container flex-vertical">
                             <div class="data-header">Kills</div>
-                            <div class="highlight-data">{{selectedpokemon[8]}}</div>
+                            <div class="highlight-data">{{selectedpokemon[7]}}</div>
                         </div>
                         <div class="sub-container flex-vertical">
                             <div class="data-header">Deaths</div>
-                            <div class="highlight-data">{{selectedpokemon[9]}}</div>
+                            <div class="highlight-data">{{selectedpokemon[8]}}</div>
                         </div>
                         <div class="sub-container flex-vertical">
                             <div class="data-header">Kill Streak</div>
-                            <div class="highlight-data">{{selectedpokemon[11]}}</div>
+                            <div class="highlight-data">{{selectedpokemon[9]}}</div>
                         </div>
                         <div class="sub-container flex-vertical">
                             <div class="data-header">KDR</div>
-                            <div class="highlight-data">{{selectedpokemon[12]}}</div>
+                            <div class="highlight-data">{{ "%.2f"|format(selectedpokemon[7] / selectedpokemon[8]) if selectedpokemon[8] != 0 else selectedpokemon[7] }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="container move-window">
                     <h2>Moveset</h2>
                     <div class="sub-container move-container">
-                        {{selectedpokemon[19]}}
+                        {{selectedpokemon[14]}}
                     </div>
                     <div class="sub-container move-container">
-                        {{selectedpokemon[20]}}
+                        {{selectedpokemon[15]}}
                     </div>
                     <div class="sub-container move-container">
-                        {{selectedpokemon[21]}}
+                        {{selectedpokemon[16]}}
                     </div>
                     <div class="sub-container move-container">
-                        {{selectedpokemon[22]}}
+                        {{selectedpokemon[17]}}
                     </div>
                 </div>
             </div>
@@ -221,12 +221,12 @@
                     <div class="stats-grid">
                         <div class="sub-container usage-container flex-vertical">
                             <div class="data-header">This Pokemon has been brought to</div>
-                            <div class="highlight-data">{{selectedpokemon[10]}}</div>
+                            <div class="highlight-data">{{selectedpokemon[9]}}/{{selectedpokemon[20]}}</div>
                             <div class="data-header">matches</div>
                         </div>
                         <div class="sub-container usage-container flex-vertical">
                             <div class="data-header">This is</div>
-                            <div class="highlight-data highlight-percent">{{(selectedpokemon[13] * 100) | round(2)}}%</div>
+                            <div class="highlight-data highlight-percent">{{ "%.2f"|format((selectedpokemon[9] / selectedpokemon[20])*100) if selectedpokemon[20] != 0 else "0.00" }}%</div>
                             <div class="data-header"> of {{selectedpokemon[2]}}'s matches</div>
                         </div>
                     </div>

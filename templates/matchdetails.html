@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <script>
+    async function updateRoster(playerInputId, rosterClass) {
+        const playerName = document.getElementById(playerInputId).value;
+        const tourneyId = "{{ tourneyid }}";
+
+        if (!playerName) return;
+
+        const response = await fetch(`/get_player_pokemon/${tourneyId}/${encodeURIComponent(playerName)}`);
+        const pokemonList = await response.json();
+
+        const selects = document.querySelectorAll(`.${rosterClass}`);
+
+        const selectedValues = Array.from(selects)
+            .map(s => s.value)
+            .filter(v => v !== "");
+
+        selects.forEach(select => {
+            const currentValue = select.value;
+
+            select.innerHTML = '<option value="">Select Pokemon</option>';
+
+            pokemonList.forEach(pokemon => {
+                if (!selectedValues.includes(pokemon) || pokemon === currentValue) {
+                    const option = document.createElement("option");
+                    option.value = pokemon;
+                    option.textContent = pokemon;
+
+                    if (pokemon === currentValue) {
+                        option.selected = true;
+                    }
+
+                    select.appendChild(option);
+                }
+            });
+        });
+    }
+    </script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <style>
+        .player-container {
+            width: 90%;
+            flex: 0.65;
+        }
+
+        .team-container {
+            width: 90%;
+            flex: 0.30;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            column-gap: 10px;
+        }
+
+        .name-width {
+            flex: 0.9;
+        }
+
+        .centering {
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .box-header {
+            text-align: center;
+        }
+        .input-side {
+            flex: 0.5;
+        }
+
+        .popup-size {
+            width: 800px;
+            height: 600px;
+        }
+
+        .roster-grid {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .namebar-width {
+            width: 150px;
+        }
+
+        .number-width {
+            width: 30px;
+        }
+
+        .entry-gap {
+            margin-bottom: 10px;
+        }
+
+        .input-bars {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Match
+        </h1>
+
+        <div class="flex">
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="#newset" class="view-details">Add Set</a>
+    </div>
+
+    <div id="newset" class="popup">
+        <div class="popup-content popup-size">
+            <h2>Register New Set</h2>
+
+            <form method="POST" action="{{ url_for('newplayer', pl_tourneyid = tourneyid) }}">
+                <div class="flex roster-grid">
+                    <div class="flex-verical">
+                        <label for="m_name">Match Title</label><br>
+                        <input class="input-bars" type="text" name="m_name" required><br>
+                    </div>
+
+                    <div class="flex-verical">
+                        <label for="m_setnum">Set Number</label><br>
+                        <input class="input-bars number-width" type="number" name="m_setnum" min="1" max="3" required><br>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="input-side">
+                        <label for="m_player1">Player 1</label><br>
+                        <input class="input-bars" list="players" id="player1" name="m_player1" onchange="updateRoster('player1', 'player1-roster')" required>
+
+                        <div>
+                            <label for="m_player1roster">Roster</label>
+                            <div class="roster-grid">
+                                <label for="m_player1_name[]">Name</label><br>
+                                <label for="m_player1_kills[]">Kills</label><br>
+                                <label for="m_player1_deaths[]">Deaths</label><br>
+                                <label for="m_player1_tera[]">Tera?</label><br>
+                            </div>
+                            {% for i in range(1, 7)%}
+                            <div class="roster-grid">
+                                <select class="input-bars namebar-width player1-roster" name="m_player1_name[]" onchange="updateRoster('player1', 'player1-roster')">
+                                    <option value="">Select Pokemon</option>
+                                </select>
+                                <input class="input-bars number-width" type="number" name="m_player1kills[]" min="0" value="0" required><br>
+                                <input class="input-bars number-width" type="number" name="m_player1deaths[]" min="0" value="0" required><br>
+                                <input class="input-bars" type="radio" name="m_player1tera[]"><br>
+                            </div>
+                            {% endfor %}
+                            <label for="m_points">Points</label><br>
+                            <input class="input-bars" type="number" name="m_player1_points" min="0" max="6" value="0" required><br>
+                        </div>
+                    </div>
+
+                    <div class="input-side">
+                        <label for="m_player1">Player 2</label><br>
+                        <input class="input-bars" list="players" id="player2" name="m_player2" onchange="updateRoster('player2', 'player2-roster')" required>
+
+                        <div>
+                            <label for="m_player2roster">Roster</label>
+                            <div class="roster-grid">
+                                <label for="m_player2_name[]">Name</label><br>
+                                <label for="m_player2_kills[]">Kills</label><br>
+                                <label for="m_player2_deaths[]">Deaths</label><br>
+                                <label for="m_player2_tera[]">Tera?</label><br>
+                            </div>
+                            {% for i in range(1, 7)%}
+                            <div class="roster-grid">
+                                <select class="input-bars namebar-width player2-roster" name="m_player2_name[]" onchange="updateRoster('player2', 'player2-roster')">
+                                    <option value="">Select Pokemon</option>
+                                </select>
+                                <input class="input-bars number-width" type="number" name="m_player2kills[]" min="0" value="0" required><br>
+                                <input class="input-bars number-width" type="number" name="m_player2deaths[]" min="0" value="0" required><br>
+                                <input class="input-bars" type="radio" name="m_player2tera[]"><br>
+                            </div>
+                            {% endfor %}
+                            <label for="m_points">Points</label><br>
+                            <input class="input-bars" type="number" name="m_player2_points" min="0" max="6" value="0" required><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="m_link">Link</label><br>
+                    <input class="input-bars" type="text" name="m_link" required><br>
+                </div>
+                <div>
+                    <label for="m_date">Date</label><br>
+                    <input class="input-bars" type="date" name="m_date" value="{{todayDate}}" required><br>
+                </div>
+
+                <datalist id="players">
+                    {% for player in playerlist%}
+                    <option value="{{player[1]}}">
+                        {% endfor %}
+                </datalist>
+
+                <input class="submit-button" type="submit" name="editplayer" value="Submit">
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

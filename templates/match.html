@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6269ea0e20.js" crossorigin="anonymous"></script>
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <style>
+        .player-container {
+            width: 90%;
+        }
+
+        .results {
+            margin-top: 20px;
+            max-height: 430px;
+            overflow-y: auto;
+            padding-right: 10px;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+        }
+
+        .player-name {
+            font-size: 30px;
+            font-weight: bold;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 5px;
+            flex: 0.4;
+        }
+
+        .detail-button-gap {
+            flex: 0.95;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .input-side {
+            flex: 0.5;
+        }
+
+        .popup-size {
+            width: 800px;
+            height: 600px;
+        }
+
+        .roster-grid {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .namebar-width {
+            width: 150px;
+        }
+
+        .number-width {
+            width: 30px;
+        }
+
+        .entry-gap {
+            margin-bottom: 10px;
+        }
+
+        .input-bars {
+            margin-bottom: 10px;
+        }
+
+        .results {
+            margin-top: 20px;
+            max-height: 430px;
+            overflow-y: auto;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Matches
+        </h1>
+
+        <div class="flex">
+            <button type="button" class="navigation-button" disabled>Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
+            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="results">
+            {% if match_results is not none and match_results|length > 0%}
+            {%  for result in match_results %}
+            <div class="poke-player-results">
+                {{result[2]}}
+                <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('matchdetails', m_tourneyid = tourneyid, m_matchid = result[0]) }}'">View Details</button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <a href="#newmatch" class="view-details">Add Match</a>
+    </div>
+
+    <div id="newmatch" class="popup">
+        <div class="popup-content popup-size">
+            <h2>Register New Match</h2>
+
+            <form method="POST" action="{{ url_for('newmatch', m_tourneyid = tourneyid) }}">
+                <div class="flex roster-grid">
+                    <div class="flex-verical">
+                        <label for="m_name">Match Title</label><br>
+                        <input class="input-bars" type="text" name="m_name" required><br>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <div class="input-side">
+                        <label for="m_player1">Player 1</label><br>
+                        <input class="input-bars" list="players" id="player1" name="m_player1" onchange="updateRoster('player1', 'player1-roster')" required>
+                    </div>
+
+                    <div class="input-side">
+                        <label for="m_player1">Player 2</label><br>
+                        <input class="input-bars" list="players" id="player2" name="m_player2" onchange="updateRoster('player2', 'player2-roster')" required>
+                    </div>
+                </div>
+
+                <datalist id="players">
+                    {% for player in playerlist%}
+                    <option value="{{player[1]}}">
+                        {% endfor %}
+                </datalist>
+
+                <input class="submit-button" type="submit" name="editplayer" value="Submit">
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

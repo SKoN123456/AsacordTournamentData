@@ -48,7 +48,7 @@
         </h1>
 
         <div class="flex">
-            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
             <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
@@ -58,7 +58,7 @@
 
     <div id="popup" class="popup">
         <div class="popup-content">
-            <h2>Edit Tournament</h2>
+            <h2>Edit Player</h2>
 
             <form method="POST" action="{{ url_for('editplayer', pl_tourneyid = tourneyid, pl_playerid = selectedplayer[0]) }}">
                 <label for="pl_name">Player Name</label><br>
@@ -101,13 +101,13 @@
                 <div class="poke-player-results">
                     <div class="flex  centering">
                         <div class="name-width">
-                            {{ result[3]}}
-                            {% if result[7] == True %}
+                            {{ result[1]}}
+                            {% if result[3] == True %}
                             <i class='fas fa-star small-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
                             {% endif %}
                         </div>
                         <div>
-                            Tier: {{ result[6]}}
+                            Tier: {{ result[2]}}
                         </div>
                     </div>
                     <div class="flex centering">

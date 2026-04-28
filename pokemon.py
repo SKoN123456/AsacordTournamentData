@@ -7,22 +7,25 @@ def getPokemonList(po_tourneyid):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM Pokemon WHERE po_tourneyID = %s ORDER BY po_name ASC;", (po_tourneyid,))
+    cursor.execute("""
+        SELECT po_pokeid, po_name, pl_name,po_tier, po_isteracaptain, po_type1, po_type2 
+        FROM Pokemon JOIN Player ON pl_playerid = po_playerid
+        WHERE po_tourneyID = %s ORDER BY po_name ASC;""", (po_tourneyid,))
     poke_results = cursor.fetchall()
 
     cursor.close()
     conn.close()
     return poke_results
 
-def newPokemon(po_tourneyid, po_playername, pokemonData):
+def newPokemon(po_tourneyid, po_playerid, pokemonData, type1, type2):
     conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO Pokemon(po_tourneyid, po_playername, po_name, po_ability, po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isShiny) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
-        """, (po_tourneyid, po_playername, pokemonData["name"], pokemonData["ability"], pokemonData["item"], pokemonData["nickname"],
-              pokemonData["moves"][0], pokemonData["moves"][1], pokemonData["moves"][2], pokemonData["moves"][3], pokemonData["nature"], pokemonData["isShiny"]))
+        INSERT INTO Pokemon(po_tourneyid, po_playerid, po_name, po_ability, po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isShiny, po_type1, po_type2) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        """, (po_tourneyid, po_playerid, pokemonData["name"], pokemonData["ability"], pokemonData["item"], pokemonData["nickname"],
+              pokemonData["moves"][0], pokemonData["moves"][1], pokemonData["moves"][2], pokemonData["moves"][3], pokemonData["nature"], pokemonData["isShiny"],type1, type2))
     conn.commit()
 
     cursor.close()
@@ -32,7 +35,12 @@ def selectPokemon(pl_tourneyid, po_pokeid):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM Pokemon WHERE (po_tourneyID = %s and po_pokeid = %s);", (pl_tourneyid,po_pokeid,))
+    cursor.execute("""
+            SELECT po_pokeid, po_name, pl_name, po_type1, po_type2, po_tier, po_isteracaptain, po_k, po_d, po_numbrought, po_winstreak, po_ability,
+            po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isshiny, pl_total_sets FROM Pokemon
+            JOIN Player ON pl_playerid = po_playerid
+            WHERE (po_tourneyID = %s and po_pokeid = %s);
+            """, (pl_tourneyid,po_pokeid,))
     selectedpokemon = cursor.fetchone()
     cursor.close()
     conn.close()
@@ -50,16 +58,16 @@ def editPokemon(po_tourneyid, po_pokeid, name):
     conn.close()
     return
 
-def editPokemonfromPaste(po_tourneyid, po_pokeid, pokemonData):
+def editPokemonfromPaste(po_tourneyid, po_pokeid, pokemonData, type1, type2):
     conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
         UPDATE Pokemon SET po_name = %s, po_ability = %s, po_item = %s, po_nickname = %s, po_move1 = %s, po_move2 = %s, po_move3 = %s, po_move4 = %s,
-        po_nature = %s, po_isShiny = %s WHERE (po_tourneyid = %s AND po_pokeid = %s);
+        po_nature = %s, po_isShiny = %s, po_type1 = %s, po_type2 = %s WHERE (po_tourneyid = %s AND po_pokeid = %s);
         """, (pokemonData["name"], pokemonData["ability"], pokemonData["item"], pokemonData["nickname"],
         pokemonData["moves"][0], pokemonData["moves"][1], pokemonData["moves"][2], pokemonData["moves"][3], pokemonData["nature"],
-           pokemonData["isShiny"], po_tourneyid, po_pokeid,))
+           pokemonData["isShiny"], type1, type2, po_tourneyid, po_pokeid,))
 
     conn.commit()
     cursor.close()
@@ -101,11 +109,11 @@ def pokemonFilter(po_tourneyid, keyword, tier, type):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    query = "SELECT * FROM Pokemon WHERE po_tourneyID = %s"
+    query = "SELECT po_pokeid, po_name, pl_name,po_tier, po_isteracaptain, po_type1, po_type2 FROM Pokemon JOIN Player ON pl_playerid = po_playerid WHERE po_tourneyID = %s"
     parameters = [po_tourneyid]
 
     if keyword:
-        query += " AND (po_name LIKE %s OR po_playername LIKE %s)"
+        query += " AND (po_name LIKE %s OR pl_name LIKE %s)"
         parameters.extend([f"%{keyword}%", f"%{keyword}%"])
 
     if tier:
@@ -114,7 +122,7 @@ def pokemonFilter(po_tourneyid, keyword, tier, type):
 
     if type:
         query += " AND (po_type1 = %s OR po_type2 = %s)"
-        parameters.extend([type, type])
+        parameters.extend([type.lower(), type.lower()])
 
     query += " ORDER BY po_name ASC"
 
@@ -125,11 +133,11 @@ def pokemonFilter(po_tourneyid, keyword, tier, type):
     conn.close()
     return poke_results
 
-def pokemonTeamFromPlayer(pl_tourneyid, playername):
+def pokemonTeamFromPlayer(pl_tourneyid, pl_playerid):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM Pokemon WHERE (po_tourneyID = %s and po_playername = %s) ORDER BY po_name ASC;", (pl_tourneyid,playername,))
+    cursor.execute("SELECT po_pokeid, po_name, po_tier, po_isTeraCaptain FROM Pokemon WHERE (po_tourneyID = %s and po_playerid = %s) ORDER BY po_name ASC;", (pl_tourneyid,pl_playerid,))
     pokemonteam = cursor.fetchall()
 
     cursor.close()

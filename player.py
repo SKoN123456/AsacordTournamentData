@@ -18,22 +18,34 @@ def selectPlayer(pl_tourneyid, pl_playerid):
 
     cursor.execute("SELECT * FROM Player WHERE (pl_tourneyID = %s and pl_playerid = %s);", (pl_tourneyid,pl_playerid,))
     selectedplayer = cursor.fetchone()
-    playername = selectedplayer[1]
 
     cursor.close()
     conn.close()
-    return  selectedplayer, playername
+    return  selectedplayer
+
+def selectPlayerByName(pl_tourneyid, pl_name):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM Player WHERE (pl_tourneyID = %s and pl_name = %s);", (pl_tourneyid, pl_name,))
+    selectedplayer = cursor.fetchone()
+    playerID = selectedplayer[0]
+
+    cursor.close()
+    conn.close()
+    return playerID
 
 def newPlayer(pl_tourneyid, name, contraint, url):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO Player(pl_name, pl_type, pl_tourneyid, pl_pokepaste) VALUES (%s, %s, %s, %s);", (name, contraint, pl_tourneyid,url,))
+    cursor.execute("INSERT INTO Player(pl_name, pl_type, pl_tourneyid, pl_pokepaste) VALUES (%s, %s, %s, %s) RETURNING pl_playerID;", (name, contraint, pl_tourneyid,url,))
+    playerid = cursor.fetchone()[0]
     conn.commit()
 
     cursor.close()
     conn.close()
-    return
+    return playerid
 
 def editPlayer(pl_tourneyid, pl_playerid, name):
     conn = get_db_connection()

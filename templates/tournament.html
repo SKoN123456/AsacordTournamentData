@@ -62,7 +62,7 @@
         </h1>
 
         <div class="flex">
-            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tournament[0]) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tournament[0]) }}'">Players</button>
             <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
             <button type="button" class="navigation-button" disabled>Tournament</button>

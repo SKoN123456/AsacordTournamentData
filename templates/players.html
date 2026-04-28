@@ -46,7 +46,7 @@
         </h1>
 
         <div class="flex">
-            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button type="button" class="navigation-button" disabled>Players</button>
             <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
@@ -78,23 +78,23 @@
     </div>
 
     <div id="newplayer" class="popup">
-    <div class="popup-content">
-        <h2>Edit Tournament</h2>
+        <div class="popup-content">
+            <h2>New Player</h2>
 
-        <form method="POST" action="{{ url_for('newplayer', pl_tourneyid = tourneyid) }}">
-            <label for="pl_name">Player Name</label><br>
-            <input class="input-bars" type="text" name="pl_name" required><br>
+            <form method="POST" action="{{ url_for('newplayer', pl_tourneyid = tourneyid) }}">
+                <label for="pl_name">Player Name</label><br>
+                <input class="input-bars" type="text" name="pl_name" required><br>
 
-            <label for="pl_type">Constraint</label><br>
-            <input class="input-bars" type="text" name="pl_type" required><br>
+                <label for="pl_type">Constraint</label><br>
+                <input class="input-bars" type="text" name="pl_type" required><br>
 
-            <label for="pl_pokepaste">Pokepaste Link</label><br>
-            <input class="input-bars" type="text" name="pl_pokepaste" required><br>
+                <label for="pl_pokepaste">Pokepaste Link</label><br>
+                <input class="input-bars" type="text" name="pl_pokepaste" required><br>
 
-            <input class="submit-button" type="submit" name="editplayer" value="Submit">
-            <a href="" class="submit-button">Close</a>
-        </form>
-    </div>
+                <input class="submit-button" type="submit" name="editplayer" value="Submit">
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
     </div>
 </body>
 </html>

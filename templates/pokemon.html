@@ -79,7 +79,7 @@
         </h1>
 
         <div class="flex">
-            <button class="navigation-button" onclick="document.location='{{ url_for('index') }}'">Matches</button>
+            <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
             <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
@@ -124,8 +124,8 @@
                 <div class="poke-player-results flex centering">
                     <div class="poke-name flex-vertical">
                         <div>
-                            {{ result[3]}}
-                            {% if result[7] == True %}
+                            {{ result[1]}}
+                            {% if result[4] == True %}
                             <i class='fas fa-star big-star'>
                                 <div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div>
                             </i>
@@ -135,13 +135,13 @@
                     </div>
                     <div class="poke-info">
                         <div>
-                            Type: {{ result[4]}}
-                            {% if result[5] != "N/A" %}
-                            <span>/{{ result[5]}}</span>
+                            Type: {{ result[5]}}
+                            {% if result[6] != "N/A" %}
+                            <span>/{{ result[6]}}</span>
                             {% endif %}
 
                         </div>
-                        Tier: {{ result[6]}}
+                        Tier: {{ result[3]}}
                     </div>
                     <div>
                         <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Details</button>
