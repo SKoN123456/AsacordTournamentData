@@ -119,17 +119,17 @@
                        else 'sub-color' }}">
                     <div>{{loop.index}}</div>
                     <div>
-                        {{result[3]}}
-                        {% if result[7] == True %}
+                        {{result[1]}}
+                        {% if result[2] == True %}
                         <i class='fas fa-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
                         {% endif %}
                     </div>
-                    <div>{{result[2]}}</div>
+                    <div>{{result[3]}}</div>
+                    <div>{{result[4]}}</div>
+                    <div>{{result[5]}}</div>
                     <div>{{result[6]}}</div>
-                    <div>{{result[8]}}</div>
-                    <div>{{result[9]}}</div>
-                    <div>{{result[11]}}</div>
-                    <div>{{result[12]}}</div>
+                    <div>{{result[7]}}</div>
+                    <div>{{ "%.2f"|format(result[5] / result[6]) if result[5] != 0 else result[6] }}</div>
                 </div>
                 {% endfor %}
                 {% else %}

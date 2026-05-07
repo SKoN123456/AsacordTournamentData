@@ -27,7 +27,7 @@
 
         .results {
             margin-top: 20px;
-            max-height: 430px;
+            max-height: 470px;
             overflow-y: auto;
             padding-right: 10px;
             margin-bottom: 20px;
@@ -135,9 +135,9 @@
                     </div>
                     <div class="poke-info">
                         <div>
-                            Type: {{ result[5]}}
+                            Type: {{ result[5].capitalize()}}
                             {% if result[6] != "N/A" %}
-                            <span>/{{ result[6]}}</span>
+                            <span>/{{ result[6].capitalize()}}</span>
                             {% endif %}
 
                         </div>

@@ -26,7 +26,10 @@ def tournament(t_tourneyid):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM Pokemon WHERE (po_tourneyID = %s) ORDER BY po_k DESC LIMIT 10;", (t_tourneyid,))
+    cursor.execute("""
+            SELECT po_pokeid, po_name, po_isteracaptain, pl_name, po_tier, po_k, po_d, po_winstreak
+            FROM Pokemon JOIN Player ON pl_playerid = po_playerid WHERE (po_tourneyID = %s) ORDER BY po_k DESC LIMIT 10;
+            """, (t_tourneyid,))
     session["killrankings"] = cursor.fetchall()
 
     cursor.close()
@@ -97,18 +100,13 @@ def editplayer(pl_tourneyid, pl_playerid):
     if "editplayer" in request.form:
         name = request.form.get("pl_name")
         url = request.form.get("pl_pokepaste")
-        editPlayer(pl_tourneyid, pl_playerid, name)
+        editPlayer(pl_tourneyid, pl_playerid, name, url)
 
         if url is not None:
             playerTeam = pokepasteParser(url)
 
             for pokemon in playerTeam:
-                conn = get_db_connection()
-                cursor = conn.cursor()
-                cursor.execute("SELECT po_pokeid FROM Pokemon WHERE (po_tourneyid = %s AND po_name = %s AND po_playerid = %s);", (pl_tourneyid, pokemon["name"].strip(), pl_playerid,))
-                selectedpokemonid = cursor.fetchone()
-                cursor.close()
-                conn.close()
+                selectedpokemonid = selectPokemonByName(pl_tourneyid, pokemon["name"].strip(), pl_playerid)
 
                 pokemon_api = pokeAPICall(pokemon["name"].strip())
                 type1 = pokemon_api["types"][0]
@@ -201,17 +199,83 @@ def newmatch(m_tourneyid):
 
 @app.route("/matchdetails <int:m_matchid>/ <int:m_tourneyid>", methods=["POST","GET"])
 def matchdetails(m_matchid, m_tourneyid):
+    selectedmatch = selectMatch(m_matchid, m_tourneyid)
     set_list = getSetList(m_matchid)
-    return render_template("matchdetails.html", set_list = set_list, tourneyid = m_tourneyid, todayDate = date.today().isoformat())
+    return render_template("matchdetails.html", matchid = m_matchid, set_list = set_list, selectedmatch = selectedmatch
+                           , tourneyid = m_tourneyid, todayDate = date.today().isoformat())
 
 #---------------SET FUNCTIONS----------------------------------------------------#
 @app.route("/get_player_pokemon/<int:tourneyid>/<playername>")
 def get_player_pokemon(tourneyid, playername):
-    pokemonteam = pokemonTeamFromPlayer(tourneyid, playername)
-
+    playerid = selectPlayerByName(tourneyid, playername)
+    pokemonteam = pokemonTeamFromPlayer(tourneyid, playerid)
     pokemon_names = [row[1] for row in pokemonteam]
 
     return jsonify(pokemon_names)
+
+@app.route("/newset <int:m_tourneyid>/ <int:s_matchid>/ <int:player1id>/ <int:player2id>", methods=["GET","POST"])
+def newset(m_tourneyid, s_matchid, player1id, player2id):
+    setNumber = request.form.get("m_setnum")
+
+    p1mons = request.form.getlist("m_player1_name[]")
+    p1kills = request.form.getlist("m_player1kills[]")
+    p1deaths = request.form.getlist("m_player1deaths[]")
+    p1streak= request.form.getlist("m_player1streak[]")
+    p1tera = request.form.get("m_player1tera", type = int)
+    p1teratypes = request.form.get("m_player1_tera_type")
+    p1points = request.form.get("m_player1_points", type = int)
+
+    p2mons = request.form.getlist("m_player2_name[]")
+    p2kills = request.form.getlist("m_player2kills[]")
+    p2deaths = request.form.getlist("m_player2deaths[]")
+    p2streak = request.form.getlist("m_player2streak[]")
+    p2tera = request.form.get("m_player2tera", type = int)
+    p2teratypes = request.form.get("m_player2_tera_type")
+    p2points = request.form.get("m_player2_points", type = int)
+
+    link = request.form.get("m_link")
+    date = request.form.get("m_date")
+
+    if p1points > p2points:
+        winid = player1id
+        setpoints = p1points
+    else:
+        winid = player2id
+        setpoints = p2points
+
+    setid = newSet(s_matchid, player1id, player2id, winid, link, date, setpoints, setNumber)
+
+    p1roster = []
+    for i in range(len(p1mons)):
+        if p1mons[i] != "":
+            print(p1mons[i])
+            is_tera = (p1tera == i + 1)
+            pokemonid = selectPokemonByName(m_tourneyid, p1mons[i].strip(), player1id)
+            print(pokemonid)
+            p1roster.append({
+                "id": pokemonid,
+                "kills": p1kills[i],
+                "deaths": p1deaths[i],
+                "streak": p1streak[i],
+                "tera": p1teratypes if is_tera else None
+            })
+    registerPokemonInSet(setid, p1roster, player1id)
+
+    p2roster = []
+    for i in range(len(p2mons)):
+       if p2mons[i] != "":
+           is_tera = (p2tera == i + 1)
+           pokmonid = selectPokemonByName(m_tourneyid, p2mons[i].strip(), player2id)
+           p2roster.append({
+               "id": pokmonid,
+               "kills": p2kills[i],
+               "deaths": p2deaths[i],
+               "streak": p2streak[i],
+               "tera": p2teratypes if is_tera else None
+           })
+    registerPokemonInSet(setid, p2roster, player2id)
+
+    return redirect(url_for("matchdetails", m_matchid = s_matchid, m_tourneyid = m_tourneyid))
 
 if __name__ == "__main__":
     app.run(debug=True)

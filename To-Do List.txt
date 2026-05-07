@@ -1,0 +1,52 @@
+To-Do List:
+-General
+	-User table with admin role
+	-Login page
+	-UI Updates
+	-Pass tournament name to display
+
+-Home Page:
+	-Participant Count
+	-New Tournament Creation as popup
+	
+-Tournament Page:
+	-Player Performance Rankings
+	-Filter for Pokémon Ranking
+	-Filter for Player Ranking
+	-Ruleset Page
+	-Pokémon Speed rankings
+	-Pokémon Speed calculator
+	-player comparison page
+
+-Pokémon Search Page:
+	-Filter for Tera Captain
+	-Icons for types
+
+-Pokémon Profile Page: 
+	-Pass in EV's and IV's
+	-Fix Pokepaste parsing bugs
+	-Streamline database to API name conversions
+	-Calculate Real Stats from Base stats
+	-Make image/name card static
+	-Kills per match statistic
+	-remove K/D from Pokémon table (calculate using PokemonSet table)
+
+-Player Page:
+	-Cap out players according to max participation count
+
+-Player Profile Page:
+	-Show leaderboard statistics
+	-Remove team performance statistics from database (calculate on site)
+
+-Match Page:
+	-Display list of matches
+	-Filter for matches by name, player, and present pokemon
+	-Edit match
+	-Delete match
+
+-Sets Page:
+	-Add sets
+	-Edit sets
+	-delete sets
+	-have set reporting update PokemonSet
+	-List sets for match

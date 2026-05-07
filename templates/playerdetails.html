@@ -65,7 +65,7 @@
                 <input class="input-bars" type="text" name="pl_name" value="{{selectedplayer[1]}}" required><br>
 
                 <label for="pl_pokepaste">Pokepaste Link</label><br>
-                <input class="input-bars" type="text" name="pl_pokepaste"><br>
+                <input class="input-bars" type="text" name="pl_pokepaste" value="{{selectedplayer[11]}}"><br>
 
                 <input class="submit-button" type="submit" name="editplayer" value="Submit">
                 <a href="#inner-popup" class="submit-button">Delete</a>
@@ -107,7 +107,7 @@
                             {% endif %}
                         </div>
                         <div>
-                            Tier: {{ result[2]}}
+                            {{ result[2]}}
                         </div>
                     </div>
                     <div class="flex centering">

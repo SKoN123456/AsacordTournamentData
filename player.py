@@ -47,12 +47,12 @@ def newPlayer(pl_tourneyid, name, contraint, url):
     conn.close()
     return playerid
 
-def editPlayer(pl_tourneyid, pl_playerid, name):
+def editPlayer(pl_tourneyid, pl_playerid, name, url):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("UPDATE Player SET pl_name = %s WHERE (pl_tourneyid = %s AND pl_playerid = %s);",
-                   (name, pl_tourneyid, pl_playerid))
+    cursor.execute("UPDATE Player SET pl_name = %s, pl_pokepaste = %s WHERE (pl_tourneyid = %s AND pl_playerid = %s);",
+                   (name, url, pl_tourneyid, pl_playerid))
     conn.commit()
     cursor.close()
     conn.close()
