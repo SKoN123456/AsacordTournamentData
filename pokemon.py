@@ -36,15 +36,27 @@ def selectPokemon(pl_tourneyid, po_pokeid):
     cursor = conn.cursor()
 
     cursor.execute("""
-            SELECT po_pokeid, po_name, pl_name, po_type1, po_type2, po_tier, po_isteracaptain, po_k, po_d, po_numbrought, po_winstreak, po_ability,
-            po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isshiny, pl_total_sets FROM Pokemon
-            JOIN Player ON pl_playerid = po_playerid
-            WHERE (po_tourneyID = %s and po_pokeid = %s);
+            SELECT po_pokeid, po_name, pl_name, po_type1, po_type2, po_tier, po_isteracaptain, 
+            COALESCE(SUM(ps_k),0) AS po_k, COALESCE(SUM(ps_d),0) AS po_d, COUNT(ps_pokeid) AS po_numbrought, COALESCE(MAX(ps_streak),0) AS po_winstreak, po_ability,
+            po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isshiny, COUNT(ps_playerid) AS pl_totalsets FROM Pokemon
+            JOIN Player ON pl_playerid = po_playerid LEFT JOIN PokemonSet ON po_pokeid = ps_pokeid
+            WHERE (po_tourneyID = %s and po_pokeid = %s)
+            GROUP BY po_pokeid, pl_name;
             """, (pl_tourneyid,po_pokeid,))
     selectedpokemon = cursor.fetchone()
     cursor.close()
     conn.close()
     return selectedpokemon
+
+def selectPokemonByName(po_tourneyid, po_name, po_playerid):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT po_pokeid FROM Pokemon WHERE (po_tourneyid = %s AND po_name = %s AND po_playerid = %s);",
+                   (po_tourneyid, po_name, po_playerid,))
+    selectedpokemonid = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return selectedpokemonid
 
 def editPokemon(po_tourneyid, po_pokeid, name):
     conn = get_db_connection()
@@ -74,12 +86,51 @@ def editPokemonfromPaste(po_tourneyid, po_pokeid, pokemonData, type1, type2):
     conn.close()
     return
 
+def apiNameFix(api_name):
+    basenames = ["arceus", "silvally", "sinistcha", "polteageist"]
+    for prefix in basenames:
+        if api_name.startswith(prefix):
+            return prefix
+
+    removesuffix = {
+        ("greninja","-bond"): "",
+        ("necrozma", "-mane"): "",
+        ("necrozma","-wings"): "",
+        ("basculegion","-f"): "-female",
+        ("indeedee","-f"): "-female"
+    }
+    for (prefix, suffix), newsuffix in removesuffix.items():
+        if api_name.startswith(prefix) and api_name.endswith(suffix):
+            return api_name.replace(suffix, newsuffix)
+
+    addsuffix = {
+        "ogerpon": "-mask",
+        "aegislash": "-shield",
+        "mimikyu": "-disguised",
+        "darmanitan": "-standard",
+        "indeedee": "-male",
+        "eiscue": "-ice",
+        "basculegion": "-male",
+    }
+    for prefix, suffix in addsuffix.items():
+        if api_name.startswith(prefix) and not api_name.endswith(suffix):
+            api_name += suffix
+            return api_name
+
+    if (api_name.startswith("enamorus") or api_name.startswith("tornadus") or api_name.startswith("thundurus") or api_name.startswith("landorus")) and not api_name.endswith("-therian"):
+        api_name += "-incarnate"
+    if api_name.startswith("lycanroc") and not (api_name.endswith("-dusk") or api_name.endswith("-midnight")):
+        api_name += "-midday"
+    if api_name.startswith("tatsugiri") and not (api_name.endswith("-droopy") or api_name.endswith("-stretchy")):
+        api_name += "-curly"
+    if api_name.startswith("urshifu") and not api_name.endswith("-rapid-strike"):
+        api_name += "-single-strike"
+
+    return api_name
+
 def pokeAPICall(po_name):
     api_name = po_name.lower().replace(" ", "-")
-    if api_name.startswith("ogerpon") and not api_name.endswith("-mask"):
-        api_name += "-mask"
-    if api_name.startswith("aegislash") and not api_name.endswith("-shield"):
-        api_name += "-shield"
+    api_name = apiNameFix(api_name)
 
     url = f"https://pokeapi.co/api/v2/pokemon/{api_name}"
     response = requests.get(url)
@@ -105,7 +156,7 @@ def pokeAPICall(po_name):
         }
     return pokemon_api
 
-def pokemonFilter(po_tourneyid, keyword, tier, type):
+def pokemonFilter(po_tourneyid, keyword, tier, type, tera):
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -114,7 +165,7 @@ def pokemonFilter(po_tourneyid, keyword, tier, type):
 
     if keyword:
         query += " AND (po_name LIKE %s OR pl_name LIKE %s)"
-        parameters.extend([f"%{keyword}%", f"%{keyword}%"])
+        parameters.extend([f"%{keyword.capitalize()}%", f"%{keyword.capitalize()}%"])
 
     if tier:
         query += " AND po_tier = %s"
@@ -123,6 +174,9 @@ def pokemonFilter(po_tourneyid, keyword, tier, type):
     if type:
         query += " AND (po_type1 = %s OR po_type2 = %s)"
         parameters.extend([type.lower(), type.lower()])
+
+    if tera:
+        query += " AND po_isteracaptain = TRUE"
 
     query += " ORDER BY po_name ASC"
 
@@ -156,6 +210,11 @@ def pokepasteParser(url):
             mon.nickname = None
 
         if len(mon.moveset) < 4:
+            if len(mon.moveset) == 1:
+                mon.moveset.append("N/A")
+                mon.moveset.append("N/A")
+                mon.moveset.append("N/A")
+
             mon.moveset.append("Ivy Cudgel")
 
         pokemonData = {

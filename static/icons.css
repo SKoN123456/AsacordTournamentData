@@ -16,6 +16,7 @@
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
+    z-index: 1;
 }
 
 .fa-star {
@@ -60,7 +61,7 @@
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 1;
+
 }
 
 .popup-content {
@@ -73,6 +74,11 @@
 
 .popup:target {
     display: flex;
+}
+
+.fa-crown {
+    color: gold;
+    font-size: 12pt;
 }
 
 

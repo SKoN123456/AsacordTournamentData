@@ -100,6 +100,7 @@
             {%  for result in match_results %}
             <div class="poke-player-results">
                 {{result[2]}}
+                {{result[7]}}-{{result[8]}}
                 <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('matchdetails', m_tourneyid = tourneyid, m_matchid = result[0]) }}'">View Details</button>
             </div>
             {% endfor %}

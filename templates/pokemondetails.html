@@ -135,14 +135,14 @@
         </div>
     </div>
 
-
-
     <div class="flex">
         <div class="container base-window">
             <h2 class="flex">
                 <div class="flex-vertical">
                     <div>{{selectedpokemon[2]}}'s {{selectedpokemon[1]}}</div>
+                    {% if selectedpokemon[13] is not none %}
                     <div>A.K.A {{selectedpokemon[13]}}</div>
+                    {% endif %}
                 </div>
                 {% if selectedpokemon[6] == True %}
                 <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
@@ -157,9 +157,9 @@
             {% endif %}
 
             <div>
-                Type: {{ selectedpokemon[3]}}
+                Type: {{ selectedpokemon[3].capitalize()}}
                 {% if selectedpokemon[4] != "N/A" %}
-                <span>/{{ selectedpokemon[4]}}</span>
+                <span>/{{ selectedpokemon[4].capitalize()}}</span>
                 {% endif %}
             </div>
             <div>
@@ -191,7 +191,7 @@
                         </div>
                         <div class="sub-container flex-vertical">
                             <div class="data-header">Kill Streak</div>
-                            <div class="highlight-data">{{selectedpokemon[9]}}</div>
+                            <div class="highlight-data">{{selectedpokemon[10]}}</div>
                         </div>
                         <div class="sub-container flex-vertical">
                             <div class="data-header">KDR</div>
