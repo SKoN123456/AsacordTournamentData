@@ -1,1 +1,6 @@
-pip install -U pokepastes-scraper   
+Flask
+gunicorn
+supabase
+requests
+python-dotenv
+pokepastes-scraper
