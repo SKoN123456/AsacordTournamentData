@@ -4,3 +4,4 @@ supabase
 requests
 python-dotenv
 pokepastes-scraper
+psycopg2
