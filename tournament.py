@@ -29,7 +29,7 @@ def newTournament(name, tformat):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO \"TOURNAMENT\"(t_name, t_format) VALUES (%s, %s);", (name, tformat))
+    cursor.execute("INSERT INTO \"Tournament\"(t_name, t_format) VALUES (%s, %s);", (name, tformat))
     conn.commit()
 
     cursor.close()

@@ -9,7 +9,7 @@ def getPokemonList(po_tourneyid):
 
     cursor.execute("""
         SELECT po_pokeid, po_name, pl_name,po_tier, po_isteracaptain, po_type1, po_type2 
-        FROM Pokemon JOIN Player ON pl_playerid = po_playerid
+        FROM \"Pokemon\" JOIN \"Player\" ON pl_playerid = po_playerid
         WHERE po_tourneyID = %s ORDER BY po_name ASC;""", (po_tourneyid,))
     poke_results = cursor.fetchall()
 
@@ -22,7 +22,7 @@ def newPokemon(po_tourneyid, po_playerid, pokemonData, type1, type2):
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO Pokemon(po_tourneyid, po_playerid, po_name, po_ability, po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isShiny, po_type1, po_type2) 
+        INSERT INTO \"Pokemon\"(po_tourneyid, po_playerid, po_name, po_ability, po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isShiny, po_type1, po_type2) 
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
         """, (po_tourneyid, po_playerid, pokemonData["name"], pokemonData["ability"], pokemonData["item"], pokemonData["nickname"],
               pokemonData["moves"][0], pokemonData["moves"][1], pokemonData["moves"][2], pokemonData["moves"][3], pokemonData["nature"], pokemonData["isShiny"],type1, type2))
@@ -38,20 +38,26 @@ def selectPokemon(pl_tourneyid, po_pokeid):
     cursor.execute("""
             SELECT po_pokeid, po_name, pl_name, po_type1, po_type2, po_tier, po_isteracaptain, 
             COALESCE(SUM(ps_k),0) AS po_k, COALESCE(SUM(ps_d),0) AS po_d, COUNT(ps_pokeid) AS po_numbrought, COALESCE(MAX(ps_streak),0) AS po_winstreak, po_ability,
-            po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isshiny, COUNT(ps_playerid) AS pl_totalsets FROM Pokemon
-            JOIN Player ON pl_playerid = po_playerid LEFT JOIN PokemonSet ON po_pokeid = ps_pokeid
+            po_item, po_nickname, po_move1, po_move2, po_move3, po_move4, po_nature, po_isshiny, 
+            (SELECT COUNT(*) FROM \"Sets\" WHERE (po_playerid = s_player1id OR po_playerid = s_player2id)) AS pl_totalsets FROM \"Pokemon\" 
+            JOIN \"Player\" ON pl_playerid = po_playerid LEFT JOIN \"PokemonSet\" ON po_pokeid = ps_pokeid 
             WHERE (po_tourneyID = %s and po_pokeid = %s)
             GROUP BY po_pokeid, pl_name;
             """, (pl_tourneyid,po_pokeid,))
     selectedpokemon = cursor.fetchone()
+
+    cursor.execute("""SELECT ps_k, ps_d, ps_streak, ps_tera, s_setnum, s_link, m_name FROM \"PokemonSet\" JOIN \"Sets\" ON ps_setid = s_setid 
+        JOIN \"Matches\" ON s_matchid = m_matchid WHERE ps_pokeid = %s ORDER BY ps_k Desc LIMIT 3""", (po_pokeid,))
+    best_sets = cursor.fetchall()
+
     cursor.close()
     conn.close()
-    return selectedpokemon
+    return selectedpokemon, best_sets
 
 def selectPokemonByName(po_tourneyid, po_name, po_playerid):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT po_pokeid FROM Pokemon WHERE (po_tourneyid = %s AND po_name = %s AND po_playerid = %s);",
+    cursor.execute("SELECT po_pokeid FROM \"Pokemon\" WHERE (po_tourneyid = %s AND po_name = %s AND po_playerid = %s);",
                    (po_tourneyid, po_name, po_playerid,))
     selectedpokemonid = cursor.fetchone()
     cursor.close()
@@ -62,7 +68,7 @@ def editPokemon(po_tourneyid, po_pokeid, name):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("UPDATE Pokemon SET po_name = %s WHERE (po_tourneyid = %s AND po_pokeid = %s);",
+    cursor.execute("UPDATE \"Pokemon\" Set po_name = %s WHERE (po_tourneyid = %s AND po_pokeid = %s);",
                    (name, po_tourneyid, po_pokeid))
 
     conn.commit()
@@ -75,7 +81,7 @@ def editPokemonfromPaste(po_tourneyid, po_pokeid, pokemonData, type1, type2):
     cursor = conn.cursor()
 
     cursor.execute("""
-        UPDATE Pokemon SET po_name = %s, po_ability = %s, po_item = %s, po_nickname = %s, po_move1 = %s, po_move2 = %s, po_move3 = %s, po_move4 = %s,
+        UPDATE \"Pokemon\" SET po_name = %s, po_ability = %s, po_item = %s, po_nickname = %s, po_move1 = %s, po_move2 = %s, po_move3 = %s, po_move4 = %s,
         po_nature = %s, po_isShiny = %s, po_type1 = %s, po_type2 = %s WHERE (po_tourneyid = %s AND po_pokeid = %s);
         """, (pokemonData["name"], pokemonData["ability"], pokemonData["item"], pokemonData["nickname"],
         pokemonData["moves"][0], pokemonData["moves"][1], pokemonData["moves"][2], pokemonData["moves"][3], pokemonData["nature"],
@@ -87,7 +93,7 @@ def editPokemonfromPaste(po_tourneyid, po_pokeid, pokemonData, type1, type2):
     return
 
 def apiNameFix(api_name):
-    basenames = ["arceus", "silvally", "sinistcha", "polteageist"]
+    basenames = ["sinistcha", "polteageist", "arceus", "silvally"]
     for prefix in basenames:
         if api_name.startswith(prefix):
             return prefix
@@ -130,37 +136,71 @@ def apiNameFix(api_name):
 
 def pokeAPICall(po_name):
     api_name = po_name.lower().replace(" ", "-")
-    api_name = apiNameFix(api_name)
-
-    url = f"https://pokeapi.co/api/v2/pokemon/{api_name}"
-    response = requests.get(url)
-
+    api_name_fixed = apiNameFix(api_name)
     pokemon_api = None
+    url = f"https://pokeapi.co/api/v2/pokemon/{api_name_fixed}"
+    response = requests.get(url)
 
     if response.status_code == 200:
         data = response.json()
 
-        pokemon_api = {
-            "name": data["name"].title(),
-            "imageshiny": data["sprites"]["front_shiny"],
-            "imagealt": data["sprites"]["front_default"],
-            "stats": {
-                "hp": data["stats"][0]["base_stat"],
-                "attack": data["stats"][1]["base_stat"],
-                "defense": data["stats"][2]["base_stat"],
-                "sp_attack": data["stats"][3]["base_stat"],
-                "sp_defense": data["stats"][4]["base_stat"],
-                "speed": data["stats"][5]["base_stat"],
-            },
-            "types": [t["type"]["name"] for t in data["types"]]
-        }
+        if api_name.startswith("arceus-") or api_name.startswith("silvally-"):
+            url = f"https://pokeapi.co/api/v2/pokemon-form/{api_name}"
+            response = requests.get(url)
+
+            if response.status_code == 200:
+                formdata = response.json()
+
+                pokemon_api = {
+                   "name": data["name"].title(),
+                   "imageshiny": formdata["sprites"]["front_shiny"],
+                   "image": formdata["sprites"]["front_default"],
+                   "stats": {
+                       "hp": data["stats"][0]["base_stat"],
+                       "attack": data["stats"][1]["base_stat"],
+                       "defense": data["stats"][2]["base_stat"],
+                       "sp_attack": data["stats"][3]["base_stat"],
+                       "sp_defense": data["stats"][4]["base_stat"],
+                       "speed": data["stats"][5]["base_stat"],
+                   },
+                   "types": [t["type"]["name"] for t in formdata["types"]],
+                }
+        else:
+           pokemon_api = {
+               "name": data["name"].title(),
+               "imageshiny": data["sprites"]["front_shiny"],
+               "image": data["sprites"]["front_default"],
+               "imagebackup": data["sprites"]["other"]["official-artwork"]["front_default"],
+               "shinybackup": data["sprites"]["other"]["official-artwork"]["front_shiny"],
+               "stats": {
+                   "hp": data["stats"][0]["base_stat"],
+                   "attack": data["stats"][1]["base_stat"],
+                   "defense": data["stats"][2]["base_stat"],
+                   "sp_attack": data["stats"][3]["base_stat"],
+                   "sp_defense": data["stats"][4]["base_stat"],
+                   "speed": data["stats"][5]["base_stat"],
+               },
+               "types": [t["type"]["name"] for t in data["types"]],
+           }
     return pokemon_api
+
+def pokeAPIAllTypes():
+    type_api = {}
+    types = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground",
+             "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"]
+    for t in types:
+        url = f"https://pokeapi.co/api/v2/type/{t.lower()}"
+        response = requests.get(url)
+        typedata = response.json()
+        type_api.update({t.lower(): typedata["sprites"]["generation-ix"]["scarlet-violet"]["name_icon"]})
+
+    return type_api
 
 def pokemonFilter(po_tourneyid, keyword, tier, type, tera):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    query = "SELECT po_pokeid, po_name, pl_name,po_tier, po_isteracaptain, po_type1, po_type2 FROM Pokemon JOIN Player ON pl_playerid = po_playerid WHERE po_tourneyID = %s"
+    query = "SELECT po_pokeid, po_name, pl_name,po_tier, po_isteracaptain, po_type1, po_type2 FROM \"Pokemon\" JOIN \"Player\" ON pl_playerid = po_playerid WHERE po_tourneyID = %s"
     parameters = [po_tourneyid]
 
     if keyword:
@@ -191,7 +231,7 @@ def pokemonTeamFromPlayer(pl_tourneyid, pl_playerid):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT po_pokeid, po_name, po_tier, po_isTeraCaptain FROM Pokemon WHERE (po_tourneyID = %s and po_playerid = %s) ORDER BY po_name ASC;", (pl_tourneyid,pl_playerid,))
+    cursor.execute("SELECT po_pokeid, po_name, po_tier, po_isTeraCaptain FROM \"Pokemon\" WHERE (po_tourneyID = %s and po_playerid = %s) ORDER BY po_name ASC;", (pl_tourneyid,pl_playerid,))
     pokemonteam = cursor.fetchall()
 
     cursor.close()

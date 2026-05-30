@@ -12,6 +12,7 @@ from set import *
 app = Flask(__name__)
 
 app.secret_key = "randomkey"
+type_api = pokeAPIAllTypes()
 
 @app.route("/", methods=["GET"])
 def index():
@@ -28,7 +29,7 @@ def tournament(t_tourneyid):
 
     cursor.execute("""
             SELECT po_pokeid, po_name, po_isteracaptain, pl_name, po_tier, COALESCE(SUM(ps_k),0) AS po_k, COALESCE(SUM(ps_d),0) AS po_d,
-            COALESCE(MAX(ps_streak),0) FROM Pokemon JOIN Player ON pl_playerid = po_playerid LEFT JOIN PokemonSet ON po_pokeid = ps_pokeid
+            COALESCE(MAX(ps_streak),0) FROM \"Pokemon\" JOIN \"Player\" ON pl_playerid = po_playerid LEFT JOIN \"PokemonSet\" ON po_pokeid = ps_pokeid
             WHERE (po_tourneyID = %s) GROUP BY po_pokeid, pl_name ORDER BY po_k DESC LIMIT 10;
             """, (t_tourneyid,))
     session["killrankings"] = cursor.fetchall()
@@ -133,27 +134,27 @@ def editplayer(pl_tourneyid, pl_playerid):
 @app.route('/pokemon/ <int:po_tourneyid>', methods=["GET", "POST"])
 def pokemon(po_tourneyid):
     if "reset_poke" in request.form:
-        session["poke_results"] = getPokemonList(po_tourneyid)
+        poke_results = getPokemonList(po_tourneyid)
 
     elif "pokemon" in request.form:
         keyword = request.form.get("pokemon")
         tier = request.form.get("tier")
         type = request.form.get("type")
         tera = request.form.get("tera")
-        session["poke_results"] = pokemonFilter(po_tourneyid, keyword, tier, type, tera)
+        poke_results = pokemonFilter(po_tourneyid, keyword, tier, type, tera)
 
     else:
-        session["poke_results"] = getPokemonList(po_tourneyid)
+        poke_results = getPokemonList(po_tourneyid)
 
-    return render_template('pokemon.html', poke_results = session["poke_results"], tourneyid = po_tourneyid)
+    return render_template('pokemon.html', poke_results = poke_results, type_api = type_api, tourneyid = po_tourneyid)
 
 @app.route('/pokemondetails/ <int:pl_tourneyid>/ <int:po_pokeid>', methods=["GET", "POST"])
 def pokemondetails(pl_tourneyid, po_pokeid):
-    selectedpokemon = selectPokemon(pl_tourneyid, po_pokeid)
+    selectedpokemon, best_sets = selectPokemon(pl_tourneyid, po_pokeid)
     po_name = selectedpokemon[1].strip()
     pokemon_api = pokeAPICall(po_name)
-    return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, tourneyid = pl_tourneyid, po_pokeid = po_pokeid,
-                           pokemon_api = pokemon_api)
+    return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, best_sets = best_sets, tourneyid = pl_tourneyid,
+                           po_pokeid = po_pokeid, pokemon_api = pokemon_api, type_api = type_api)
 
 @app.route("/editpokemon/  <int:po_tourneyid>/ <int:po_pokeid>", methods=["GET","POST"])
 def editpokemon(po_tourneyid, po_pokeid):
@@ -173,7 +174,7 @@ def editpokemon(po_tourneyid, po_pokeid):
 def pokemontoplayer(po_tourneyid, po_playername):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Player WHERE (pl_tourneyid = %s AND pl_name = %s);", (po_tourneyid,po_playername,))
+    cursor.execute("SELECT * FROM \"Player\" WHERE (pl_tourneyid = %s AND pl_name = %s);", (po_tourneyid,po_playername,))
     selectedplayer = cursor.fetchone()
     cursor.close()
     conn.close()
