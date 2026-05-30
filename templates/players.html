@@ -64,7 +64,7 @@
                 <div class="player-name flex">
                     <div>{{ result[1]}}</div>
                     <div class="detail-button-gap">
-                        <button class="view-details" onclick="document.location='{{ url_for('playerdetails', pl_tourneyid = tourneyid, pl_playerid = result[0]) }}'">View Details</button>
+                        <button class="view-details" onclick="document.location='{{ url_for('playerdetails', pl_tourneyid = tourneyid, pl_playerid = result[0]) }}'">View Profile</button>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
             <p>No results found</p>
             {% endif %}
         </div>
-        <a href="#newplayer" class="view-details">Add Player</a>
+        <a href="#newplayer" class="submit-button">Add Player</a>
     </div>
 
     <div id="newplayer" class="popup">

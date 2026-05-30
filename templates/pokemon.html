@@ -17,20 +17,13 @@
             flex: 0.35;
         }
 
-        .search-box {
-            width: 90%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-
         .results {
             margin-top: 20px;
-            max-height: 470px;
+            max-height: 490px;
             overflow-y: auto;
             padding-right: 10px;
             margin-bottom: 20px;
+            border: 1px solid black;
         }
 
         .poke-name {
@@ -68,6 +61,11 @@
         .centering {
             align-items: center;
             justify-content: center;
+        }
+
+        .type-image {
+            border: none;
+            width: 100px;
         }
     </style>
 </head>
@@ -130,6 +128,7 @@
                 <div class="poke-player-results flex centering">
                     <div class="poke-name flex-vertical">
                         <div>
+                            <div class="trainer-name">{{result[2]}}'s</div>
                             {{ result[1]}}
                             {% if result[4] == True %}
                             <i class='fas fa-star big-star'>
@@ -137,20 +136,19 @@
                             </i>
                             {% endif %}
                         </div>
-                        <div class="trainer-name">Trainer: {{ result[2]}}</div>
                     </div>
                     <div class="poke-info">
                         <div>
-                            Type: {{ result[5].capitalize()}}
+                            <img class="type-image" src="{{type_api[result[5].lower()]}}">
                             {% if result[6] != "N/A" %}
-                            <span>/{{ result[6].capitalize()}}</span>
+                            <img class="type-image" src="{{type_api[result[6].lower()]}}">
                             {% endif %}
 
                         </div>
                         Tier: {{ result[3]}}
                     </div>
                     <div>
-                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Details</button>
+                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Profile</button>
                     </div>
                 </div>
                 {% endfor %}

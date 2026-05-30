@@ -9,12 +9,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
     <style>
-        .player-container {
-            width: 90%;
-        }
-
         .results {
             margin-top: 20px;
+            margin-bottom: 20px;
             max-height: 430px;
             overflow-y: auto;
             padding-right: 10px;
@@ -22,28 +19,38 @@
             grid-template-columns: 25% 25% 25% 25%;
         }
 
-        .player-name {
-            font-size: 30px;
-            font-weight: bold;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 5px;
-            flex: 0.4;
-        }
-
-        .detail-button-gap {
-            flex: 0.95;
-            display: flex;
-            justify-content: flex-end;
-        }
-
         .input-side {
-            flex: 0.5;
+            flex: 0.7;
         }
 
         .popup-size {
             width: 800px;
             height: 600px;
+        }
+
+        .input-bars {
+            margin-bottom: 10px;
+        }
+
+        .match-title {
+            flex: 0.7;
+        }
+
+        .match-result-size {
+            width: 300px;
+        }
+
+        .match-container {
+            width: 90%;
+        }
+
+        .match-result {
+            flex: 0.4;
+            font-weight: bold;
+            font-size: 42pt;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .roster-grid {
@@ -53,28 +60,8 @@
             justify-content: center;
         }
 
-        .namebar-width {
-            width: 150px;
-        }
-
-        .number-width {
-            width: 30px;
-        }
-
-        .entry-gap {
-            margin-bottom: 10px;
-        }
-
-        .input-bars {
-            margin-bottom: 10px;
-        }
-
-        .results {
-            margin-top: 20px;
-            max-height: 430px;
-            overflow-y: auto;
-            padding-right: 10px;
-            margin-bottom: 20px;
+        .search-bar-match {
+            width: 50%;
         }
     </style>
 </head>
@@ -94,20 +81,27 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container match-container">
+        <h2>Filter Matches</h2>
+        <input type="text" name="pokemon" class="search-box search-bar-match" placeholder="Search for a match by name or player...">
+
         <div class="results">
             {% if match_results is not none and match_results|length > 0%}
             {%  for result in match_results %}
-            <div class="poke-player-results">
-                {{result[2]}}
-                {{result[7]}}-{{result[8]}}
-                <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('matchdetails', m_tourneyid = tourneyid, m_matchid = result[0]) }}'">View Details</button>
+            <div class="poke-player-results match-result-size">
+                <div class="flex">
+                    <div class="flex-verical match-title">
+                        <div>{{result[2]}}</div>
+                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('matchdetails', m_tourneyid = tourneyid, m_matchid = result[0]) }}'">View Details</button>
+                    </div>
+                    <div class="match-result">{{result[7]}}-{{result[8]}}</div>
+                </div>
             </div>
             {% endfor %}
             {% endif %}
         </div>
 
-        <a href="#newmatch" class="view-details">Add Match</a>
+        <a href="#newmatch" class="submit-button">Add Match</a>
     </div>
 
     <div id="newmatch" class="popup">
