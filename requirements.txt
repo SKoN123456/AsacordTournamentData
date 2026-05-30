@@ -5,4 +5,3 @@ requests
 python-dotenv
 pokepastes-scraper
 psycopg2
-re
