@@ -83,7 +83,13 @@
 
     <div class="container match-container">
         <h2>Filter Matches</h2>
-        <input type="text" name="pokemon" class="search-box search-bar-match" placeholder="Search for a match by name or player...">
+
+        <form method="POST" action="{{ url_for('matches', m_tourneyid=tourneyid) }}">
+            <input type="text" name="match" class="search-box search-bar-match" placeholder="Search for a match by name or player...">
+
+            <input type="submit" class="submit-button" value="Submit">
+            <button type="submit" class="submit-button" name="reset_match" value="1"> Reset</button>
+        </form>
 
         <div class="results">
             {% if match_results is not none and match_results|length > 0%}
@@ -101,7 +107,7 @@
             {% endif %}
         </div>
 
-        <a href="#newmatch" class="submit-button">Add Match</a>
+            <a href="#newmatch" class="submit-button">Add Match</a>
     </div>
 
     <div id="newmatch" class="popup">

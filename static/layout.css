@@ -39,6 +39,11 @@ header {
     align-items: stretch;
 }
 
+.centering {
+    align-items: center;
+    justify-content: center;
+}
+
 .first-color {
     background-color: gold;
 }

@@ -8,119 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
-    <style>
-
-        .base-window {
-            margin-right: 30px;
-            flex: 0.35;
-            border-radius: 0px 20px 20px 0px;
-        }
-
-        .stats-window {
-            margin-bottom: 10px;
-            flex: 0.45;
-        }
-
-        .move-window {
-            width: 60%;
-        }
-
-        .stats-grid {
-            display: flex;
-            justify-content: space-evenly;
-            row-gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .usage-window {
-            margin-bottom: 20px;
-            flex: 0.45;
-        }
-
-        img {
-            border: 1px solid black;
-            width: 85%;
-            margin-left: 7%;
-        }
-
-        .right-side {
-            flex: 0.65;
-            gap: 30px;
-        }
-
-        .sub-container {
-            margin: 0 auto;
-            margin-bottom: 15px;
-            padding: 25px;
-            background-color: var(--sub-container-color);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 22%;
-        }
-
-        .usage-container {
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .move-container {
-            width: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .data-header {
-            width: 100%;
-            text-align: center;
-        }
-
-        .highlight-data {
-            font-weight: bold;
-            font-size: 36pt;
-            width: 100%;
-            text-align: center;
-        }
-
-        .highlight-percent {
-            font-size: 28pt;
-        }
-
-        .detail-button-gap {
-            flex: 0.25;
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
-
-        .poke-name {
-            flex: 0.99;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 24pt;
-        }
-
-        .titles {
-            margin: 0;
-            padding: 0;
-            font-size: 18pt;
-        }
-
-        .type-image {
-            border: none;
-            width: 150px;
-        }
-
-        .centering {
-            align-items: center;
-            justify-content: center;
-        }
-
-        .name-card {
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pokemondetails.css') }}">
 </head>
 
 <body>
@@ -166,38 +54,39 @@
     </div>
 
     <div class="flex">
-        <div class="container base-window">
-            <div class="centering name-card">
-                <div class="flex-vertical">
-                    <div class="titles">{{selectedpokemon[2]}}'s</div>
-                    <div class="flex name-card">
-                        <div class="poke-name">
-                            {{selectedpokemon[1]}}
-                            {% if selectedpokemon[6] == True %}
-                            <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
-                            {% endif %}
+        <div class="left-side">
+            <div class="container base-window">
+                <div class="centering name-card">
+                    <div class="flex-vertical">
+                        <div class="titles">{{selectedpokemon[2]}}'s</div>
+                        <div class="flex name-card">
+                            <div class="poke-name">
+                                {{selectedpokemon[1]}}
+                                {% if selectedpokemon[6] == 't' %}
+                                <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
+                                {% endif %}
+                            </div>
+                            <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
                         </div>
-                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
+                        {% if selectedpokemon[13] is not none %}
+                        <div class="titles">A.K.A {{selectedpokemon[13]}}</div>
+                        {% endif %}
                     </div>
-                    {% if selectedpokemon[13] is not none %}
-                    <div class="titles">A.K.A {{selectedpokemon[13]}}</div>
-                    {% endif %}
                 </div>
-            </div>
 
-            {% if selectedpokemon[19] == True %}
+                {% if selectedpokemon[19] == 't' or selectedpokemon[19] == 'true' %}
                 {% if pokemon_api.imageshiny is not none %}
-                    <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
+                <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
                 {% else %}
-                    <img class="sub-color" src="{{ pokemon_api.shinybackup }}">
+                <img class="sub-color" src="{{ pokemon_api.shinybackup }}">
                 {% endif %}
-            {% else %}
+                {% else %}
                 {% if pokemon_api.image is not none %}
-                    <img class="sub-color" src="{{ pokemon_api.image }}">
+                <img class="sub-color" src="{{ pokemon_api.image }}">
                 {% else %}
-                    <img class="sub-color" src="{{ pokemon_api.imagebackup }}">
+                <img class="sub-color" src="{{ pokemon_api.imagebackup }}">
                 {% endif %}
-            {% endif %}
+                {% endif %}
 
                 <div class="flex centering">
                     <img class="type-image" src="{{type_api[selectedpokemon[3].lower()]}}">
@@ -205,38 +94,38 @@
                     <img class="type-image" src="{{type_api[selectedpokemon[4].lower()]}}">
                     {% endif %}
                 </div>
-            <div>
-                Tier: {{selectedpokemon[5]}}
-            </div>
-            <div>
-                Ability: {{selectedpokemon[11]}}
-            </div>
-            <div>
-                Item: {{selectedpokemon[12]}}
-            </div>
-            <div>
-                Nature: {{selectedpokemon[18]}}
+                <div>
+                    Tier: {{selectedpokemon[5]}}
+                </div>
+                <div>
+                    Ability: {{selectedpokemon[11]}}
+                </div>
+                <div>
+                    Item: {{selectedpokemon[12]}}
+                </div>
+                <div>
+                    Nature: {{selectedpokemon[18]}}
+                </div>
             </div>
         </div>
-
         <div class="flex right-side">
             <div class="flex-vertical stats-window">
                 <div class="container">
                     <h2>Performance</h2>
                     <div class="stats-grid">
-                        <div class="sub-container flex-vertical">
+                        <div class="stats-container flex-vertical sub-container">
                             <div class="data-header">Kills</div>
                             <div class="highlight-data">{{selectedpokemon[7]}}</div>
                         </div>
-                        <div class="sub-container flex-vertical">
+                        <div class="stats-container flex-vertical sub-container">
                             <div class="data-header">Deaths</div>
                             <div class="highlight-data">{{selectedpokemon[8]}}</div>
                         </div>
-                        <div class="sub-container flex-vertical">
+                        <div class="stats-container flex-vertical sub-container">
                             <div class="data-header">Kill Streak</div>
                             <div class="highlight-data">{{selectedpokemon[10]}}</div>
                         </div>
-                        <div class="sub-container flex-vertical">
+                        <div class="stats-container flex-vertical sub-container">
                             <div class="data-header">KDR</div>
                             <div class="highlight-data">{{ "%.2f"|format(selectedpokemon[7] / selectedpokemon[8]) if selectedpokemon[8] != 0 else selectedpokemon[7] }}</div>
                         </div>
@@ -277,23 +166,35 @@
                 <div class="container usage-window">
                     {%  if pokemon_api is not none %}
                     <h2>Base Stats</h2>
-                    <div>HP: {{ pokemon_api.stats.hp }}</div>
-                    <div>Attack: {{ pokemon_api.stats.attack }}</div>
-                    <div>Defense: {{ pokemon_api.stats.defense }}</div>
-                    <div>Sp. Attack: {{ pokemon_api.stats.sp_attack }}</div>
-                    <div>Sp. Defense: {{ pokemon_api.stats.sp_defense }}</div>
-                    <div>Speed: {{ pokemon_api.stats.speed }}</div>
+                    <div>
+                        HP: {{ pokemon_api.stats.hp }} - - {{selectedStats.hp}}
+                    </div>
+                    <div class="{{'negative-nature' if nature_map.decreased == 'attack' else 'positive-nature' if nature_map.increased == 'attack' else ''}}">
+                        Attack: {{ pokemon_api.stats.attack }} - - {{selectedStats.attack}}
+                    </div>
+                    <div  class="{{'negative-nature' if nature_map.decreased == 'defense' else 'positive-nature' if nature_map.increased == 'defense' else ''}}">
+                        Defense: {{ pokemon_api.stats.defense }} - - {{selectedStats.defense}}
+                    </div>
+                    <div  class="{{'negative-nature' if nature_map.decreased == 'special-attack' else 'positive-nature' if nature_map.increased == 'special-attack' else ''}}">
+                        Sp. Attack: {{ pokemon_api.stats.sp_attack }} - - {{selectedStats.sp_attack}}
+                    </div>
+                    <div  class="{{'negative-nature' if nature_map.decreased == 'special-defense' else 'positive-nature' if nature_map.increased == 'special-defense' else ''}}">
+                        Sp. Defense: {{ pokemon_api.stats.sp_defense }} - - {{selectedStats.sp_defense}}
+                    </div>
+                    <div  class="{{'negative-nature' if nature_map.decreased == 'speed' else 'positive-nature' if nature_map.increased == 'speed' else ''}}">
+                        Speed: {{ pokemon_api.stats.speed }} - - {{selectedStats.speed}}
+                    </div>
                     <div>BST: {{ pokemon_api.stats.hp + pokemon_api.stats.attack + pokemon_api.stats.defense + pokemon_api.stats.sp_attack + pokemon_api.stats.sp_defense + pokemon_api.stats.speed }}</div>
                     {% endif %}
                 </div>
-                <div class="container">
+                <div class="container best-sets-window">
                     <h2>Best Sets</h2>
                     {% if best_sets is not none and best_sets|length > 0 %}
                     {% for result in best_sets %}
-                    <div class="sub-container">
+                    <div class="sub-container best-sets-results">
                         <div>{{result[6]}}</div>
                         <div>Round:{{result[4]}}</div>
-                        <a class="view-details" href="{{result[5]}}" target="_blank">Watch Replay</a>
+                        <a class="view-details replay-button" href="{{result[5]}}" target="_blank">Watch Replay</a>
                     </div>
                     {% endfor %}
                     {% endif %}

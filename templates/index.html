@@ -8,76 +8,85 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
     <style>
-        .tournament-container {
+        .login-container {
             width: 70%;
         }
 
-        .results {
-            margin-top: 20px;
-        }
-
-        .tournament-results {
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-            background-color: var(--sub-container-color);
-            padding: 20px 40px;
-            font-size: 24px;
-            cursor: pointer;
-            margin-top: 20px;
+        .top-buttons {
+            gap: 15px;
             margin-bottom: 20px;
-            width: 90%;
         }
 
-            .tournament-results:hover {
-                font-weight: bold;
-                background: linear-gradient(to bottom right, #667eea 0%, #5becbb 100%);
-            }
+        #signin {
+            z-index: 1;
+        }
+
+        #login {
+            z-index:0;
+        }
     </style>
+    <script>
+        function SignUpScreen() {
+            var x = document.getElementById('signin');
+            x.style.display = 'block';
+            document.getElementById("signinbutton").disabled = true;
+
+            var y = document.getElementById('login');
+            y.style.display = 'none';
+            document.getElementById("loginbutton").disabled = false;
+        }
+
+        function LogInScreen() {
+            var x = document.getElementById('login');
+            x.style.display = 'block';
+            document.getElementById("loginbutton").disabled = true;
+
+            var y = document.getElementById('signin');
+            y.style.display = 'none';
+            document.getElementById("signinbutton").disabled = false;
+        }
+    </script>
 </head>
 
 <body>
     <header>
-        <h1>Home Page</h1>
-        <div class="flex">
-            <button type="button" class="navigation-button" disabled>Matches</button>
-            <button type="button" class="navigation-button" disabled>Players</button>
-            <button type="button" class="home-button" disabled>Home</button>
-            <button type="button" class="navigation-button" disabled>Tournament</button>
-            <button type="button" class="navigation-button" disabled>Pokemon</button>
-        </div>
+        <h1>Welcome</h1>
     </header>
 
-    <div class="container tournament-container">
-        <h2>Tournaments</h2>
-
-        <div class="results">
-            {% if tournament_results is not none and tournament_results|length > 0 %}
-            {% for result in tournament_results %}
-            <div>
-                <button class="tournament-results" onclick="document.location='{{ url_for('tournament', t_tourneyid=result[0]) }}'">{{ result[1] }}</button>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p>No results found</p>
-            {% endif %}
+    <div class="container login-container">
+        <div class="flex centering top-buttons">
+            <button onclick="SignUpScreen()" class="submit-button" id="signinbutton">Sign Up</button>
+            <button onclick="LogInScreen()" class="submit-button" id="loginbutton">Log In</button>
         </div>
-        <a href="#newtournament" class="view-details">Create New Tournament</a>
-    </div>
 
-    <div id="newtournament" class="popup">
-        <div class="popup-content">
-            <h2>Create New Tournament</h2>
+        <div id="signin">
+            <h2>Sign In</h2>
+            <form method="POST" action="{{ url_for('user') }}">
+                <label for="u_username">Username</label><br>
+                <input type="text" name="u_username" required><br>
+                <label for="u_password">Password</label><br>
+                <input type="password" name="u_password" required> <br>
 
-            <form method="POST" action="{{ url_for('newtournament') }}">
-                <label for="t_name">Tournament Name</label><br>
-                <input type="text" name="t_name" required><br>
-                <label for="t_format">Format</label><br>
-                <input type="text" name="t_format" required> <br>
-
-                <input class="submit-button" type="submit" name="addtournament" value="Submit">
-                <a href="" class="submit-button">Close</a>
+                <input class="submit-button" type="submit" name="newuser" value="Submit">
             </form>
         </div>
+
+        <div id="login">
+            <h2>Log In</h2>
+            <form method="POST" action="{{ url_for('user') }}">
+                <label for="u_username">Username</label><br>
+                <input type="text" name="u_username" required><br>
+                <label for="u_password">Password</label><br>
+                <input type="password" name="u_password" required> <br>
+
+                <input class="submit-button" type="submit" name="userlogin" value="Submit">
+            </form>
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        SignUpScreen();
+    });
+</script>
 </html>

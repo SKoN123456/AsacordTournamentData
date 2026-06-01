@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Tournament Dataset Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
+    <style>
+        .tournament-container {
+            width: 70%;
+        }
+
+        .results {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tournament-results {
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+            background-color: var(--sub-container-color);
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 20px 30px;
+            width: 90%;
+        }
+
+        .tournament-results:hover {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Home Page</h1>
+        <div class="flex">
+            <button type="button" class="navigation-button" disabled>Matches</button>
+            <button type="button" class="navigation-button" disabled>Players</button>
+            <button type="button" class="home-button" disabled>Home</button>
+            <button type="button" class="navigation-button" disabled>Tournament</button>
+            <button type="button" class="navigation-button" disabled>Pokemon</button>
+        </div>
+    </header>
+
+    <div class="container tournament-container">
+        <h2>Tournaments</h2>
+
+        <div class="results">
+            {% if tournament_results is not none and tournament_results|length > 0 %}
+            {% for result in tournament_results %}
+            <div class="poke-player-results flex centering">
+                {{ result[1] }}
+                {{result[4]}}/{{result[3]}}
+                <button class="view-details" onclick="document.location='{{ url_for('tournament', t_tourneyid=result[0]) }}'">View Details</button>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No results found</p>
+            {% endif %}
+        </div>
+        <a href="#newtournament" class="view-details">Create New Tournament</a>
+    </div>
+
+    <div id="newtournament" class="popup">
+        <div class="popup-content">
+            <h2>Create New Tournament</h2>
+
+            <form method="POST" action="{{ url_for('newtournament') }}">
+                <label for="t_name">Tournament Name</label><br>
+                <input type="text" name="t_name" required><br>
+                <div class="flex">
+                    <div>
+                        <label for="t_format">Format</label><br>
+                        <input type="text" name="t_format" required> <br>
+                    </div>
+                    <div>
+                        <label for="t_playercount">Player Count</label><br>
+                        <input type="number" name="t_playercount" min="1" required> <br>
+                    </div>
+                </div>
+
+                <input class="submit-button" type="submit" name="addtournament" value="Submit">
+                <a href="" class="submit-button">Close</a>
+            </form>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

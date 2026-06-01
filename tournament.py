@@ -5,7 +5,8 @@ def getTournamentList():
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM \"Tournament\" ORDER BY t_name Asc;")
+    cursor.execute("""SELECT t_tourneyid, t_name, t_format, t_maxplayers, COUNT(pl_playerid)
+                    FROM \"Tournament\"  LEFT JOIN \"Player\" on pl_tourneyid = t_tourneyid GROUP BY t_tourneyid ORDER BY t_name Asc;""")
     tournamentresults = cursor.fetchall()
 
     cursor.close()
@@ -25,11 +26,11 @@ def selectTournament(t_tourneyid):
 
     return selectedTournament
 
-def newTournament(name, tformat):
+def newTournament(name, tformat, playercount):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO \"Tournament\"(t_name, t_format) VALUES (%s, %s);", (name, tformat))
+    cursor.execute("INSERT INTO \"Tournament\"(t_name, t_format, t_maxplayers) VALUES (%s, %s, %s);", (name, tformat, playercount,))
     conn.commit()
 
     cursor.close()
@@ -37,11 +38,11 @@ def newTournament(name, tformat):
 
     return
 
-def updateTournament(t_tourneyid, name, tformat):
+def updateTournament(t_tourneyid, name, tformat, playercount):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("UPDATE \"Tournament\" SET t_name = %s, t_format = %s WHERE t_tourneyid = %s;", (name, tformat, t_tourneyid))
+    cursor.execute("UPDATE \"Tournament\" SET t_name = %s, t_format = %s, t_maxplayers = %s WHERE t_tourneyid = %s;", (name, tformat, playercount, t_tourneyid))
 
     conn.commit()
     cursor.close()

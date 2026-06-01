@@ -18,15 +18,13 @@ To-Do List:
 	-player comparison page
 
 -Pokémon Search Page:
-	-Icons for types
+	-format scroll bar
 
 -Pokémon Profile Page: 
-	-Pass in EV's and IV's
-	-Fix Pokepaste parsing bugs
-	-Calculate Real Stats from Base stats
 	-Make image/name card static
 	-Kills per match statistic
 	-remove K/D from Pokémon table
+	-format best set statistics
 
 -Player Page:
 	-Cap out players according to max participation count

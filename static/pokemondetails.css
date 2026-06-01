@@ -1,0 +1,143 @@
+﻿
+.base-window {
+    margin-right: 30px;
+    border-radius: 0px 20px 20px 0px;
+    position: fixed;
+    width: 28%;
+    height: 565px;
+    margin-bottom: 10px;
+}
+
+.right-side {
+    flex: 0.65;
+    gap: 30px;
+}
+
+.left-side {
+    flex: 0.35;
+}
+
+.stats-window {
+    margin-bottom: 10px;
+    flex: 0.45;
+}
+
+.move-window {
+    width: 60%;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-evenly;
+    row-gap: 15px;
+    flex-wrap: wrap;
+}
+
+.usage-window {
+    margin-bottom: 20px;
+    flex: 0.45;
+}
+
+.best-sets-window {
+    width: 80%;
+}
+
+.best-sets-results {
+    width: 80%;
+    height: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.stats-container {
+    width: 22%;
+}
+
+.replay-button {
+    position: absolute;
+    top: 75px;
+}
+
+img {
+    border: 1px solid black;
+    width: 85%;
+    margin-left: 7%;
+}
+
+
+.sub-container {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding: 25px;
+    background-color: var(--sub-container-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.usage-container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.move-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-header {
+    width: 100%;
+    text-align: center;
+}
+
+.highlight-data {
+    font-weight: bold;
+    font-size: 36pt;
+    width: 100%;
+    text-align: center;
+}
+
+.highlight-percent {
+    font-size: 28pt;
+}
+
+.detail-button-gap {
+    flex: 0.25;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.poke-name {
+    flex: 0.99;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 24pt;
+}
+
+.titles {
+    margin: 0;
+    padding: 0;
+    font-size: 18pt;
+}
+
+.type-image {
+    border: none;
+    width: 150px;
+}
+}
+
+.name-card {
+    width: 100%;
+}
+
+.negative-nature {
+    color: blue;
+}
+
+.positive-nature {
+    color: red;
+}

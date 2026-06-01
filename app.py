@@ -8,18 +8,36 @@ from player import *
 from pokemon import *
 from match import *
 from set import *
+from user import *
 
 app = Flask(__name__)
 
 app.secret_key = "randomkey"
 type_api = pokeAPIAllTypes()
 
+#----------USER FUNCTIONS---------------------------------------------------------#
 @app.route("/", methods=["GET"])
 def index():
-    tournamentresults = getTournamentList()
-    return render_template("index.html", tournament_results = tournamentresults )
+    return render_template("index.html")
+
+@app.route('/user', methods=["GET", "POST"])
+def user():
+    username = request.form.get("u_username")
+    password = request.form.get("u_password")
+    if "newuser" in request.form:
+        newUser(username, password)
+        return redirect(url_for("tournamentlist"))
+    elif "userlogin" in request.form:
+        return render_template("index.html")
+
+    return render_template("index.html")
 
 #----------TOURNAMENT FUNCTIONS---------------------------------------------------------#
+@app.route('/tournamentlist', methods=["GET", "POST"])
+def tournamentlist():
+    tournament_results = getTournamentList()
+    return render_template("tournamentlist.html", tournament_results=tournament_results)
+
 @app.route('/tournament/<int:t_tourneyid>', methods=["GET", "POST"])
 def tournament(t_tourneyid):
     selectedTournament = selectTournament(t_tourneyid)
@@ -44,7 +62,8 @@ def newtournament():
     if request.method == "POST":
         name = request.form.get("t_name")
         tformat = request.form.get("t_format")
-        newTournament(name, tformat)
+        playercount = request.form.get("t_playercount")
+        newTournament(name, tformat, playercount)
         return redirect(url_for("index"))
 
     return render_template("newtournament.html")
@@ -54,7 +73,8 @@ def edittournament(t_tourneyid):
     if "edittournament" in request.form:
         name = request.form.get("t_name")
         tformat = request.form.get("t_format")
-        updateTournament(t_tourneyid, name, tformat)
+        playercount = request.form.get("t_playercount")
+        updateTournament(t_tourneyid, name, tformat, playercount)
         return redirect(url_for("tournament", t_tourneyid=t_tourneyid))
 
     elif "deletetournament" in request.form:
@@ -153,8 +173,10 @@ def pokemondetails(pl_tourneyid, po_pokeid):
     selectedpokemon, best_sets = selectPokemon(pl_tourneyid, po_pokeid)
     po_name = selectedpokemon[1].strip()
     pokemon_api = pokeAPICall(po_name)
+    nature_map = natureMapping(selectedpokemon[18])
+    selectedStats = statCalculation(selectedpokemon[21], selectedpokemon[22], pokemon_api, nature_map)
     return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, best_sets = best_sets, tourneyid = pl_tourneyid,
-                           po_pokeid = po_pokeid, pokemon_api = pokemon_api, type_api = type_api)
+                           po_pokeid = po_pokeid, pokemon_api = pokemon_api, type_api = type_api, selectedStats = selectedStats, nature_map = nature_map)
 
 @app.route("/editpokemon/  <int:po_tourneyid>/ <int:po_pokeid>", methods=["GET","POST"])
 def editpokemon(po_tourneyid, po_pokeid):
@@ -184,7 +206,14 @@ def pokemontoplayer(po_tourneyid, po_playername):
 #----------------MATCH FUNCTIONS-----------------------------------#
 @app.route("/matches <int:m_tourneyid>", methods=["GET","POST"])
 def matches(m_tourneyid):
-    match_results = getMatchList(m_tourneyid)
+    if "reset_match" in request.form:
+        match_results = getMatchList(m_tourneyid)
+    elif "match" in request.form:
+        keyword = request.form.get("match")
+        match_results = matchFilter(m_tourneyid, keyword)
+    else:
+        match_results = getMatchList(m_tourneyid)
+
     playerlist = getPlayerList(m_tourneyid)
     return render_template("match.html", match_results = match_results, playerlist = playerlist, tourneyid = m_tourneyid)
 
