@@ -73,31 +73,23 @@
             width: 90%;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: 50% 50%;
-            column-gap: 10px;
-        }
-
-        .name-width {
-            flex: 0.9;
-        }
-
         .centering {
-            align-items: flex-end;
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
 
         .box-header {
             text-align: center;
         }
+
         .input-side {
             flex: 0.5;
         }
 
         .popup-size {
             width: 900px;
-            height: 600px;
+            height: 650px;
         }
 
         .roster-grid {
@@ -122,19 +114,32 @@
         .input-bars {
             margin-bottom: 10px;
         }
+
+        .set-grid {
+            display: flex;
+            justify-content: space-evenly;
+            row-gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .set-size {
+            width: 20%;
+            height: 100px;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>
-            Match
-        </h1>
+        <div class="flex centering title-header">
+            <h1>Match</h1>
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
         </div>
@@ -142,12 +147,13 @@
 
     <div class="container set-container">
         <h2>{{selectedmatch[0]}}</h2>
+        <div>{{setwins[1]}}-{{setwins[2]}}</div>
 
-        <div class="results">
+        <div class="results set-grid">
             {% if set_list is not none and set_list|length > 0 %}
             {% for result in set_list %}
-            <div class="poke-player-results">
-                <div class="player-name flex">
+            <div class="poke-player-results set-size centering">
+                <div class="flex-verical">
                     <div>
                         {{ result[3]}}
                         {% if result[2] == result[6] %}
@@ -161,14 +167,15 @@
                         <i class="fas fa-crown"></i>
                         {% endif %}
                     </div>
-                    <div>Round: {{result[10]}}_</div>
-                    {% if result[2] == result[6] %}
+                    <div>Round: {{result[10]}}</div>
+                    <div>
+                        {% if result[2] == result[6] %}
                         {{result[9]}}-0
-                    {% else %}
+                        {% else %}
                         0-{{result[9]}}
-                    {% endif %}
-
-                    <a href="{{result[7]}}" target="_blank">Watch Replay</a>
+                        {% endif %}
+                    </div>
+                    <a class="view-details" href="{{result[7]}}" target="_blank">Watch Replay</a>
                 </div>
 
             </div>
@@ -178,7 +185,9 @@
             {% endif %}
         </div>
 
-        <a href="#newset" class="view-details">Add Set</a>
+        {% if (setwins is none or (setwins[1] < 2 and setwins[2] < 2)) and user[2] %}
+            <a href="#newset" class="submit-button">Add Set</a>
+        {% endif %}
     </div>
 
     <div id="newset" class="popup">

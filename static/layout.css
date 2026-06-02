@@ -39,6 +39,10 @@ header {
     align-items: stretch;
 }
 
+.centering {
+    align-items: center;
+    justify-content: center;
+}
 
 .first-color {
     background-color: gold;
@@ -76,4 +80,13 @@ header {
     width: 90%;
     border: 1px solid black;
     border-radius: 20px;
+}
+
+.title-header {
+    position: relative;
+}
+
+.username-label {
+    position: absolute;
+    right: 15px;
 }

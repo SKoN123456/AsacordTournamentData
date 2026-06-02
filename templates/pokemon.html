@@ -17,20 +17,13 @@
             flex: 0.35;
         }
 
-        .search-box {
-            width: 90%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-
         .results {
             margin-top: 20px;
-            max-height: 470px;
+            max-height: 490px;
             overflow-y: auto;
             padding-right: 10px;
             margin-bottom: 20px;
+            border: 1px solid black;
         }
 
         .poke-name {
@@ -69,19 +62,25 @@
             align-items: center;
             justify-content: center;
         }
+
+        .type-image {
+            border: none;
+            width: 100px;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>
-            Pokemon
-        </h1>
+        <div class="flex centering title-header">
+            <h1>Pokemon</h1>
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
             <button type="button" class="navigation-button" disabled>Pokemon</button>
         </div>
@@ -111,6 +110,12 @@
                     <label>{{ t }}</label>
                     {% endfor %}
                 </div>
+
+                <h2>Search for Tera Captain</h2>
+                <div class="type-select">
+                    <input type="checkbox" name="tera" />
+                    <label>Tera Captain?</label>
+                </div>
                 <br><br>
                 <input type="submit" class="submit-button" value="Submit">
                 <button type="submit" class="submit-button" name="reset_poke" value="1"> Reset</button>
@@ -124,27 +129,27 @@
                 <div class="poke-player-results flex centering">
                     <div class="poke-name flex-vertical">
                         <div>
+                            <div class="trainer-name">{{result[2]}}'s</div>
                             {{ result[1]}}
-                            {% if result[4] == True %}
+                            {% if result[4] == 't' %}
                             <i class='fas fa-star big-star'>
                                 <div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div>
                             </i>
                             {% endif %}
                         </div>
-                        <div class="trainer-name">Trainer: {{ result[2]}}</div>
                     </div>
                     <div class="poke-info">
                         <div>
-                            Type: {{ result[5].capitalize()}}
+                            <img class="type-image" src="{{type_api[result[5].lower()]}}">
                             {% if result[6] != "N/A" %}
-                            <span>/{{ result[6].capitalize()}}</span>
+                            <img class="type-image" src="{{type_api[result[6].lower()]}}">
                             {% endif %}
 
                         </div>
                         Tier: {{ result[3]}}
                     </div>
                     <div>
-                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Details</button>
+                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Profile</button>
                     </div>
                 </div>
                 {% endfor %}

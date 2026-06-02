@@ -56,15 +56,18 @@
 
 <body>
     <header>
-        <h1>
-            {{tournament[1]}}
-            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
-        </h1>
+        <div class="flex centering title-header">
+            <h1>{{tournament[1]}}</h1>
+            {% if user[3] %}
+                <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+            {% endif %}
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tournament[0]) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tournament[0]) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button type="button" class="navigation-button" disabled>Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tournament[0]) }}'">Pokemon</button>
         </div>
@@ -77,11 +80,21 @@
             <form method="POST" action="{{ url_for('edittournament', t_tourneyid = tournament[0]) }}">
                 <label for="t_name">Tournament Name</label><br>
                 <input class="input-bars" type="text" name="t_name" value="{{tournament[1]}}" required><br>
-                <label for="t_format">Format</label><br>
-                <input class="input-bars" type="text" name="t_format" value="{{tournament[2]}}" required> <br>
+                <div class="flex">
+                    <div>
+                        <label for="t_format">Format</label><br>
+                        <input type="text" name="t_format" value="{{tournament[2]}}" required> <br>
+                    </div>
+                    <div>
+                        <label for="t_playercount">Player Count</label><br>
+                        <input type="number" name="t_playercount" min="1" value="{{tournament[3]}}" required> <br>
+                    </div>
+                </div>
 
                 <input class="submit-button" type="submit" name="edittournament" value="Submit">
-                <a href="#inner-popup" class="submit-button">Delete</a>
+                {% if user[4] %}
+                    <a href="#inner-popup" class="submit-button">Delete</a>
+                {% endif %}
                 <a href="" class="submit-button">Close</a>
             </form>
         </div>
@@ -129,7 +142,7 @@
                     <div>{{result[5]}}</div>
                     <div>{{result[6]}}</div>
                     <div>{{result[7]}}</div>
-                    <div>{{ "%.2f"|format(result[5] / result[6]) if result[5] != 0 else result[6] }}</div>
+                    <div>{{ "%.2f"|format(result[5] / result[6]) if result[6] != 0 else "%.2f"|format(result[5]) }}</div>
                 </div>
                 {% endfor %}
                 {% else %}

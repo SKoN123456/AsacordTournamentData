@@ -16,6 +16,7 @@
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
+    z-index: 1;
 }
 
 .fa-star {
@@ -44,10 +45,6 @@
     font-size: 20pt;
     background-color: var(--container-color);
     border: none;
-}
-
-.settings:hover {
-    background-color: var(--sub-container-color);
 }
 
 .popup {

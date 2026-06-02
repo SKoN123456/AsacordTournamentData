@@ -1,0 +1,6 @@
+Flask
+gunicorn
+supabase
+requests
+python-dotenv
+pokepastes-scraper

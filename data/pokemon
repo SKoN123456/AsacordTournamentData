@@ -1,0 +1,327 @@
+po_pokeid,po_tourneyid,po_name,po_tier,po_isteracaptain,po_k,po_d,po_numbrought,po_winstreak,po_ability,po_item,po_nickname,po_move1,po_move2,po_move3,po_move4,po_nature,po_isshiny,po_evs,po_playerid,po_type1,po_type2
+1046,2,Venusaur-Mega,UU,f,0,7,9,0,Thick Fat,Venusaurite,Venagoon-Mega,Energy Ball,Hidden Power [Rock],Leech Seed,Synthesis,Bold,,,22,grass,poison
+1050,2,Okidogi,RU,t,2,6,8,0,Toxic Chain,Choice Scarf,Goonidogi,Ice Punch,Close Combat,Brick Break,High Horsepower,Jolly,,,22,poison,fighting
+1078,2,Mawile,UU,f,0,0,2,0,Intimidate,Mawilite,,Swords Dance,Play Rough,Knock Off,Sucker Punch,Adamant,,,25,steel,fairy
+1099,2,Iron Crown,UU,f,0,3,3,0,Quark Drive,Choice Scarf,Prince Edward Island,Tachyon Cutter,Volt Switch,Air Slash,Psychic,Timid,,,27,steel,psychic
+1066,2,Great Tusk,OU,f,0,0,0,0,Protosynthesis,Booster Energy,,Headlong Rush,Rapid Spin,Ice Spinner,Close Combat,Jolly,,,24,ground,fighting
+1071,2,Dugtrio,RU,f,0,0,0,0,Sand Force,Focus Sash,,Earthquake,Endeavor,Memento,Sandstorm,Jolly,,,24,ground,N/A
+1098,2,Excadrill,UU,f,0,2,2,0,Sand Rush,Life Orb,Manitoba,Earthquake,Hone Claws,Rapid Spin,Rock Slide,Adamant,,,27,ground,steel
+895,1,Volcarona,OU,f,6,4,8,0,Flame Body,Heavy-Duty Boots,jake j,Quiver Dance,Fiery Dance,Giga Drain,Bug Buzz,Timid,,,8,bug,fire
+1045,2,Pecharunt,UU,f,0,0,0,0,Poison Puppeteer,Black Sludge,Pechagoon,Malignant Chain,Recover,Shadow Ball,Nasty Plot,Bold,,,22,poison,ghost
+1062,2,Volcarona,OU,f,0,2,2,0,Flame Body,Heavy-Duty Boots,Janai,Fiery Dance,Bug Buzz,Giga Drain,Quiver Dance,Modest,,,23,bug,fire
+1022,2,Tapu Fini,UU,f,0,0,0,0,Misty Surge,Choice Scarf,Bentley,Moonblast,Trick,Ice Beam,Scald,Timid,t,,20,water,fairy
+1101,2,Orthworm,RU,f,0,3,3,0,Earth Eater,Rocky Helmet,Saskatchewan,Sandstorm,Body Press,Stealth Rock,Bulldoze,Impish,,,27,steel,N/A
+1085,2,Kyurem,OU,f,1,5,5,0,Pressure,Choice Specs,Volcanica,Freeze-Dry,Earth Power,Ice Beam,Draco Meteor,Timid,,,26,dragon,ice
+1087,2,Raging Bolt,OU,f,0,0,0,0,Protosynthesis,Assault Vest,Amangam,Thunderclap,Draco Meteor,Volt Switch,Dragon Pulse,Modest,,,26,electric,dragon
+1068,2,Sandaconda,RU,f,0,0,0,0,Sand Spit,Leftovers,,Coil,Earthquake,Body Press,Stealth Rock,Jolly,,,24,ground,N/A
+1064,2,Garchomp,OU,f,0,0,0,0,Rough Skin,Garchompite,,Earthquake,Rock Slide,Iron Head,Swords Dance,Jolly,,,24,dragon,ground
+1083,2,Enamorus,RU,t,0,0,0,0,Contrary,Choice Scarf,,Tera Blast,Superpower,Earth Power,Moonblast,Naive,,,25,fairy,flying
+1090,2,Kommo-o,UU,f,0,0,0,0,Bulletproof,Leftovers,Josef/Gyan,Body Press,Dragon Tail,Stealth Rock,Iron Defense,Careful,,,26,dragon,fighting
+1081,2,Klefki,RU,t,0,5,7,0,Prankster,Light Clay,,Reflect,Light Screen,Thunder Wave,Foul Play,Bold,,,25,steel,fairy
+1043,2,Toxapex,OU,f,0,4,7,0,Regenerator,Leftovers,Toxagoon,Baneful Bunker,Scald,Recover,Toxic Spikes,Bold,,,22,poison,water
+1049,2,Muk-Alola,RU,t,0,2,2,0,Poison Touch,Black Sludge,Goon-Alola,Knock Off,Poison Jab,Brick Break,Protect,Careful,,,22,poison,dark
+1055,2,Moltres,OU,f,0,0,0,0,Flame Body,Heavy-Duty Boots,Mega Ultra Chicken,U-turn,Flamethrower,Hurricane,Morning Sun,Timid,,,23,fire,flying
+970,1,Blissey,RU,f,5,5,7,0,Natural Cure,Heavy-Duty Boots,The Blob,Stealth Rock,Soft-Boiled,Seismic Toss,Toxic,Bold,,,15,normal,N/A
+1035,2,Glimmora,UU,f,0,2,2,0,Corrosion,Air Balloon,,Toxic,Power Gem,Earth Power,Stealth Rock,Timid,,,21,rock,poison
+896,1,Torkoal,RU,f,2,24,28,0,Drought,Heat Rock,jake a,Explosion,Rapid Spin,Yawn,Stealth Rock,Sassy,,,8,fire,N/A
+894,1,Chi-Yu,Uber,f,3,4,4,0,Beads of Ruin,Choice Scarf,jake k,Dark Pulse,Flamethrower,Psychic,Overheat,Timid,,,8,dark,fire
+842,1,Araquanid,RU,f,9,17,20,0,Water Bubble,Mystic Water,Marine General,Liquidation,Sticky Web,Toxic,Scald,Adamant,,,3,water,bug
+845,1,Pinsir-Mega,UU,f,7,10,14,0,Aerilate,Pinsirite,Air Force Captain,Swords Dance,Body Slam,Close Combat,Quick Attack,Adamant,,,3,bug,flying
+847,1,Forretress,RU,f,3,14,15,0,Sturdy,Custap Berry,Drill Sergeant,Rapid Spin,Explosion,Stealth Rock,Toxic Spikes,Impish,,,3,bug,steel
+843,1,Scizor,OU,f,6,10,17,0,Technician,Choice Band,Sheriff,U-turn,Bullet Punch,Knock Off,Close Combat,Adamant,,,3,bug,steel
+841,1,Volcarona,OU,f,18,26,32,0,Flame Body,Heavy-Duty Boots,Detective,Fire Blast,Quiver Dance,Bug Buzz,Giga Drain,Calm,,,3,bug,fire
+844,1,Kleavor,UU,f,23,20,31,0,Sharpness,Choice Scarf,Parole Officer,Psycho Cut,Close Combat,Stone Axe,X-Scissor,Jolly,,,3,bug,rock
+840,1,Pheromosa,Uber,f,51,12,25,0,Beast Boost,Focus Sash,E-Girl,Close Combat,U-turn,Poison Jab,Ice Beam,Lonely,t,,3,bug,fighting
+839,1,Skarmory,UU,f,3,3,3,0,Sturdy,Rocky Helmet,Wheel of Fortune,Stealth Rock,Whirlwind,Spikes,Roost,Bold,,,2,steel,flying
+838,1,Enamorus,RU,f,18,6,14,0,Contrary,Choice Scarf,The Hanged Man,Moonblast,Sludge Bomb,Earth Power,Healing Wish,Modest,,,2,fairy,flying
+870,1,Sneasler,Uber,f,0,0,0,0,Unburden,Focus Sash,Logan,Dire Claw,Close Combat,Acrobatics,Swords Dance,Adamant,,,5,fighting,poison
+819,1,Iron Hands,UU,f,25,15,22,0,Quark Drive,Assault Vest,Yui,Fake Out,Drain Punch,Earthquake,Ice Punch,Adamant,t,,1,fighting,electric
+824,1,Galvantula,RU,f,5,9,12,0,Compound Eyes,Focus Sash,Sojo,Sticky Web,Volt Switch,Thunder,Energy Ball,Modest,t,,1,bug,electric
+826,1,Thundurus-Therian,UU,f,15,12,15,0,Volt Absorb,Expert Belt,Cloud Gouger,Taunt,Nasty Plot,Psychic,Thunderbolt,Timid,t,,1,electric,flying
+822,1,Zekrom,Uber,f,17,4,10,0,Teravolt,Lum Berry,Kuregumo,Fusion Bolt,Dragon Claw,Dragon Dance,Crunch,Jolly,t,,1,dragon,electric
+827,1,Tapu Koko,OU,f,11,21,23,0,Electric Surge,Terrain Extender,Hishaku,Volt Switch,Dazzling Gleam,Hidden Power [Ice],Thunderbolt,Timid,t,,1,electric,fairy
+825,1,Xurkitree,UU,f,14,6,11,0,Beast Boost,Choice Scarf,Mei:Chigiri,Dazzling Gleam,Thunderbolt,Energy Ball,Hidden Power [Ice],Timid,t,,1,electric,N/A
+1051,2,Salazzle,RU,f,2,4,4,0,Corrosion,Focus Sash,Goonazzle,Toxic,Flamethrower,Overheat,Dragon Pulse,Timid,,,22,poison,fire
+1017,2,Rabsca,RU,t,0,3,4,0,Synchronize,Light Clay,Megumi Fushiguro,Revival Blessing,Reflect,Light Screen,Bug Buzz,Calm,,,19,bug,psychic
+974,1,Porygon2,NFE,f,0,8,13,0,Trace,Eviolite,Ted Kord,Ice Beam,Trick Room,Recover,Teleport,Relaxed,,,15,normal,N/A
+1020,2,Indeedee,RU,f,0,1,1,0,Psychic Surge,Choice Scarf,Megumi Fushiguro,Expanding Force,Dazzling Gleam,Trick,Healing Wish,Timid,,,19,psychic,normal
+1063,2,Ursaluna-Bloodmoon,Uber,f,0,2,2,0,Mind's Eye,Heavy-Duty Boots,,Calm Mind,Blood Moon,Earth Power,Moonlight,Modest,,,24,ground,normal
+1070,2,Dugtrio-Alola,RU,t,0,2,2,0,Sand Force,Choice Band,,Earthquake,Rock Slide,Iron Head,Tera Blast,Jolly,,,24,ground,steel
+1069,2,Gligar,RU,f,0,2,2,0,Immunity,Eviolite,,Tailwind,Toxic Spikes,Baton Pass,Knock Off,Impish,,,24,ground,flying
+1092,2,Duraludon,RU,t,4,5,5,0,Light Metal,Assault Vest,Fargall,Draco Meteor,Flash Cannon,Thunderbolt,Dragon Pulse,Modest,,,26,steel,dragon
+1019,2,Jirachi,RU,f,0,4,4,0,Serene Grace,Leftovers,Nobara Kugisaki,Stealth Rock,Iron Head,U-turn,Thunder Wave,Careful,,,19,steel,psychic
+848,1,Vikavolt,RU,f,0,3,4,0,Levitate,Blunder Policy,,Sticky Web,Zap Cannon,Bug Buzz,Roost,Timid,,,3,bug,electric
+1077,2,Clefable,UU,f,0,1,4,0,Magic Guard,Focus Sash,,Counter,Stealth Rock,Thunder Wave,Healing Wish,Bold,,,25,fairy,N/A
+967,1,Tyranitar,RU,f,8,11,14,0,Sand Stream,Leftovers,,Stealth Rock,Stone Edge,Crunch,Dragon Tail,Impish,,,14,rock,dark
+829,1,Charizard,OU,f,3,4,7,0,Blaze,Charizardite Y,The Sun,Flamethrower,Solar Beam,Scorching Sands,Roost,Timid,,,2,fire,flying
+830,1,Dragonite,OU,f,10,6,8,0,Multiscale,Heavy-Duty Boots,The Chariot,Dragon Dance,Extreme Speed,Earthquake,Encore,Adamant,,,2,dragon,flying
+831,1,Corviknight,OU,f,4,4,14,0,Pressure,Leftovers,The Tower,Defog,Body Press,U-turn,Roost,Impish,,,2,flying,steel
+832,1,Shaymin-Sky,Uber,f,15,13,19,0,Serene Grace,Choice Scarf,The Fool,Air Slash,Seed Flare,Earth Power,Healing Wish,Timid,,,2,grass,flying
+861,1,Okidogi,RU,f,3,6,10,0,Toxic Chain,Choice Scarf,Goonidogi,Ice Punch,Close Combat,Brick Break,High Horsepower,Jolly,,,4,poison,fighting
+976,1,Smeargle,RU,f,0,15,15,0,Own Tempo,Focus Sash,Mr. Terrific,Sticky Web,Stone Axe,Spore,Ceaseless Edge,Jolly,,,15,normal,N/A
+1126,2,Ting-Lu,OU,f,3,2,8,0,Vessel of Ruin,Leftovers,Ting-Lucifer,Ruination,Earthquake,Stealth Rock,Whirlwind,Impish,,,30,dark,ground
+903,1,Groudon-Primal,Uber,f,24,17,24,0,Desolate Land,Red Orb,jake e,Rock Polish,Earthquake,Heat Crash,Swords Dance,Jolly,,,8,ground,fire
+855,1,Sneasler,Uber,f,5,3,5,0,Poison Touch,Choice Scarf,Gooner,Close Combat,Dire Claw,U-turn,Rock Slide,Jolly,,,4,fighting,poison
+1073,2,Zacian-Crowned,Uber,f,18,3,7,4,Intrepid Sword,Rusted Sword,,Swords Dance,Behemoth Blade,Close Combat,Play Rough,Jolly,,,25,fairy,steel
+866,1,Terrakion,RU,f,16,18,27,0,Justified,Choice Scarf,Alondite,Close Combat,Stone Edge,Iron Head,X-Scissor,Jolly,,,5,rock,fighting
+867,1,Iron Valiant,OU,f,25,21,28,0,Quark Drive,Booster Energy,Jeff Allen,Aura Sphere,Moonblast,Shadow Ball,Calm Mind,Timid,,,5,fairy,fighting
+905,1,Landorus,Uber,f,21,22,28,0,Sheer Force,Life Orb,,Earth Power,Focus Blast,Psychic,Nasty Plot,Timid,,,9,ground,flying
+906,1,Excadrill,UU,f,11,17,17,0,Sand Rush,Leftovers,,Earthquake,Iron Head,Rock Slide,Swords Dance,,,,9,ground,steel
+907,1,Gastrodon,RU,f,3,11,12,0,Storm Drain,Leftovers,,Recover,Ice Beam,Scald,Toxic,Calm,,,9,water,ground
+854,1,Toxapex,OU,f,11,7,14,0,Regenerator,Leftovers,Toxagoon,Baneful Bunker,Scald,Recover,Toxic Spikes,Bold,,,4,poison,water
+851,1,Eternatus,Uber,f,28,14,19,0,Pressure,Power Herb,Eternagoon,Dynamax Cannon,Flamethrower,Sludge Wave,Meteor Beam,Timid,,,4,poison,dragon
+857,1,Pecharunt,RU,f,15,14,19,0,Poison Puppeteer,Black Sludge,Pechagoon,Malignant Chain,Recover,Shadow Ball,Nasty Plot,Bold,,,4,poison,ghost
+858,1,Weezing-Galar,RU,f,6,10,18,0,Levitate,Black Sludge,Goozing-Galar,Strange Steam,Defog,Toxic,Protect,Bold,,,4,poison,fairy
+859,1,Muk-Alola,RU,f,9,8,13,0,Poison Touch,Black Sludge,Goon-Alola,Knock Off,Poison Jab,Brick Break,Protect,Careful,,,4,poison,dark
+853,1,Venusaur-Mega,UU,f,12,10,18,0,Thick Fat,Venusaurite,Venagoon-Mega,Energy Ball,Hidden Power [Rock],Leech Seed,Synthesis,Bold,,,4,grass,poison
+856,1,Clodsire,OU,f,2,3,9,0,Water Absorb,Leftovers,Goonsire,Earthquake,Stealth Rock,Yawn,Recover,Careful,t,,4,poison,ground
+852,1,Iron Moth,UU,f,21,4,13,0,Quark Drive,Choice Specs,Iron Goon,Fiery Dance,Discharge,U-turn,Energy Ball,Timid,t,,4,fire,poison
+860,1,Salazzle,RU,f,3,3,6,0,Corrosion,Focus Sash,Goonazzle,Toxic,Flamethrower,Overheat,Dragon Pulse,Timid,,,4,poison,fire
+862,1,Lucario-Mega,Uber,f,15,6,10,0,Adaptability,Lucarionite,Briggan,Close Combat,Meteor Mash,Bullet Punch,Swords Dance,Jolly,,,5,fighting,steel
+868,1,Lopunny-Mega,OU,f,16,12,18,0,Scrappy,Lopunnite,Lola,Fake Out,Return,Drain Punch,Ice Punch,Jolly,,,5,normal,fighting
+863,1,Quaquaval,UU,f,27,16,26,0,Moxie,Lum Berry,Ringabel,Aqua Step,Close Combat,Ice Spinner,Bulk Up,Jolly,,,5,water,fighting
+864,1,Great Tusk,OU,f,9,10,18,0,Protosynthesis,Leftovers,Ellie,Headlong Rush,Close Combat,Knock Off,Rapid Spin,Adamant,,,5,ground,fighting
+865,1,Lilligant-Hisui,RU,f,8,9,10,0,Chlorophyll,Lum Berry,Edea,Leaf Blade,Close Combat,Triple Axel,Victory Dance,Adamant,,,5,grass,fighting
+869,1,Zapdos-Galar,UU,f,5,14,21,0,Defiant,Assault Vest,Acme,Close Combat,Brave Bird,U-turn,Steel Wing,Jolly,,,5,fighting,flying
+846,1,Buzzwole,UU,f,19,10,18,0,Beast Boost,Chesto Berry,Mall Cop,Bulk Up,Earthquake,Drain Punch,Rest,Jolly,,,3,bug,fighting
+849,1,Genesect,Uber,f,6,6,7,0,Download,Choice Specs,Robo Cop,Bug Buzz,Ice Beam,Flash Cannon,Flamethrower,Modest,,,3,bug,steel
+850,1,Scizor-Mega,UU,f,5,5,9,0,Technician,Scizorite,*On Paid Leave*,Superpower,Bullet Punch,Swords Dance,Trailblaze,Adamant,,,3,bug,steel
+904,1,Cinderace,UU,f,3,1,1,0,Libero,Heavy-Duty Boots,,U-turn,Pyro Ball,High Jump Kick,Court Change,Jolly,,,8,fire,N/A
+897,1,Charizard-Mega-X,RU,f,24,18,27,0,Tough Claws,Charizardite X,jake f,Dragon Dance,Dragon Claw,Blaze Kick,Earthquake,Jolly,,,8,fire,dragon
+898,1,Ceruledge,OU,f,35,20,28,0,Weak Armor,Focus Sash,jake c,Close Combat,Swords Dance,Bitter Blade,Shadow Sneak,Jolly,,,8,fire,ghost
+899,1,Blacephalon,RU,f,6,11,15,0,Beast Boost,Choice Scarf,jake i,Flamethrower,Shadow Ball,Hidden Power [Ice],Trick,Modest,,,8,fire,ghost
+900,1,Volcanion,RU,f,2,3,3,0,Water Absorb,Heavy-Duty Boots,jake g,Steam Eruption,Sludge Wave,Earth Power,Defog,Modest,,,8,fire,water
+902,1,Heatran,OU,f,8,15,28,0,Flame Body,Assault Vest,jake d,Lava Plume,Earth Power,Power Gem,Dragon Pulse,Calm,,,8,fire,steel
+1057,2,Charizard-Mega-X,UU,f,8,6,9,5,Tough Claws,Charizardite X,Zuko,Fire Punch,Dragon Claw,Thunder Punch,Dragon Dance,Adamant,,,23,fire,dragon
+955,1,Avalugg-Hisui,RU,f,0,0,0,0,Ice Body,Leftovers,who tf r u,Avalanche,Curse,Rock Slide,Body Press,Adamant,,,13,ice,rock
+871,1,Urshifu,Uber,f,17,9,19,0,Unseen Fist,Choice Band,Shannan,Close Combat,Iron Head,Sucker Punch,Wicked Blow,Jolly,,,5,fighting,dark
+1023,2,Slowbro,UU,f,0,0,2,0,Regenerator,Slowbronite,Jeep Wagoneer,Trick Room,Teleport,Grass Knot,Scald,Sassy,,,20,water,psychic
+1088,2,Salamence,UU,f,0,2,2,0,Intimidate,Heavy-Duty Boots,Carillon,Roost,Dragon Claw,Earthquake,Flamethrower,Jolly,,,26,dragon,flying
+1082,2,Ribombee,RU,f,1,2,2,0,Shield Dust,Focus Sash,,Sticky Web,Stun Spore,Moonblast,U-turn,Timid,,,25,bug,fairy
+872,1,Iron Hands,UU,f,4,5,10,0,Quark Drive,Assault Vest,Bane,Drain Punch,Fake Out,Earthquake,Ivy Cudgel,,,,5,fighting,electric
+886,1,Espathra,Uber,f,0,1,2,0,Speed Boost,Focus Sash,Patrasche,Calm Mind,Stored Power,Dazzling Gleam,Protect,Timid,,,7,psychic,N/A
+883,1,Armarouge,RU,f,30,13,19,0,Weak Armor,Weakness Policy,Aldebaran,Iron Defense,Aura Sphere,Stored Power,Armor Cannon,Timid,t,,7,fire,psychic
+884,1,Tapu Lele,OU,f,4,8,13,0,Psychic Surge,Eject Button,Beatrice,Moonblast,Thunderbolt,Energy Ball,Future Sight,Timid,,,7,psychic,fairy
+885,1,Scream Tail,RU,f,0,13,20,0,Protosynthesis,Light Clay,Mimi,Reflect,Light Screen,Perish Song,Stealth Rock,Timid,t,,7,fairy,psychic
+887,1,Indeedee,RU,f,28,13,22,0,Psychic Surge,Choice Scarf,Tanza,Expanding Force,Dazzling Gleam,Shadow Ball,Healing Wish,Timid,t,,7,psychic,normal
+873,1,Walking Wake,Uber,f,2,4,9,0,Protosynthesis,Choice Specs,Walking Ween,Scald,Draco Meteor,Flamethrower,Flip Turn,Timid,,,6,water,dragon
+874,1,Swampert-Mega,OU,f,17,12,16,0,Swift Swim,Swampertite,The Swamps,Earthquake,Liquidation,Ice Punch,Stealth Rock,Adamant,,,6,water,ground
+875,1,Pelipper,OU,f,5,13,16,0,Drizzle,Heavy-Duty Boots,Slaylipper,Surf,Hurricane,Roost,U-turn,Sassy,,,6,water,flying
+876,1,Ogerpon-Wellspring,OU,f,20,6,11,0,Water Absorb,Wellspring Mask,Oger Surfers,Horn Leech,Knock Off,Swords Dance,Ivy Cudgel,,,,6,grass,water
+877,1,Barraskewda,RU,f,21,7,16,0,Swift Swim,Choice Band,Barras Folds,Flip Turn,Close Combat,Liquidation,Aqua Jet,Adamant,,,6,water,N/A
+882,1,Toxapex,OU,f,1,4,8,0,Regenerator,Leftovers,Toxanaka,Recover,Haze,Knock Off,Scald,Calm,,,6,poison,water
+879,1,Greninja,UU,f,0,2,2,0,Battle Bond,Life Orb,King Grizzard,Dark Pulse,Hydro Pump,Ice Beam,Sludge Wave,Timid,,,6,water,dark
+878,1,Tapu Fini,UU,f,0,2,4,0,Misty Surge,Choice Scarf,Fini Wonder,Moonblast,Scald,Trick,Defog,Timid,,,6,water,fairy
+880,1,Urshifu-Rapid-Strike,OU,f,11,8,12,0,Unseen Fist,Choice Scarf,,Surging Strikes,Close Combat,U-turn,Poison Jab,Jolly,,,6,fighting,water
+881,1,Starmie,RU,f,0,1,2,0,Analytic,Heavy-Duty Boots,,Rapid Spin,Hydro Pump,Thunderbolt,Ice Beam,Timid,,,6,water,psychic
+837,1,Gliscor,OU,f,14,5,13,0,Poison Heal,Toxic Orb,The Devil,Earthquake,Knock Off,Toxic,Protect,Careful,,,2,ground,flying
+1006,2,Amoonguss,RU,f,0,0,2,0,Regenerator,Black Sludge,Yukisada,Spore,Giga Drain,Foul Play,Synthesis,Calm,t,,18,grass,poison
+1072,2,Stunfisk,RU,t,1,2,2,0,Static,Assault Vest,,Earth Power,Thunderbolt,Sludge Bomb,Hidden Power [Ice],Modest,,,24,ground,electric
+1115,2,Weavile,UU,f,3,5,7,0,Pickpocket,Focus Sash,Heresy,Knock Off,Fake Out,Triple Axel,Ice Spinner,Adamant,,,29,dark,ice
+892,1,Slowbro-Mega,RU,f,16,17,23,0,Shell Armor,Slowbronite,Moguro,Scald,Trick Room,Grass Knot,Teleport,Quiet,,,7,water,psychic
+888,1,Hatterene,OU,f,5,10,18,0,Magic Bounce,Psychic Seed,Yorna,Trick Room,Giga Drain,Dazzling Gleam,Psyshock,Relaxed,t,,7,psychic,fairy
+889,1,Iron Leaves,RU,f,3,6,8,0,Quark Drive,Focus Sash,Crusch,Leaf Blade,Close Combat,Psyblade,Agility,Jolly,,,7,grass,psychic
+890,1,Calyrex-Ice,Uber,f,17,6,11,0,As One (Glastrier),Weakness Policy,Zikr,Glacial Lance,Superpower,Seed Bomb,Curse,Relaxed,,,7,psychic,ice
+891,1,Necrozma-Dusk-Mane,Uber,f,15,9,12,0,Prism Armor,Air Balloon,Fourier,Earthquake,Sunsteel Strike,Photon Geyser,Cosmic Power,Brave,,,7,psychic,steel
+893,1,Jirachi,RU,f,2,2,2,0,Serene Grace,Normalium Z,Spica,Iron Head,Happy Hour,Body Slam,Ice Punch,Jolly,t,,7,steel,psychic
+1112,2,Zoroark-Hisui,RU,t,1,6,6,0,Illusion,Life Orb,,Nasty Plot,Shadow Ball,Hyper Voice,Focus Blast,Timid,,,28,normal,ghost
+1121,2,Arctovish,RU,t,4,5,5,2,Slush Rush,Life Orb,Sloth,Fishious Rend,Crunch,Icicle Crash,Psychic Fangs,Jolly,,,29,water,ice
+1014,2,Gallade-Mega,UU,f,4,1,2,2,Justified,Galladite,Maki Zen'in,Swords Dance,Drain Punch,Psycho Cut,Shadow Sneak,Jolly,,,19,psychic,fighting
+1018,2,Cresselia,RU,t,9,5,7,2,Levitate,Leftovers,Kinji Hakari,Calm Mind,Stored Power,Moonlight,Tera Blast,Bold,,,19,psychic,N/A
+1039,2,Arcanine-Hisui,RU,t,15,10,11,3,Intimidate,Choice Band,,Close Combat,Flare Blitz,Head Smash,Extreme Speed,Jolly,,,21,fire,rock
+946,1,Marshadow,Uber,f,24,20,22,0,Technician,Life Orb,Kitty,Spectral Thief,Close Combat,Shadow Sneak,Rock Tomb,Adamant,,,12,fighting,ghost
+947,1,Basculegion,RU,f,8,2,5,0,Adaptability,Choice Scarf,Triton,Last Respects,Flip Turn,Wave Crash,Aqua Jet,Adamant,,,12,water,ghost
+980,2,Xurkitree,UU,f,0,6,6,0,Beast Boost,Covert Cloak,,Hidden Power [Dragon],Thunderbolt,Energy Ball,Tail Glow,Timid,,,16,electric,N/A
+982,2,Pikachu,RU,f,0,1,1,0,Static,Light Ball,,Protect,Fake Out,Thunder Punch,Surf,Hasty,,,16,electric,N/A
+916,1,Dracozolt,RU,f,2,5,6,0,Hustle,Choice Band,Barns n Noble,Outrage,Bolt Beak,Earthquake,Dragon Tail,Adamant,t,,10,electric,dragon
+823,1,Regieleki,Uber,f,7,9,13,0,Transistor,Normal Gem,Mei,Tera Blast,Thunderbolt,Volt Switch,Explosion,Rash,t,,1,electric,N/A
+915,1,Salamence-Mega,Uber,f,6,14,16,0,Intimidate,Salamencite,Beelzebub,Dragon Claw,Return,Iron Head,Temper Flare,Jolly,t,,10,dragon,flying
+917,1,Latios,UU,f,3,11,14,0,Levitate,Soul Dew,Greed,Dragon Pulse,Psychic,Aura Sphere,Recover,Modest,t,,10,dragon,psychic
+908,1,Gliscor,OU,f,0,0,0,0,Poison Heal,Toxic Orb,,Earthquake,Toxic,Protect,Knock Off,Careful,,,9,ground,flying
+909,1,Hippowdon,UU,f,3,17,17,0,Sand Stream,Rocky Helmet,,Stone Edge,Stealth Rock,Whirlwind,Slack Off,Impish,,,9,ground,N/A
+910,1,Great Tusk,OU,f,6,24,26,0,Protosynthesis,Aguav Berry,,Bulk Up,Headlong Rush,Play Rough,Rapid Spin,Jolly,,,9,ground,fighting
+911,1,Clodsire,OU,f,9,16,18,0,Unaware,Black Sludge,Trick Room,Recover,Toxic,Earthquake,Poison Jab,Careful,,,9,poison,ground
+912,1,Garchomp,OU,f,22,25,28,0,Rough Skin,Rocky Helmet,,Swords Dance,Earthquake,Scale Shot,Fire Fang,Jolly,,,9,dragon,ground
+913,1,Ursaluna,OU,f,11,11,11,0,Guts,Flame Orb,Trick Room,Facade,Headlong Rush,Close Combat,Play Rough,Sassy,,,9,ground,normal
+914,1,Claydol,RU,f,1,10,11,0,Levitate,Rocky Helmet,Trick Room,Trick Room,Teleport,Substitute,Toxic,Careful,,,9,ground,psychic
+981,2,Zeraora,UU,f,0,1,1,0,Volt Absorb,Life Orb,,Protect,Aura Sphere,Play Rough,Plasma Fists,Hasty,t,,16,electric,N/A
+983,2,Eelektross,RU,f,0,1,1,0,Levitate,Leftovers,,Protect,Thunder Punch,Drain Punch,Knock Off,Adamant,,,16,electric,N/A
+1032,2,Arceus-Rock,Uber,f,13,9,15,3,Multitype,Stone Plate,,Judgment,Will-O-Wisp,Stealth Rock,Recover,Timid,,,21,rock,N/A
+918,1,Archaludon,OU,f,3,10,12,0,Stamina,Power Herb,Sloth,Dragon Pulse,Flash Cannon,Electro Shot,Stealth Rock,Timid,t,,10,steel,dragon
+1038,2,Ogerpon-Cornerstone,UU,f,10,4,7,3,Sturdy,Cornerstone Mask,,Superpower,Ivy Cudgel,Swords Dance,Horn Leech,Jolly,,,21,grass,rock
+931,1,Probopass,RU,f,1,3,3,0,Magnet Pull,Air Balloon,Outtakes,Body Press,Zap Cannon,Earth Power,Pain Split,Modest,,,11,rock,steel
+1111,2,Gengar,RU,f,4,5,7,0,Cursed Body,Focus Sash,,Shadow Ball,Sludge Bomb,Encore,Destiny Bond,Timid,,,28,ghost,poison
+919,1,Gouging Fire,OU,f,13,14,18,0,Protosynthesis,Booster Energy,Satan,Outrage,Raging Fury,Morning Sun,Burning Bulwark,Jolly,,,10,fire,dragon
+920,1,Regidrago,RU,f,7,12,16,0,Dragon's Maw,Choice Scarf,Envy,Dragon Energy,Tera Blast,Explosion,Dragon Pulse,Hasty,t,,10,dragon,N/A
+921,1,Tatsugiri,RU,f,5,4,5,0,Storm Drain,Dragonium Z,Pride,Draco Meteor,Surf,Protect,Nasty Plot,Timid,t,,10,dragon,water
+922,1,Hydreigon,UU,f,8,6,9,0,Levitate,Roseli Berry,Wrath,Dragon Pulse,Dark Pulse,Flamethrower,Tera Blast,Timid,,,10,dark,dragon
+923,1,Dragonite,OU,f,12,11,12,0,Multiscale,Lum Berry,Gluttony,Outrage,Dual Wingbeat,Extreme Speed,Dragon Dance,Adamant,t,,10,dragon,flying
+985,2,Regieleki,RU,f,1,5,5,0,Transistor,Choice Band,,Body Slam,Thunder Cage,Volt Switch,Extreme Speed,Hasty,,,16,electric,N/A
+901,1,Arcanine-Hisui,RU,f,1,1,2,0,Intimidate,Choice Band,jake h,Close Combat,Extreme Speed,Head Smash,Flare Blitz,Jolly,t,,8,fire,rock
+926,1,Scizor-Mega,OU,f,16,9,12,0,Technician,Scizorite,Katy Lied,U-turn,Bullet Punch,Dual Wingbeat,Vacuum Wave,Jolly,t,,11,bug,steel
+927,1,Corviknight,OU,f,5,10,10,0,Mirror Armor,Leftovers,Pretzel Logic,Defog,Brave Bird,Rain Dance,U-turn,Adamant,t,,11,flying,steel
+928,1,Archaludon,OU,f,6,9,9,0,Stamina,Power Herb,The Royal Scam,Electro Shot,Solar Beam,Meteor Beam,Body Press,Calm,,,11,steel,dragon
+929,1,Iron Treads,OU,f,15,17,20,0,Quark Drive,Booster Energy,CountdownToEcstasy,Volt Switch,Ice Spinner,Earthquake,Rapid Spin,Jolly,t,,11,ground,steel
+930,1,Klefki,RU,f,2,10,11,0,Prankster,Choice Scarf,Gaucho,Foul Play,Draining Kiss,Switcheroo,Thunder Wave,Lax,t,,11,steel,fairy
+932,1,Gholdengo,Uber,f,9,10,11,0,Good as Gold,Steelium Z,Can't Buy A Thrill,Make It Rain,Recover,Shadow Ball,Psychic,Modest,,,11,steel,ghost
+933,1,Heatran,OU,f,6,19,19,0,Flash Fire,Heavy-Duty Boots,Aja,Flamethrower,Will-O-Wisp,Stealth Rock,Power Gem,Calm,t,,11,fire,steel
+934,1,Solgaleo,Uber,f,27,22,24,0,Full Metal Body,Choice Scarf,Everything Must Go,Psychic Fangs,Flare Blitz,Stone Edge,Crunch,Jolly,,,11,psychic,steel
+935,1,Ferrothorn,OU,f,5,18,19,0,Iron Barbs,Loaded Dice,Two Against Nature,Gyro Ball,Bullet Seed,Knock Off,Leech Seed,Sassy,,,11,grass,steel
+936,1,Iron Crown,OU,f,4,4,6,0,Quark Drive,Assault Vest,The 2nd Arrangement,Tachyon Cutter,Volt Switch,Air Slash,Future Sight,Timid,,,11,steel,psychic
+924,1,Garchomp,OU,f,1,7,8,0,Rough Skin,Rocky Helmet,Lust,Scale Shot,Earthquake,Iron Head,Outrage,Jolly,t,,10,dragon,ground
+925,1,Giratina-Origin,Uber,f,0,3,4,0,Levitate,Griseous Core,Azazel,Poltergeist,Dragon Tail,Aura Sphere,Thunder Wave,Brave,t,,10,ghost,dragon
+820,1,Zeraora,RU,f,22,10,19,0,Volt Absorb,Choice Band,Chihiro,Plasma Fists,Close Combat,Play Rough,Blaze Kick,Adamant,t,,1,electric,N/A
+937,1,Sableye-Mega,UU,f,2,9,11,0,Prankster,Sablenite,Barthol,Metal Burst,Knock Off,Will-O-Wisp,Recover,Careful,,,12,dark,ghost
+939,1,Mimikyu,RU,f,16,21,24,0,Disguise,Life Orb,Caper,Swords Dance,Drain Punch,Play Rough,Shadow Sneak,Jolly,,,12,ghost,fairy
+940,1,Froslass,RU,f,2,11,14,0,Cursed Body,Focus Sash,Unspeakable Horrors,Taunt,Spikes,Shadow Ball,Destiny Bond,Timid,,,12,ice,ghost
+942,1,Sinistcha,RU,f,15,11,13,0,Heatproof,Leftovers,Psychedelics,Calm Mind,Matcha Gotcha,Substitute,Shadow Ball,Bold,,,12,grass,ghost
+938,1,Basculegion-F,RU,f,3,10,11,0,Adaptability,Assault Vest,Triton,Shadow Ball,Ice Beam,Hydro Pump,Flip Turn,Timid,,,12,water,ghost
+941,1,Ceruledge,OU,f,15,16,19,0,Weak Armor,Focus Sash,John pokemon,Bitter Blade,Close Combat,Shadow Sneak,Swords Dance,Jolly,,,12,fire,ghost
+990,2,Landorus-Therian,OU,f,5,10,11,2,Intimidate,Rocky Helmet,,U-turn,Earthquake,Stealth Rock,Stone Edge,Impish,,,17,ground,flying
+992,2,Dragonite,OU,f,7,5,7,4,Multiscale,Heavy-Duty Boots,,Dragon Dance,Ice Spinner,Earthquake,Roost,Adamant,t,,17,dragon,flying
+997,2,Flamigo,RU,f,15,8,12,3,Scrappy,Choice Scarf,,Close Combat,Brave Bird,U-turn,Liquidation,Adamant,,,17,flying,fighting
+1021,2,Walking Wake,Uber,f,4,9,12,2,Protosynthesis,Booster Energy,Mazda Miata,Draco Meteor,Hydro Steam,Flamethrower,Hurricane,Timid,,,20,water,dragon
+968,1,Lopunny,OU,f,16,1,15,0,Limber,Lopunnite,Captain Carrot,Return,Fake Out,Close Combat,Power-Up Punch,Jolly,,,15,normal,N/A
+1013,2,Hatterene,OU,f,0,6,8,0,Magic Bounce,Rocky Helmet,Yuta Okkatsu,Nuzzle,Psychic Noise,Draining Kiss,Pain Split,Relaxed,,,19,psychic,fairy
+1135,2,Flutter Mane,Uber,f,10,7,10,3,Protosynthesis,Choice Specs,Wine,Shadow Ball,Moonblast,Psyshock,Mystical Fire,Modest,t,,31,ghost,fairy
+1143,2,Togekiss,RU,t,3,3,3,0,Serene Grace,Heavy-Duty Boots,Mother,Air Slash,Ancient Power,Tri Attack,Thunder Wave,Modest,t,,31,fairy,flying
+1120,2,Glalie-Mega,RU,f,2,3,5,0,Refrigerate,Glalitite,Anger,Explosion,Body Slam,Ice Shard,Trailblaze,Adamant,,,29,ice,N/A
+1011,2,Slowking-Galar,OU,f,0,3,4,0,Regenerator,Heavy-Duty Boots,Suguru Geto,Chilly Reception,Future Sight,Sludge Bomb,Thunder Wave,Sassy,,,19,poison,psychic
+948,1,Baxcalibur,Uber,f,40,23,30,0,Thermal Exchange,Loaded Dice,minus one,Dragon Dance,Icicle Spear,Glaive Rush,Earthquake,Adamant,,,13,dragon,ice
+949,1,Ninetales-Alola,RU,f,9,27,30,0,Snow Warning,Light Clay,ice naruto??,Aurora Veil,Encore,Freeze-Dry,Moonblast,Timid,t,,13,ice,fairy
+952,1,Sandslash-Alola,RU,f,7,26,30,0,Slush Rush,Heavy-Duty Boots,sonic,Rapid Spin,Ice Spinner,Knock Off,Stealth Rock,Careful,t,,13,ice,steel
+951,1,Mamoswine,RU,f,17,25,30,0,Thick Fat,Groundium Z,manny,Icicle Crash,Earthquake,Ice Shard,Knock Off,Jolly,,,13,ice,ground
+950,1,Glalie,RU,f,9,25,30,0,Ice Body,Glalitite,kaboom?,Return,Spikes,Earthquake,Explosion,Jolly,t,,13,ice,N/A
+821,1,Rotom-Wash,UU,f,10,15,16,0,Levitate,Leftovers,Kou,Defog,Thunderbolt,Hydro Pump,Foul Play,Calm,t,,1,electric,water
+944,1,Corsola-Galar,NFE,f,13,22,24,0,Cursed Body,Eviolite,Depression,Stealth Rock,Night Shade,Will-O-Wisp,Strength Sap,Bold,,,12,ghost,N/A
+943,1,Polteageist,RU,f,9,13,15,0,Cursed Body,White Herb,Literally me,Shell Smash,Shadow Ball,Giga Drain,Psyshock,Modest,,,12,ghost,N/A
+945,1,Zoroark-Hisui,RU,f,8,10,10,0,Illusion,Normalium Z,Goober,Nasty Plot,Shadow Ball,Hyper Voice,Focus Blast,Timid,,,12,normal,ghost
+1140,2,Clefable,UU,f,2,10,10,0,Magic Guard,Leftovers,ManicPixieDreamGirl,Alluring Voice,Stealth Rock,Wish,Teleport,Calm,t,,31,fairy,N/A
+836,1,Tornadus-Therian,UU,f,3,6,8,0,Regenerator,Heavy-Duty Boots,The Hermit,Bleakwind Storm,U-turn,Knock Off,Defog,Timid,,,2,flying,N/A
+833,1,Zapdos,OU,f,5,3,8,0,Static,Heavy-Duty Boots,The Hierophant,Volt Switch,Heat Wave,Thunderbolt,Roost,Timid,,,2,electric,flying
+834,1,Celesteela,UU,f,5,3,6,0,Beast Boost,Leftovers,The Star,Heavy Slam,Leech Seed,Protect,Flamethrower,Relaxed,,,2,steel,flying
+835,1,Landorus-Therian,OU,f,4,10,14,0,Intimidate,Choice Scarf,The World,Earthquake,U-turn,Knock Off,Toxic,Jolly,,,2,ground,flying
+828,1,Magnezone,UU,f,3,9,10,0,Magnet Pull,Air Balloon,Datenseki,Thunderbolt,Hidden Power [Ice],Flash Cannon,Thunder Wave,Modest,t,,1,electric,steel
+956,1,Eiscue,RU,f,0,0,0,0,Ice Face,Salac Berry,NOOT NOOT,Ice Spinner,Belly Drum,Zen Headbutt,Substitute,Jolly,,,13,ice,N/A
+1001,2,Meowscarada,UU,f,7,3,6,2,Protean,Choice Band,Uran,Flower Trick,Knock Off,U-turn,Triple Axel,Jolly,t,,18,grass,dark
+957,1,Cloyster,RU,f,16,10,12,0,Skill Link,White Herb,hehe.,Shell Smash,Icicle Spear,Rock Blast,Drill Run,Jolly,,,13,water,ice
+958,1,Meowscarada,UU,f,7,4,8,0,Protean,Choice Scarf,,Flower Trick,Triple Axel,U-turn,Play Rough,Jolly,t,,14,grass,dark
+953,1,Rotom-Frost,RU,f,7,13,18,0,Levitate,Choice Scarf,my actual fridge,Blizzard,Volt Switch,Trick,Thunderbolt,Timid,,,13,electric,ice
+954,1,Weavile,UU,f,0,0,0,0,Pressure,Choice Band,fast af,Knock Off,Triple Axel,Ice Shard,Low Kick,Jolly,,,13,dark,ice
+1047,2,Iron Moth,UU,f,3,4,4,0,Quark Drive,Choice Specs,Iron Goon,Fiery Dance,Discharge,U-turn,Energy Ball,Timid,t,,22,fire,poison
+1048,2,Weezing-Galar,RU,f,2,4,4,0,Levitate,Black Sludge,Goozing-Galar,Strange Steam,Defog,Toxic,Protect,Bold,,,22,poison,fairy
+1003,2,Hydrapple,UU,f,10,1,4,2,Regenerator,Choice Specs,Bingo,Fickle Beam,Draco Meteor,Leaf Storm,Earth Power,Modest,t,,18,grass,dragon
+1044,2,Clodsire,OU,f,1,8,9,0,Water Absorb,Leftovers,Goonsire,Earthquake,Stealth Rock,Yawn,Recover,Careful,t,,22,poison,ground
+1004,2,Venusaur-Mega,UU,f,12,5,10,3,Chlorophyll,Venusaurite,Kuguri,Synthesis,Sludge Bomb,Giga Drain,Earth Power,Modest,t,,18,grass,poison
+1009,2,Sinistcha-Masterpiece,RU,t,4,2,2,2,Heatproof,Ability Shield,Kamunabi,Strength Sap,Shadow Ball,Matcha Gotcha,Tera Blast,Modest,t,,18,grass,ghost
+993,2,Gyarados,UU,f,4,4,6,4,Intimidate,Leftovers,,Bounce,Waterfall,Dragon Dance,Substitute,Jolly,,,17,water,flying
+1042,2,Eternatus,Uber,f,16,8,9,2,Pressure,Power Herb,Eternagoon,Dynamax Cannon,Flamethrower,Sludge Wave,Meteor Beam,Timid,,,22,poison,dragon
+996,2,Aerodactyl,RU,t,8,4,5,3,Rock Head,Choice Band,,Dual Wingbeat,Stone Edge,Double-Edge,Psychic Fangs,Adamant,,,17,rock,flying
+1040,2,Coalossal,RU,t,4,5,6,2,Steam Engine,Assault Vest,,Earth Power,Flamethrower,Rapid Spin,Tera Blast,Bold,t,,21,rock,fire
+1030,2,Swampert,RU,f,21,8,14,2,Torrent,Swampertite,Hyundai Kona,Earthquake,Liquidation,Knock Off,Flip Turn,Jolly,,,20,water,ground
+1106,2,Ceruledge,UU,f,10,5,7,6,Weak Armor,Focus Sash,,Swords Dance,Bitter Blade,Shadow Sneak,Close Combat,Adamant,,,28,fire,ghost
+1028,2,Barraskewda,RU,t,26,7,15,4,Swift Swim,Life Orb,Porsche 911,Liquidation,Poison Jab,Flip Turn,Tera Blast,Adamant,t,,20,water,N/A
+1025,2,Clawitzer,RU,t,10,4,8,2,Mega Launcher,Assault Vest,Prawn of Fate,Aura Sphere,Dark Pulse,Dragon Pulse,Water Pulse,Quiet,t,,20,water,N/A
+1104,2,Dragapult,Uber,f,8,9,11,5,Clear Body,Life Orb,,Dragon Darts,Phantom Force,Sucker Punch,Dragon Dance,Jolly,,,28,dragon,ghost
+1067,2,Hippowdon,UU,f,2,2,2,0,Sand Stream,Smooth Rock,,Stealth Rock,Slack Off,Earthquake,Toxic,Impish,,,24,ground,N/A
+1065,2,Clodsire,OU,f,1,2,2,0,Unaware,Leftovers,,Toxic,Curse,Earthquake,Recover,Careful,,,24,poison,ground
+1086,2,Garchomp,OU,f,3,7,7,0,Rough Skin,Rocky Helmet,Patrasche,Stealth Rock,Earthquake,Dragon Claw,Fire Fang,Jolly,,,26,dragon,ground
+1105,2,Gholdengo,OU,f,7,6,9,2,Good as Gold,Choice Scarf,,Trick,Make It Rain,Shadow Ball,Thunderbolt,Timid,,,28,steel,ghost
+1091,2,Dragalge,RU,t,1,4,5,0,Poison Point,Black Sludge,Amangam,Sludge Bomb,Draco Meteor,Toxic Spikes,Substitute,Calm,,,26,poison,dragon
+1079,2,Tapu Fini,UU,f,4,4,5,0,Misty Surge,Leftovers,,Draining Kiss,Scald,Calm Mind,Defog,Bold,,,25,water,fairy
+1084,2,Giratina-Origin,Uber,f,2,6,7,0,Levitate,Griseous Core,Aldebaran,Hex,Will-O-Wisp,Draco Meteor,Defog,Calm,,,26,ghost,dragon
+1089,2,Hydreigon,UU,f,3,6,7,0,Levitate,Leftovers,Valgren,Nasty Plot,Dark Pulse,Draco Meteor,Flamethrower,Serious,,,26,dark,dragon
+1074,2,Diancie,OU,f,3,3,3,0,Clear Body,Diancite,,Diamond Storm,Moonblast,Earth Power,Mystical Fire,Naive,,,25,rock,fairy
+1076,2,Iron Valiant,OU,f,3,2,5,0,Quark Drive,Focus Sash,,Swords Dance,Close Combat,Spirit Break,Knock Off,Jolly,,,25,fairy,fighting
+1080,2,Azumarill,RU,f,8,3,5,4,Huge Power,Normalium Z,,Belly Drum,Aqua Jet,Knock Off,Liquidation,Adamant,,,25,water,fairy
+989,2,Yveltal,Uber,f,9,8,12,2,Dark Aura,Assault Vest,,Knock Off,Sucker Punch,Dark Pulse,Oblivion Wing,Quiet,,,17,dark,flying
+1054,2,Heatran,OU,f,6,6,10,2,Flame Body,Air Balloon,Vesuvia,Flamethrower,Flash Cannon,Taunt,Magma Storm,Modest,,,23,fire,steel
+1056,2,Ceruledge,UU,f,13,0,4,4,Weak Armor,Focus Sash,Alternis,Bitter Blade,Shadow Sneak,Close Combat,Swords Dance,Jolly,,,23,fire,ghost
+1058,2,Iron Moth,UU,f,6,13,15,2,Quark Drive,Choice Specs,Solaris,Fiery Dance,Sludge Wave,Discharge,Energy Ball,Timid,,,23,fire,poison
+1059,2,Rotom-Heat,RU,t,6,7,11,0,Levitate,Leftovers,EZBake,Will-O-Wisp,Overheat,Volt Switch,Pain Split,Timid,,,23,electric,fire
+1061,2,Volcanion,RU,t,22,17,21,2,Water Absorb,Assault Vest,Pressure Washer,Steam Eruption,Weather Ball,Earth Power,Flame Charge,Timid,,,23,fire,water
+1008,2,Chesnaught,RU,t,16,5,10,3,Bulletproof,Leftovers,Hokuto,Bulk Up,Body Press,Tera Blast,Knock Off,Adamant,t,,18,grass,fighting
+1052,2,Ogerpon-Hearthflame,Uber,f,15,11,15,2,Mold Breaker,Hearthflame Mask,Fiona,Horn Leech,Knock Off,Swords Dance,Ivy Cudgel,,,,23,grass,fire
+1053,2,Cinderace,OU,f,15,8,18,2,Libero,Heavy-Duty Boots,Trix,Pyro Ball,High Jump Kick,U-turn,Court Change,Jolly,,,23,fire,N/A
+1060,2,Torkoal,RU,f,1,17,21,0,Drought,Heat Rock,Michelangelo,Lava Plume,Rapid Spin,Yawn,Stealth Rock,Relaxed,,,23,fire,N/A
+1041,2,Lycanroc,RU,f,18,8,13,2,Sand Rush,Lycanium Z,,Stone Edge,Close Combat,Accelerock,Play Rough,Jolly,t,,21,rock,N/A
+975,1,Ursaluna,OU,f,26,11,17,0,Guts,Flame Orb,The Hulk,Swords Dance,Facade,Crunch,Headlong Rush,Brave,,,15,ground,normal
+973,1,Arceus,Uber,f,21,8,22,0,Multitype,Leftovers,The Spectre,Swords Dance,Extreme Speed,Earthquake,Flare Blitz,Adamant,,,15,normal,N/A
+988,2,Yamper,LC,f,0,6,6,0,Rattled,Assault Vest,,Protect,Dig,Charm,Substitute,Careful,,,16,electric,N/A
+1132,2,Overqwil,RU,f,4,6,9,2,Intimidate,Leftovers,Joeverqwil,Spikes,Barb Barrage,Pain Split,Taunt,Impish,,,30,dark,poison
+1134,2,Krookodile,RU,t,9,0,2,5,Moxie,Choice Scarf,King K. Rook,Earthquake,Knock Off,Gunk Shot,Tera Blast,Jolly,,,30,ground,dark
+1037,2,Aerodactyl,UU,f,3,9,10,0,Pressure,Aerodactylite,,Tailwind,Defog,Dual Wingbeat,Stone Edge,Jolly,,,21,rock,flying
+978,1,Porygon-Z,RU,f,12,1,4,0,Adaptability,Normalium Z,Martian Manhunter,Shadow Ball,Thunderbolt,Ice Beam,Conversion,Timid,,,15,normal,N/A
+960,1,Yveltal,Uber,f,3,5,7,0,Dark Aura,Life Orb,,Oblivion Wing,Dark Pulse,Taunt,Sucker Punch,Modest,t,,14,dark,flying
+999,2,Ogerpon-Hearthflame,Uber,f,9,4,10,3,Mold Breaker,Hearthflame Mask,Soga,Horn Leech,Swords Dance,Knock Off,Ivy Cudgel,,t,,18,grass,fire
+962,1,Sableye-Mega,UU,f,3,11,13,0,Magic Bounce,Sablenite,,Will-O-Wisp,Recover,Protect,Knock Off,Sassy,,,14,dark,ghost
+964,1,Incineroar,RU,f,16,15,20,0,Intimidate,Weakness Policy,,Flame Charge,Bulk Up,Power Trip,Substitute,Jolly,,,14,fire,dark
+965,1,Skuntank,RU,f,11,12,15,0,Aftermath,Rocky Helmet,,Toxic Spikes,Fire Spin,Taunt,Poison Jab,Impish,,,14,poison,dark
+966,1,Grimmsnarl,RU,f,2,15,21,0,Prankster,Light Clay,,Light Screen,Reflect,Parting Shot,Spirit Break,Impish,,,14,dark,fairy
+977,1,Indeedee,RU,f,9,4,7,0,Psychic Surge,Focus Sash,,Expanding Force,Mystical Fire,Dazzling Gleam,Trick Room,Quiet,,,15,psychic,normal
+1131,2,Sableye-Mega,RU,f,5,3,11,0,Prankster,Sablenite,Saydu,Recover,Will-O-Wisp,Night Shade,Encore,Careful,,,30,dark,ghost
+1128,2,Meowscarada,UU,f,8,2,7,2,Protean,Choice Scarf,Zaza,Flower Trick,U-turn,Play Rough,Knock Off,Jolly,,,30,grass,dark
+1139,2,Mawile-Mega,UU,f,1,1,2,0,Intimidate,Mawilite,Puppygirl,Play Rough,Iron Head,Knock Off,Swords Dance,Adamant,t,,31,steel,fairy
+1117,2,Froslass,RU,f,2,1,2,0,Cursed Body,Heavy-Duty Boots,Limbo,Will-O-Wisp,Destiny Bond,Thunderbolt,Shadow Ball,Modest,,,29,ice,ghost
+1144,2,Ninetales-Alola,RU,f,2,5,7,0,Snow Warning,Light Clay,Femme,Blizzard,Freeze-Dry,Moonblast,Aurora Veil,Timid,t,,31,ice,fairy
+1142,2,Azumarill,RU,t,3,8,8,0,Thick Fat,Grip Claw,BBW,Whirlpool,Alluring Voice,Encore,Perish Song,Bold,t,,31,water,fairy
+1136,2,Tapu Lele,OU,f,4,4,7,0,Psychic Surge,Psychium Z,Brat,Psychic,Draining Kiss,Stored Power,Calm Mind,Modest,t,,31,psychic,fairy
+1108,2,Pecharunt,UU,f,2,4,9,0,Poison Puppeteer,Black Sludge,,Toxic,Mean Look,Substitute,Recover,Calm,,,28,poison,ghost
+979,2,Arceus-Electric,Uber,f,0,0,0,0,Multitype,Zap Plate,,Protect,Judgment,Extreme Speed,Taunt,Hasty,,,16,electric,N/A
+1110,2,Sableye,RU,f,0,5,7,0,Prankster,Sablenite,,Knock Off,Will-O-Wisp,Protect,Recover,Careful,,,28,dark,ghost
+1141,2,Tapu Fini,UU,f,4,3,6,2,Misty Surge,Sitrus Berry,Stud,Scald,Draining Kiss,Defog,Calm Mind,Modest,t,,31,water,fairy
+1093,2,Flygon,RU,f,1,4,4,0,Levitate,Choice Scarf,Gaius,Earthquake,Dragon Claw,U-turn,Fire Punch,Jolly,,,26,ground,dragon
+1113,2,Mimikyu,RU,t,1,1,1,0,Disguise,Leftovers,,Will-O-Wisp,Curse,Protect,Play Rough,Bold,,,28,ghost,fairy
+1109,2,Blacephalon,UU,f,0,1,2,0,Beast Boost,Choice Scarf,,Fire Blast,Shadow Ball,Trick,Hidden Power [Ground],Timid,,,28,fire,ghost
+1119,2,Abomasnow,RU,f,4,4,7,0,Snow Warning,Occa Berry,Wrath,Energy Ball,Blizzard,Shadow Ball,Earth Power,Timid,,,29,grass,ice
+984,2,Luxray,RU,t,1,5,5,0,Guts,Flame Orb,,Protect,Facade,Crunch,Volt Switch,Jolly,,,16,electric,N/A
+1114,2,Darmanitan-Galar,Uber,f,12,6,7,4,Gorilla Tactics,Choice Scarf,Greed,Earthquake,Icicle Crash,Rock Slide,Iron Head,Jolly,,,29,ice,N/A
+1133,2,Silvally-Dark,RU,t,2,7,13,0,RKS System,Dark Memory,Sandalphon,Multi-Attack,Thunder Wave,Parting Shot,Defog,Impish,,,30,dark,N/A
+1129,2,Greninja-Bond,UU,f,4,3,5,2,Battle Bond,Life Orb,Toad Soul,Hydro Pump,Water Shuriken,Ice Beam,Sludge Wave,Timid,,,30,water,dark
+1130,2,Weavile,UU,f,10,1,4,5,Pressure,Heavy-Duty Boots,Malice,Knock Off,Triple Axel,Ice Shard,Hone Claws,Jolly,,,30,dark,ice
+986,2,Bellibolt,RU,t,3,5,5,0,Electromorphosis,Rocky Helmet,,Reflect,Light Screen,Volt Switch,Chilling Water,Modest,,,16,electric,N/A
+987,2,Flaaffy,NFE,f,2,6,6,0,Static,Eviolite,,Cotton Guard,Curse,Toxic,Thunderbolt,Calm,,,16,electric,N/A
+1124,2,Yveltal,Uber,f,30,7,13,3,Dark Aura,Life Orb,Falzar,Oblivion Wing,Heat Wave,Dark Pulse,Sucker Punch,Rash,,,30,dark,flying
+1033,2,Diancie,OU,f,2,1,2,0,Magic Bounce,Diancite,,Moonblast,Mystical Fire,Earth Power,Diamond Storm,Naive,,,21,rock,fairy
+1036,2,Tyranitar,UU,f,7,14,15,0,Sand Stream,Leftovers,,Heavy Slam,Low Kick,Knock Off,Stealth Rock,Careful,t,,21,rock,dark
+1034,2,Garganacl,UU,f,7,8,9,0,Purifying Salt,Leftovers,,Salt Cure,Iron Defense,Body Press,Recover,Careful,,,21,rock,N/A
+972,1,Zoroark-Hisui,RU,f,12,4,11,0,Illusion,Ghostium Z,Deadman,Shadow Ball,Hyper Voice,Flamethrower,Nasty Plot,Timid,,,15,normal,ghost
+969,1,Staraptor,RU,f,1,3,5,0,Intimidate,Heavy-Duty Boots,Superman,Brave Bird,Defog,Roost,U-turn,Impish,,,15,normal,flying
+971,1,Ditto,RU,f,17,5,24,0,Imposter,Choice Scarf,Amazo,Transform,N/A,N/A,N/A,Impish,,,15,normal,N/A
+959,1,Mandibuzz,RU,f,5,11,16,0,Overcoat,Heavy-Duty Boots,,Defog,Foul Play,Roost,U-turn,Impish,,,14,dark,flying
+961,1,Greninja,UU,f,21,8,15,0,Protean,Choice Specs,,Ice Beam,Scald,Dark Pulse,Sludge Wave,Calm,t,,14,water,dark
+1005,2,Gogoat,RU,f,1,3,4,0,Grass Pelt,Silk Scarf,Hiruhiko,Facade,High Horsepower,Bulk Up,Milk Drink,Adamant,t,,18,grass,N/A
+991,2,Zapdos,OU,f,2,2,6,0,Static,Choice Specs,,Volt Switch,Thunder,Hurricane,Weather Ball,Modest,,,17,electric,flying
+994,2,Thundurus-Therian,UU,f,3,3,3,0,Volt Absorb,Life Orb,,Nasty Plot,Sludge Bomb,Focus Blast,Wildbolt Storm,Timid,,,17,electric,flying
+998,2,Pelipper,RU,t,3,9,10,0,Drizzle,Damp Rock,,Defog,Surf,Hurricane,Tailwind,Calm,,,17,water,flying
+995,2,Pinsir-Mega,UU,f,0,0,0,0,,,,,,,,,f,,17,bug,flying
+1137,2,Diancie,OU,f,7,4,7,0,Clear Body,Diancite,Princess,Diamond Storm,Moonblast,Earth Power,Mystical Fire,Naive,,,31,rock,fairy
+1100,2,Goodra-Hisui,UU,f,2,2,3,0,Gooey,Assault Vest,New Brunswick,Chilling Water,Knock Off,Acid Spray,Flash Cannon,Sassy,t,,27,steel,dragon
+1127,2,Samurott-Hisui,OU,f,0,2,4,0,Sharpness,Focus Sash,Sephirott,Ceaseless Edge,Aqua Jet,Razor Shell,Flip Turn,Adamant,,,30,water,dark
+963,1,Samurott-Hisui,OU,f,10,8,9,0,Sharpness,Life Orb,,Ceaseless Edge,Sacred Sword,Razor Shell,Aqua Jet,Jolly,t,,14,water,dark
+1123,2,Ninetales-Alola,RU,f,0,4,6,0,Snow Warning,Light Clay,Fraud,Aurora Veil,Freeze-Dry,Extrasensory,Moonblast,Timid,,,29,ice,fairy
+1122,2,Arctozolt,RU,f,0,1,1,0,Slush Rush,Choice Band,Treachery,Bolt Beak,Icicle Crash,Stone Edge,Body Slam,Jolly,,,29,electric,ice
+1116,2,Eiscue,RU,f,0,0,0,0,Ice Face,Sitrus Berry,Grok,Belly Drum,Zen Headbutt,Liquidation,Head Smash,Adamant,,,29,ice,N/A
+1094,2,Lucario-Mega,Uber,f,2,6,7,0,Inner Focus,Lucarionite,Newfoundland + Labrador,Bullet Punch,Shadow Ball,Close Combat,Swords Dance,Naive,,,27,fighting,steel
+1103,2,Forretress,RU,t,2,3,4,0,Sturdy,Rocky Helmet,Nova Scotia,Spikes,Stealth Rock,Counter,Thunder Wave,Bold,,,27,bug,steel
+1095,2,Corviknight,OU,f,2,5,6,0,Mirror Armor,Leftovers,Quebec,Brave Bird,Defog,U-turn,Roost,Impish,t,,27,flying,steel
+1096,2,Heatran,OU,f,3,4,4,0,Flash Fire,Leftovers,British Columbia,Flamethrower,Will-O-Wisp,Confide,Power Gem,Calm,t,,27,fire,steel
+1097,2,Gholdengo,OU,f,2,3,3,0,Good as Gold,Steelium Z,Alberta,Make It Rain,Recover,Shadow Ball,Thunderbolt,Modest,t,,27,steel,ghost
+1075,2,Tapu Koko,OU,f,1,0,2,0,Electric Surge,Choice Specs,,Thunderbolt,Volt Switch,Grass Knot,Dazzling Gleam,Timid,,,25,electric,fairy
+1118,2,Vanilluxe,RU,t,0,2,2,0,Weak Armor,Weakness Policy,Gluttony,Explosion,Flash Cannon,Ice Beam,Hidden Power [Ground],Timid,,,29,ice,N/A
+1107,2,Aegislash,UU,f,4,6,7,0,Stance Change,Weakness Policy,,Shadow Sneak,King's Shield,Shadow Ball,Sacred Sword,Quiet,,,28,steel,ghost
+1029,2,Golisopod,RU,f,6,7,8,0,Emergency Exit,Heavy-Duty Boots,Lincoln Town Car,First Impression,Sucker Punch,Aqua Jet,Liquidation,Brave,t,,20,bug,water
+1024,2,Rotom-Wash,UU,f,4,4,8,0,Levitate,Rindo Berry,Chevy Bolt,Nasty Plot,Pain Split,Hydro Pump,Volt Switch,Timid,,,20,electric,water
+1026,2,Pelipper,RU,f,4,12,15,0,Drizzle,Eject Button,Honda Civic,Defog,Hurricane,U-turn,Scald,Sassy,,,20,water,flying
+1027,2,Cloyster,RU,f,2,3,5,0,Skill Link,Sitrus Berry,Toyota Tundra,Shell Smash,Icicle Spear,Rock Blast,Ice Shard,Jolly,t,,20,water,ice
+1102,2,Archaludon,RU,t,3,6,7,0,Stamina,White Herb,Ontario,Body Press,Tera Blast,Reflect,Draco Meteor,Lax,,,27,steel,dragon
+1125,2,Kingambit,OU,f,0,0,2,0,Supreme Overlord,Black Glasses,Ragin' Cajun,Kowtow Cleave,Iron Head,Sucker Punch,Swords Dance,Adamant,,,30,dark,steel
+1138,2,Iron Valiant,OU,f,0,0,0,0,Quark Drive,Booster Energy,U-Haul,Drain Punch,Spirit Break,Swords Dance,Hypnosis,Jolly,t,,31,fairy,fighting
+1010,2,Necrozma-Dusk-Mane,Uber,f,5,7,8,0,Prism Armor,Ultranecrozium Z,Mahoraga,Sunsteel Strike,Dragon Dance,Earthquake,Photon Geyser,Adamant,,,19,psychic,steel
+1007,2,Whimsicott,RU,f,3,3,6,0,Prankster,Heavy-Duty Boots,Toto,U-turn,Moonblast,Encore,Defog,Timid,t,,18,grass,fairy
+1000,2,Ferrothorn,OU,f,4,6,10,0,Iron Barbs,Rocky Helmet,Hatshaku,Leech Seed,Stealth Rock,Gyro Ball,Thunder Wave,Relaxed,t,,18,grass,steel
+1002,2,Rillaboom,UU,f,1,7,8,0,Grassy Surge,Terrain Extender,Derek,U-turn,Knock Off,Grassy Glide,High Horsepower,Jolly,t,,18,grass,N/A
+1031,2,Greninja-Bond,UU,f,2,2,3,0,Battle Bond,Life Orb,Honda S2000,Water Shuriken,Weather Ball,Dark Pulse,Sludge Wave,Timid,,,20,water,dark
+1012,2,Tapu Lele,OU,f,7,4,5,0,Psychic Surge,Choice Scarf,Satoru Gojo,Psyshock,Moonblast,Focus Blast,Shadow Ball,Timid,,,19,psychic,fairy
+1016,2,Latios,UU,f,0,0,0,0,Levitate,Soul Dew,Yuji Itadori,Draco Meteor,Luster Purge,Defog,Mystical Fire,Timid,,,19,dragon,psychic
+1015,2,Victini,UU,f,4,4,5,0,Victory Star,Choice Scarf,Sukuna,Final Gambit,V-create,Trick,U-turn,Jolly,,,19,psychic,fire
