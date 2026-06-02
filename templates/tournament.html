@@ -56,15 +56,18 @@
 
 <body>
     <header>
-        <h1>
-            {{tournament[1]}}
-            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
-        </h1>
+        <div class="flex centering title-header">
+            <h1>{{tournament[1]}}</h1>
+            {% if user[3] %}
+                <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+            {% endif %}
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tournament[0]) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tournament[0]) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button type="button" class="navigation-button" disabled>Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tournament[0]) }}'">Pokemon</button>
         </div>
@@ -84,12 +87,14 @@
                     </div>
                     <div>
                         <label for="t_playercount">Player Count</label><br>
-                        <input type="number" name="t_playercount" min="1"  value="{{tournament[3]}}" required> <br>
+                        <input type="number" name="t_playercount" min="1" value="{{tournament[3]}}" required> <br>
                     </div>
                 </div>
 
                 <input class="submit-button" type="submit" name="edittournament" value="Submit">
-                <a href="#inner-popup" class="submit-button">Delete</a>
+                {% if user[4] %}
+                    <a href="#inner-popup" class="submit-button">Delete</a>
+                {% endif %}
                 <a href="" class="submit-button">Close</a>
             </form>
         </div>

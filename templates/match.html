@@ -68,14 +68,15 @@
 
 <body>
     <header>
-        <h1>
-            Matches
-        </h1>
+        <div class="flex centering title-header">
+            <h1>Matches</h1>
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button type="button" class="navigation-button" disabled>Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
         </div>
@@ -106,8 +107,9 @@
             {% endfor %}
             {% endif %}
         </div>
-
+        {% if user[2] %}
             <a href="#newmatch" class="submit-button">Add Match</a>
+        {% endif %}
     </div>
 
     <div id="newmatch" class="popup">

@@ -13,15 +13,18 @@
 
 <body>
     <header>
-        <h1>
-            Pokemon
-            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
-        </h1>
+        <div class="flex centering title-header">
+            <h1>Pokemon</h1>
+            {% if user[3] %}
+                <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+            {% endif %}
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
         </div>
@@ -37,7 +40,9 @@
 
 
                 <input class="submit-button" type="submit" name="editpokemon" value="Submit">
-                <a href="#inner-popup" class="submit-button">Delete</a>
+                {% if user[4] %}
+                    <a href="#inner-popup" class="submit-button">Delete</a>
+                {% endif %}
                 <a href="" class="submit-button">Close</a>
             </form>
         </div>

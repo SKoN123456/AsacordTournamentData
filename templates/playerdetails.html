@@ -29,7 +29,7 @@
             flex: 0.9;
         }
 
-        .centering {
+        .low-centering {
             align-items: flex-end;
             justify-content: center;
         }
@@ -37,20 +37,43 @@
         .box-header {
             text-align: center;
         }
+
+        .image-cropper {
+            max-width: 150px;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-cropper img {
+            display: block;
+            margin: 0 auto;
+            height: auto;
+            width: 95%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            border-radius: 50%;
+            background-color: var(--sub-container-color);
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>
-            Players
-            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
-        </h1>
+        <div class="flex centering title-header">
+            <h1>Players</h1>
+            {% if user[3] %}
+                <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+            {% endif %}
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
 
         <div class="flex">
             <button class="navigation-button" onclick="document.location='{{ url_for('matches', m_tourneyid = tourneyid) }}'">Matches</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('players', pl_tourneyid = tourneyid) }}'">Players</button>
-            <button class="home-button" onclick="document.location='{{ url_for('index') }}'">Home</button>
+            <button class="home-button" onclick="document.location='{{ url_for('tournamentlist') }}'">Home</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('tournament', t_tourneyid = tourneyid) }}'">Tournament</button>
             <button class="navigation-button" onclick="document.location='{{ url_for('pokemon', po_tourneyid = tourneyid) }}'">Pokemon</button>
         </div>
@@ -68,7 +91,9 @@
                 <input class="input-bars" type="text" name="pl_pokepaste" value="{{selectedplayer[11]}}"><br>
 
                 <input class="submit-button" type="submit" name="editplayer" value="Submit">
-                <a href="#inner-popup" class="submit-button">Delete</a>
+                {% if user[4] %}
+                    <a href="#inner-popup" class="submit-button">Delete</a>
+                {% endif %}
                 <a href="" class="submit-button">Close</a>
             </form>
         </div>
@@ -91,6 +116,10 @@
             <div>
                 {{ selectedplayer[5] }} - {{ selectedplayer[6] }}
             </div>
+
+            <div class="image-cropper">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png" class="rounded" />
+            </div>
         </div>
 
         <div class="container team-container">
@@ -99,7 +128,7 @@
                 {% if pokemonteam is not none and pokemonteam|length > 0 %}
                 {% for result in pokemonteam %}
                 <div class="poke-player-results">
-                    <div class="flex  centering">
+                    <div class="flex  low-centering">
                         <div class="name-width">
                             {{ result[1]}}
                             {% if result[3] == 't' %}
@@ -110,7 +139,7 @@
                             {{ result[2]}}
                         </div>
                     </div>
-                    <div class="flex centering">
+                    <div class="flex low-centering">
                         <button class="view-details" onclick="document.location='{{ url_for('pokemondetails', pl_tourneyid = tourneyid, po_pokeid = result[0]) }}'">View Details</button>
                     </div>
                 </div>

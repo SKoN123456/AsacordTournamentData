@@ -35,7 +35,10 @@
 
 <body>
     <header>
-        <h1>Home Page</h1>
+        <div class="flex centering title-header">
+            <h1>Home Page</h1>
+            <h3 class="username-label">{{user[1]}}</h3>
+        </div>
         <div class="flex">
             <button type="button" class="navigation-button" disabled>Matches</button>
             <button type="button" class="navigation-button" disabled>Players</button>
@@ -61,7 +64,9 @@
             <p>No results found</p>
             {% endif %}
         </div>
-        <a href="#newtournament" class="view-details">Create New Tournament</a>
+        {% if user[2] %}
+            <a href="#newtournament" class="view-details">Create New Tournament</a>
+        {% endif %}
     </div>
 
     <div id="newtournament" class="popup">
