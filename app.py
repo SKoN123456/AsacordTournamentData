@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import requests
 from datetime import date
+import os
 
 from db import get_db_connection
 from tournament import *
@@ -12,7 +13,11 @@ from user import *
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
+app.secret_key = os.urandom(12)
+=======
 app.secret_key = "randomkey"
+>>>>>>> cb9c173b1e55bdb3affa6ef00be9cac3d8def9d6
 type_api = pokeAPIAllTypes()
 
 #----------USER FUNCTIONS---------------------------------------------------------#

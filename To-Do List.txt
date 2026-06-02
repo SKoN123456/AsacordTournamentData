@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 To-Do List:
 -General
 	-UI Updates
@@ -39,4 +40,47 @@ To-Do List:
 
 -Sets Page:
 	-Edit sets
+=======
+To-Do List:
+-General
+	-UI Updates
+	-Pass tournament name to display
+
+-Home Page:
+
+	
+-Tournament Page:
+	-Player Performance Rankings
+	-Filter for Pokémon Ranking
+	-Filter for Player Ranking
+	-Ruleset Page
+	-Pokémon Speed rankings
+	-Pokémon Speed calculator
+	-player comparison page
+
+-Pokémon Search Page:
+	-format scroll bar
+
+-Pokémon Profile Page: 
+	-Make image/name card static
+	-Kills per match statistic
+	-remove K/D from Pokémon table
+	-format best set statistics
+
+-Player Page:
+	-Cap out players according to max participation count
+
+-Player Profile Page:
+	-Show leaderboard statistics
+	-Remove team performance statistics from database (calculate on site)
+	-pfps
+
+-Match Page:
+	-Filter for matches by present pokemon
+	-Edit match
+	-Delete match
+
+-Sets Page:
+	-Edit sets
+>>>>>>> cb9c173b1e55bdb3affa6ef00be9cac3d8def9d6
 	-delete sets
