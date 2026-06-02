@@ -24,11 +24,18 @@ def index():
 def user():
     username = request.form.get("u_username")
     password = request.form.get("u_password")
+
     if "newuser" in request.form:
-        newUser(username, password)
+        user = newUser(username, password)
+        session["user"] = user
         return redirect(url_for("tournamentlist"))
+
     elif "userlogin" in request.form:
-        return render_template("index.html")
+        validation, selecteduser = selectUser(username, password)
+        session["user"] = selecteduser
+
+        if validation[0] is True:
+            return redirect(url_for("tournamentlist"))
 
     return render_template("index.html")
 
@@ -36,7 +43,7 @@ def user():
 @app.route('/tournamentlist', methods=["GET", "POST"])
 def tournamentlist():
     tournament_results = getTournamentList()
-    return render_template("tournamentlist.html", tournament_results=tournament_results)
+    return render_template("tournamentlist.html", tournament_results=tournament_results, user = session["user"])
 
 @app.route('/tournament/<int:t_tourneyid>', methods=["GET", "POST"])
 def tournament(t_tourneyid):
@@ -55,7 +62,7 @@ def tournament(t_tourneyid):
     cursor.close()
     conn.close()
 
-    return render_template("tournament.html", tournament = selectedTournament, rankings = session["killrankings"])
+    return render_template("tournament.html", tournament = selectedTournament, rankings = session["killrankings"], user = session["user"])
 
 @app.route("/newtournament", methods=["GET","POST"])
 def newtournament():
@@ -64,7 +71,7 @@ def newtournament():
         tformat = request.form.get("t_format")
         playercount = request.form.get("t_playercount")
         newTournament(name, tformat, playercount)
-        return redirect(url_for("index"))
+        return redirect(url_for("tournamentlist"))
 
     return render_template("newtournament.html")
 
@@ -88,14 +95,14 @@ def edittournament(t_tourneyid):
 @app.route('/players/ <int:pl_tourneyid>', methods=["GET", "POST"])
 def players(pl_tourneyid):
     player_results = getPlayerList(pl_tourneyid)
-    return render_template("players.html", player_results = player_results, tourneyid = pl_tourneyid)
+    return render_template("players.html", player_results = player_results, tourneyid = pl_tourneyid, user = session["user"])
 
 @app.route('/playerdetails/ <int:pl_tourneyid>/ <int:pl_playerid>', methods=["GET", "POST"])
 def playerdetails(pl_tourneyid, pl_playerid):
     selectedplayer = selectPlayer(pl_tourneyid, pl_playerid)
     pokemonteam = pokemonTeamFromPlayer(pl_tourneyid, pl_playerid)
     return render_template("playerdetails.html", selectedplayer = selectedplayer, pokemonteam = pokemonteam
-                           ,tourneyid = pl_tourneyid, playerid = pl_playerid)
+                           ,tourneyid = pl_tourneyid, playerid = pl_playerid, user = session["user"])
 
 @app.route("/newplayer/ <int:pl_tourneyid>", methods=["GET","POST"])
 def newplayer(pl_tourneyid):
@@ -140,13 +147,15 @@ def editplayer(pl_tourneyid, pl_playerid):
                 if selectedpokemonid is not None:
                     selectedpokemonid = selectedpokemonid[0]
                     editPokemonfromPaste(pl_tourneyid, selectedpokemonid, pokemon, type1, type2)
+                else:
+                    newPokemon(pl_tourneyid, pl_playerid, pokemon, type1, type2)
 
         return redirect(url_for("playerdetails", pl_tourneyid = pl_tourneyid, pl_playerid = pl_playerid))
 
     elif "deleteplayer" in request.form:
         deletePlayer(pl_tourneyid, pl_playerid)
         player_results = getPlayerList(pl_tourneyid)
-        return render_template("players.html", player_results = player_results, tourneyid = pl_tourneyid)
+        return render_template("players.html", player_results = player_results, tourneyid = pl_tourneyid, user = session["user"])
 
     return redirect(url_for("playerdetails", pl_tourneyid=pl_tourneyid, pl_playerid=pl_playerid))
 
@@ -166,7 +175,7 @@ def pokemon(po_tourneyid):
     else:
         poke_results = getPokemonList(po_tourneyid)
 
-    return render_template('pokemon.html', poke_results = poke_results, type_api = type_api, tourneyid = po_tourneyid)
+    return render_template('pokemon.html', poke_results = poke_results, type_api = type_api, tourneyid = po_tourneyid, user = session["user"])
 
 @app.route('/pokemondetails/ <int:pl_tourneyid>/ <int:po_pokeid>', methods=["GET", "POST"])
 def pokemondetails(pl_tourneyid, po_pokeid):
@@ -175,8 +184,8 @@ def pokemondetails(pl_tourneyid, po_pokeid):
     pokemon_api = pokeAPICall(po_name)
     nature_map = natureMapping(selectedpokemon[18])
     selectedStats = statCalculation(selectedpokemon[21], selectedpokemon[22], pokemon_api, nature_map)
-    return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, best_sets = best_sets, tourneyid = pl_tourneyid,
-                           po_pokeid = po_pokeid, pokemon_api = pokemon_api, type_api = type_api, selectedStats = selectedStats, nature_map = nature_map)
+    return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, best_sets = best_sets, tourneyid = pl_tourneyid, po_pokeid = po_pokeid,
+                           pokemon_api = pokemon_api, type_api = type_api, selectedStats = selectedStats, nature_map = nature_map, user = session["user"])
 
 @app.route("/editpokemon/  <int:po_tourneyid>/ <int:po_pokeid>", methods=["GET","POST"])
 def editpokemon(po_tourneyid, po_pokeid):
@@ -186,9 +195,8 @@ def editpokemon(po_tourneyid, po_pokeid):
         return redirect(url_for("pokemondetails", pl_tourneyid = po_tourneyid, po_pokeid = po_pokeid))
 
     elif "deletepokemon" in request.form:
-        #ADD DELETE FUNCTION LATER
-        poke_results = getPokemonList(po_tourneyid)
-        return render_template('pokemon.html', poke_results = poke_results, tourneyid = po_tourneyid)
+        deletePokemon(po_tourneyid, po_pokeid)
+        return redirect(url_for("pokemon", po_tourneyid = po_tourneyid))
 
     return redirect(url_for("pokemondetails", pl_tourneyid = po_tourneyid, po_pokeid = po_pokeid))
 
@@ -215,7 +223,7 @@ def matches(m_tourneyid):
         match_results = getMatchList(m_tourneyid)
 
     playerlist = getPlayerList(m_tourneyid)
-    return render_template("match.html", match_results = match_results, playerlist = playerlist, tourneyid = m_tourneyid)
+    return render_template("match.html", match_results = match_results, playerlist = playerlist, tourneyid = m_tourneyid, user = session["user"])
 
 @app.route("/newmatch <int:m_tourneyid>", methods=["GET","POST"])
 def newmatch(m_tourneyid):
@@ -234,7 +242,7 @@ def matchdetails(m_matchid, m_tourneyid):
     selectedmatch = selectMatch(m_matchid, m_tourneyid)
     set_list, setwins = getSetList(m_matchid)
     return render_template("matchdetails.html", matchid = m_matchid, set_list = set_list, setwins = setwins, selectedmatch = selectedmatch
-                           , tourneyid = m_tourneyid, todayDate = date.today().isoformat())
+                           , tourneyid = m_tourneyid, todayDate = date.today().isoformat(), user = session["user"])
 
 #---------------SET FUNCTIONS----------------------------------------------------#
 @app.route("/get_player_pokemon/<int:tourneyid>/<playername>")

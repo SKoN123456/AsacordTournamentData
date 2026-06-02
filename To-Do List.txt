@@ -1,12 +1,10 @@
 To-Do List:
 -General
-	-User table with admin role
-	-Login page
 	-UI Updates
 	-Pass tournament name to display
 
 -Home Page:
-	-Participant Count
+
 	
 -Tournament Page:
 	-Player Performance Rankings
@@ -35,7 +33,7 @@ To-Do List:
 	-pfps
 
 -Match Page:
-	-Filter for matches by name, player, and present pokemon
+	-Filter for matches by present pokemon
 	-Edit match
 	-Delete match
 

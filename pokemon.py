@@ -65,6 +65,16 @@ def selectPokemonByName(po_tourneyid, po_name, po_playerid):
     conn.close()
     return selectedpokemonid
 
+def deletePokemon(po_tourneyid, po_pokeid):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM \"Pokemon\" WHERE po_tourneyid = %s AND po_pokeid = %s;", (po_tourneyid, po_pokeid,))
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+    return
+
 def editPokemon(po_tourneyid, po_pokeid, name):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -312,10 +322,16 @@ def natureMapping(nature):
     url = f"https://pokeapi.co/api/v2/nature/{nature.lower()}"
     response = requests.get(url)
     naturedata = response.json()
-    naturemap = {
-        "increased": naturedata["increased_stat"]["name"],
-        "decreased": naturedata["decreased_stat"]["name"],
-    }
+    if naturedata["increased_stat"] and naturedata["decreased_stat"]:
+        naturemap = {
+            "increased": naturedata["increased_stat"]["name"],
+            "decreased": naturedata["decreased_stat"]["name"],
+        }
+    else:
+        naturemap = {
+            "increased": "neutral",
+            "decreased": "neutral",
+        }
     return naturemap
 
 def statParsing(values):

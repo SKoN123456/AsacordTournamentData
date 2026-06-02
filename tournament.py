@@ -11,7 +11,6 @@ def getTournamentList():
 
     cursor.close()
     conn.close()
-
     return tournamentresults
 
 def selectTournament(t_tourneyid):
@@ -23,7 +22,6 @@ def selectTournament(t_tourneyid):
 
     cursor.close()
     conn.close()
-
     return selectedTournament
 
 def newTournament(name, tformat, playercount):
@@ -35,7 +33,6 @@ def newTournament(name, tformat, playercount):
 
     cursor.close()
     conn.close()
-
     return
 
 def updateTournament(t_tourneyid, name, tformat, playercount):
@@ -47,7 +44,6 @@ def updateTournament(t_tourneyid, name, tformat, playercount):
     conn.commit()
     cursor.close()
     conn.close()
-
     return
 
 def deleteTournament(t_tourneyid):
@@ -59,5 +55,4 @@ def deleteTournament(t_tourneyid):
 
     cursor.close()
     conn.close()
-
     return
