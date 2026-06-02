@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import requests
 from datetime import date
+import os
 
 from db import get_db_connection
 from tournament import *
