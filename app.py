@@ -87,8 +87,8 @@ def edittournament(t_tourneyid):
 
     elif "deletetournament" in request.form:
         deleteTournament(t_tourneyid)
-        tournamentresults = getTournamentList()
-        return render_template("index.html", tournament_results = tournamentresults)
+        tournament_results = getTournamentList()
+        return render_template("tournamentlist.html", tournament_results=tournament_results, user = session["user"])
 
     return redirect(url_for("tournament", t_tourneyid = t_tourneyid))
 
@@ -100,10 +100,10 @@ def players(pl_tourneyid):
 
 @app.route('/playerdetails/ <int:pl_tourneyid>/ <int:pl_playerid>', methods=["GET", "POST"])
 def playerdetails(pl_tourneyid, pl_playerid):
-    selectedplayer = selectPlayer(pl_tourneyid, pl_playerid)
+    selectedplayer, best_sets = selectPlayer(pl_tourneyid, pl_playerid)
     pokemonteam = pokemonTeamFromPlayer(pl_tourneyid, pl_playerid)
     return render_template("playerdetails.html", selectedplayer = selectedplayer, pokemonteam = pokemonteam
-                           ,tourneyid = pl_tourneyid, playerid = pl_playerid, user = session["user"])
+                           ,tourneyid = pl_tourneyid, playerid = pl_playerid, user = session["user"], best_sets = best_sets)
 
 @app.route("/newplayer/ <int:pl_tourneyid>", methods=["GET","POST"])
 def newplayer(pl_tourneyid):

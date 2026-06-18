@@ -80,17 +80,17 @@
                 </div>
 
                 {% if selectedpokemon[19] == 't' or selectedpokemon[19] == 'true' %}
-                {% if pokemon_api.imageshiny is not none %}
-                <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
+                    {% if pokemon_api.imageshiny is not none %}
+                    <img class="sub-color" src="{{ pokemon_api.imageshiny }}">
+                    {% else %}
+                    <img class="sub-color" src="{{ pokemon_api.shinybackup }}">
+                    {% endif %}
                 {% else %}
-                <img class="sub-color" src="{{ pokemon_api.shinybackup }}">
-                {% endif %}
-                {% else %}
-                {% if pokemon_api.image is not none %}
-                <img class="sub-color" src="{{ pokemon_api.image }}">
-                {% else %}
-                <img class="sub-color" src="{{ pokemon_api.imagebackup }}">
-                {% endif %}
+                    {% if pokemon_api.image is not none %}
+                    <img class="sub-color" src="{{ pokemon_api.image }}">
+                    {% else %}
+                    <img class="sub-color" src="{{ pokemon_api.imagebackup }}">
+                    {% endif %}
                 {% endif %}
 
                 <div class="flex centering">
@@ -168,26 +168,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="container usage-window">
+                <div class="container base-stat-container">
                     {%  if pokemon_api is not none %}
                     <h2>Base Stats</h2>
-                    <div>
-                        HP: {{ pokemon_api.stats.hp }} - - {{selectedStats.hp}}
+                    <div class="flex">
+                        <div class="stat-name">HP: {{ pokemon_api.stats.hp }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.hp / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.hp}}</div>
                     </div>
-                    <div class="{{'negative-nature' if nature_map.decreased == 'attack' else 'positive-nature' if nature_map.increased == 'attack' else ''}}">
-                        Attack: {{ pokemon_api.stats.attack }} - - {{selectedStats.attack}}
+                    <div class="flex {{'negative-nature' if nature_map.decreased == 'attack' else 'positive-nature' if nature_map.increased == 'attack' else ''}}">
+                        <div class="stat-name">ATK: {{ pokemon_api.stats.attack }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.attack / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.attack}}</div>
                     </div>
-                    <div  class="{{'negative-nature' if nature_map.decreased == 'defense' else 'positive-nature' if nature_map.increased == 'defense' else ''}}">
-                        Defense: {{ pokemon_api.stats.defense }} - - {{selectedStats.defense}}
+                    <div class="flex {{'negative-nature' if nature_map.decreased == 'defense' else 'positive-nature' if nature_map.increased == 'defense' else ''}}">
+                        <div class="stat-name">DEF: {{ pokemon_api.stats.defense }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.defense / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.defense}}</div>
                     </div>
-                    <div  class="{{'negative-nature' if nature_map.decreased == 'special-attack' else 'positive-nature' if nature_map.increased == 'special-attack' else ''}}">
-                        Sp. Attack: {{ pokemon_api.stats.sp_attack }} - - {{selectedStats.sp_attack}}
+                    <div class="flex {{'negative-nature' if nature_map.decreased == 'special-attack' else 'positive-nature' if nature_map.increased == 'special-attack' else ''}}">
+                        <div class="stat-name">SPA: {{ pokemon_api.stats.sp_attack }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.sp_attack / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.sp_attack}}</div>
                     </div>
-                    <div  class="{{'negative-nature' if nature_map.decreased == 'special-defense' else 'positive-nature' if nature_map.increased == 'special-defense' else ''}}">
-                        Sp. Defense: {{ pokemon_api.stats.sp_defense }} - - {{selectedStats.sp_defense}}
+                    <div class="flex {{'negative-nature' if nature_map.decreased == 'special-defense' else 'positive-nature' if nature_map.increased == 'special-defense' else ''}}">
+                        <div class="stat-name">SPD: {{ pokemon_api.stats.sp_defense }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.sp_defense / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.sp_defense}}</div>
                     </div>
-                    <div  class="{{'negative-nature' if nature_map.decreased == 'speed' else 'positive-nature' if nature_map.increased == 'speed' else ''}}">
-                        Speed: {{ pokemon_api.stats.speed }} - - {{selectedStats.speed}}
+                    <div class="flex {{'negative-nature' if nature_map.decreased == 'speed' else 'positive-nature' if nature_map.increased == 'speed' else ''}}">
+                        <div class="stat-name">SPE: {{ pokemon_api.stats.speed }}</div>
+                        <div class="stat-box" style="width: {{ (selectedStats.speed / 700 * 100)|round }}%;"></div>
+                        <div>{{selectedStats.speed}}</div>
                     </div>
                     <div>BST: {{ pokemon_api.stats.hp + pokemon_api.stats.attack + pokemon_api.stats.defense + pokemon_api.stats.sp_attack + pokemon_api.stats.sp_defense + pokemon_api.stats.speed }}</div>
                     {% endif %}
@@ -199,6 +211,13 @@
                     <div class="sub-container best-sets-results">
                         <div>{{result[6]}}</div>
                         <div>Round:{{result[4]}}</div>
+                        <div class="flex">
+                            <div>{{result[0]}}/{{result[1]}}/{{ "%.2f"|format(result[0] / result[1]) if result[1] != 0 else result[0] }}</div>
+                            <div>Killstreak: {{result[2]}}</div>
+                        </div>
+                        {% if result[3] is not none%}
+                            <div>Tera: {{result[3]}}</div>
+                        {% endif %}
                         <a class="view-details replay-button" href="{{result[5]}}" target="_blank">Watch Replay</a>
                     </div>
                     {% endfor %}

@@ -55,7 +55,8 @@
 
 .replay-button {
     position: absolute;
-    top: 75px;
+    bottom: 20px;
+    right: 50px;
 }
 
 img {
@@ -139,4 +140,19 @@ img {
 
 .positive-nature {
     color: red;
+}
+
+.stat-box {
+    background-color: var(--sub-container-color);
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 15px;
+}
+
+.base-stat-container {
+    width: 80%;
+}
+
+.stat-name {
+    width: 70px;
 }

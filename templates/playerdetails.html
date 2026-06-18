@@ -57,6 +57,33 @@
             border-radius: 50%;
             background-color: var(--sub-container-color);
         }
+
+        .best-sets-container {
+            width: 50%;
+        }
+
+        .best-sets-results {
+            width: 80%;
+            height: 100px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .replay-button {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+        }
+
+
+        .sub-container {
+            margin: 0 auto;
+            margin-bottom: 15px;
+            padding: 25px;
+            background-color: var(--sub-container-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -110,18 +137,51 @@
     </div>
 
     <div class="flex">
-        <div class="container player-container">
-            <h2 class="box-header">{{ selectedplayer[1] }}'s Player Profile</h2>
-            <div>{{ selectedplayer[2] }} Type</div>
-            <div>
-                {{ selectedplayer[5] }} - {{ selectedplayer[6] }}
-            </div>
+        <div class="flex-vertical player-container">
+            <div class="container player-container">
+                <h2 class="box-header">{{ selectedplayer[1] }}'s Player Profile</h2>
+                <div>{{ selectedplayer[2] }} Type</div>
+                <div>
+                    {{ selectedplayer[5] }} - {{ selectedplayer[6] }}
+                </div>
 
-            <div class="image-cropper">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png" class="rounded" />
+                <div class="image-cropper">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png" class="rounded" />
+                </div>
+            </div>
+            <div class="container best-sets-container">
+                <h2>Best Sets</h2>
+                {% if best_sets is not none and best_sets|length > 0 %}
+                {% for result in best_sets %}
+                <div class="sub-container best-sets-results">
+                    <div>
+                        {{ result[5]}}
+                        {% if result[4] == result[8] %}
+                        <i class="fas fa-crown"></i>
+                        {% endif %}
+
+                        VS
+
+                        {{ result[7]}}
+                        {% if result[6] == result[8] %}
+                        <i class="fas fa-crown"></i>
+                        {% endif %}
+                    </div>
+                    <div>Round:{{result[2]}}</div>
+                    <div>
+                        {% if result[4] == result[8] %}
+                        {{result[3]}}-0
+                        {% else %}
+                        0-{{result[3]}}
+                        {% endif %}
+                    </div>
+                    <a class="view-details replay-button" href="{{result[1]}}" target="_blank">Watch Replay</a>
+                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
-
+        
         <div class="container team-container">
             <h2 class="box-header">{{ selectedplayer[1] }}'s Team</h2>
             <div class="results team-grid">
