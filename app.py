@@ -10,6 +10,7 @@ from pokemon import *
 from match import *
 from set import *
 from user import *
+from notes import *
 
 app = Flask(__name__)
 
@@ -183,10 +184,13 @@ def pokemondetails(pl_tourneyid, po_pokeid):
     selectedpokemon, best_sets = selectPokemon(pl_tourneyid, po_pokeid)
     po_name = selectedpokemon[1].strip()
     pokemon_api = pokeAPICall(po_name)
+    note_results = getNotes(session["user"][0], po_pokeid, None, None, None)
     nature_map = natureMapping(selectedpokemon[18])
+
     selectedStats = statCalculation(selectedpokemon[21], selectedpokemon[22], pokemon_api, nature_map)
     return render_template("pokemondetails.html", selectedpokemon = selectedpokemon, best_sets = best_sets, tourneyid = pl_tourneyid, po_pokeid = po_pokeid,
-                           pokemon_api = pokemon_api, type_api = type_api, selectedStats = selectedStats, nature_map = nature_map, user = session["user"])
+                           pokemon_api = pokemon_api, type_api = type_api, selectedStats = selectedStats, nature_map = nature_map, user = session["user"],
+                           note_results = note_results)
 
 @app.route("/editpokemon/  <int:po_tourneyid>/ <int:po_pokeid>", methods=["GET","POST"])
 def editpokemon(po_tourneyid, po_pokeid):
@@ -317,6 +321,14 @@ def newset(m_tourneyid, s_matchid, player1id, player2id):
     registerPokemonInSet(setid, p2roster, player2id)
 
     return redirect(url_for("matchdetails", m_matchid = s_matchid, m_tourneyid = m_tourneyid))
+
+#----------------------Notes FUNCTIONS-------------------------------------------#
+@app.route("/postnote/ <int:n_userid>/ <int:n_pokeid>/ <int:n_playerid>/ <int:n_matchid>/ <int:n_setid>/ <int:tourneyid>", methods=["GET","POST"])
+def postnote(n_userid, n_pokeid, n_playerid, n_matchid, n_setid, tourneyid):
+    if "notepokemon" in request.form:
+        n_content = request.form.get("notepokemon")
+        newNote(n_userid, n_pokeid, None, None, None, n_content)
+    return redirect(url_for("pokemondetails", pl_tourneyid = tourneyid, po_pokeid = n_pokeid))
 
 if __name__ == "__main__":
     app.run(debug=True)
