@@ -8,20 +8,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+    <script>
+        function CopyToClipboard() {
+            var copyText = document.getElementById("pokepastelink");
+            navigator.clipboard.writeText(copyText.href);
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied Link to Clipboard";
+        }
+
+        function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+        }
+    </script>
     <style>
         .player-container {
             width: 90%;
-            flex: 0.65;
+            flex: 0.55;
         }
 
         .team-container {
-            width: 90%;
-            flex: 0.30;
+            width: 85%;
+            flex: 0.40;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: 50% 50%;
+            grid-template-columns: 33% 33% 33%;
             column-gap: 10px;
         }
 
@@ -34,12 +48,8 @@
             justify-content: center;
         }
 
-        .box-header {
-            text-align: center;
-        }
-
         .image-cropper {
-            max-width: 150px;
+            width: 200px;
             height: auto;
             position: relative;
             overflow: hidden;
@@ -59,15 +69,21 @@
         }
 
         .best-sets-container {
-            width: 50%;
+            width: 90%;
         }
 
         .best-sets-results {
-            width: 80%;
+            width: 65%;
             height: 100px;
             margin-top: 15px;
             margin-bottom: 15px;
             position: relative;
+        }
+
+        .sets-grid {
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 20%;
+            column-gap: 5px;
         }
 
         .replay-button {
@@ -76,13 +92,80 @@
             right: 50px;
         }
 
-
         .sub-container {
             margin: 0 auto;
             margin-bottom: 15px;
             padding: 25px;
             background-color: var(--sub-container-color);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-evenly;
+            row-gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .data-header {
+            width: 100%;
+            text-align: center;
+        }
+
+        .highlight-data {
+            font-weight: bold;
+            font-size: 36pt;
+            width: 90%;
+            text-align: center;
+        }
+
+        .notes-container { 
+            width: 90%;
+            height: 250px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .pokepaste-link {
+            color: cornflowerblue;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -92,7 +175,7 @@
         <div class="flex centering title-header">
             <h1>Players</h1>
             {% if user[3] %}
-                <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
+            <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
             {% endif %}
             <h3 class="username-label">{{user[1]}}</h3>
         </div>
@@ -115,11 +198,11 @@
                 <input class="input-bars" type="text" name="pl_name" value="{{selectedplayer[1]}}" required><br>
 
                 <label for="pl_pokepaste">Pokepaste Link</label><br>
-                <input class="input-bars" type="text" name="pl_pokepaste" value="{{selectedplayer[11]}}"><br>
+                <input class="input-bars" type="text" name="pl_pokepaste" value="{{selectedplayer[10]}}"><br>
 
                 <input class="submit-button" type="submit" name="editplayer" value="Submit">
                 {% if user[4] %}
-                    <a href="#inner-popup" class="submit-button">Delete</a>
+                <a href="#inner-popup" class="submit-button">Delete</a>
                 {% endif %}
                 <a href="" class="submit-button">Close</a>
             </form>
@@ -139,51 +222,46 @@
     <div class="flex">
         <div class="flex-vertical player-container">
             <div class="container player-container">
-                <h2 class="box-header">{{ selectedplayer[1] }}'s Player Profile</h2>
-                <div>{{ selectedplayer[2] }} Type</div>
-                <div>
-                    {{ selectedplayer[5] }} - {{ selectedplayer[6] }}
-                </div>
-
-                <div class="image-cropper">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png" class="rounded" />
+                <h2>{{ selectedplayer[1] }}'s Player Profile</h2>
+                <div class="flex">
+                    <div class="image-cropper">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{range(1, 1026)|random}}.png" class="rounded" />
+                    </div>
+                    <div class="flex-vertical">
+                        <div>Team Constraint: {{ selectedplayer[2] }}</div>
+                        <div class="flex">
+                            <div>Pokepaste: <a href="{{ selectedplayer[10] }}" id="pokepastelink"><span class="pokepaste-link" >{{ selectedplayer[10] }}</span></a></div>
+                            <div class="tooltip">
+                                <button type="button" class="copy-button" onclick="CopyToClipboard()" onmouseout="outFunc()">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                                </button>                                    
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="container best-sets-container">
-                <h2>Best Sets</h2>
-                {% if best_sets is not none and best_sets|length > 0 %}
-                {% for result in best_sets %}
-                <div class="sub-container best-sets-results">
-                    <div>
-                        {{ result[5]}}
-                        {% if result[4] == result[8] %}
-                        <i class="fas fa-crown"></i>
-                        {% endif %}
-
-                        VS
-
-                        {{ result[7]}}
-                        {% if result[6] == result[8] %}
-                        <i class="fas fa-crown"></i>
-                        {% endif %}
-                    </div>
-                    <div>Round:{{result[2]}}</div>
-                    <div>
-                        {% if result[4] == result[8] %}
-                        {{result[3]}}-0
-                        {% else %}
-                        0-{{result[3]}}
-                        {% endif %}
-                    </div>
-                    <a class="view-details replay-button" href="{{result[1]}}" target="_blank">Watch Replay</a>
-                </div>
-                {% endfor %}
-                {% endif %}
+            <div class="container notes-container">
+                <h2>Notes</h2>
             </div>
         </div>
-        
+
         <div class="container team-container">
             <h2 class="box-header">{{ selectedplayer[1] }}'s Team</h2>
+            <div class="team-grid">
+                <div class="flex-vertical sub-container">
+                    <div class="data-header">Total Kills</div>
+                    <div class="highlight-data">{{ selectedplayer[8] }}</div>
+                </div>
+                <div class="flex-vertical sub-container">
+                    <div class="data-header">Total Deaths</div>
+                    <div class="highlight-data">{{ selectedplayer[9] }}</div>
+                </div>
+                <div class="flex-vertical sub-container">
+                    <div class="data-header">Overall KDR</div>
+                    <div class="highlight-data">{{ "%.2f"|format(selectedplayer[8] / selectedplayer[9]) if selectedplayer[9] != 0 else selectedplayer[8] }}</div>
+                </div>
+            </div>
             <div class="results team-grid">
                 {% if pokemonteam is not none and pokemonteam|length > 0 %}
                 {% for result in pokemonteam %}
@@ -204,11 +282,40 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% else %}
-                <p>No results found. Please reset or try a different search.</p>
                 {% endif %}
             </div>
         </div>
+    </div>
+    <div class="container best-sets-container">
+        <h2>Best Sets</h2>
+        {% if best_sets is not none and best_sets|length > 0 %}
+        <div class="sets-grid">
+            {% for result in best_sets %}
+            <div class="sub-container best-sets-results">
+                <div>
+                    {{ result[5]}}
+                    {% if result[4] == result[8] %}
+                    <i class="fas fa-crown"></i>
+                    {% endif %}
+                    VS
+                    {{ result[7]}}
+                    {% if result[6] == result[8] %}
+                    <i class="fas fa-crown"></i>
+                    {% endif %}
+                </div>
+                <div>Round:{{result[2]}}</div>
+                <div>
+                    {% if result[4] == result[8] %}
+                    {{result[3]}}-0
+                    {% else %}
+                    0-{{result[3]}}
+                    {% endif %}
+                </div>
+                <a class="view-details replay-button" href="{{result[1]}}" target="_blank">Watch Replay</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </body>
 </html>

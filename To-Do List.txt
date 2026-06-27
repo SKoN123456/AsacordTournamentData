@@ -19,9 +19,6 @@ To-Do List:
 	-format scroll bar
 
 -Pokémon Profile Page: 
-	-Make image/name card static
-	-Kills per match statistic
-	-remove K/D from Pokémon table
 	-format best set statistics
 
 -Player Page:
@@ -29,8 +26,8 @@ To-Do List:
 
 -Player Profile Page:
 	-Show leaderboard statistics
-	-Remove team performance statistics from database (calculate on site)
 	-pfps
+	-format best set statisticsa
 
 -Match Page:
 	-Filter for matches by present pokemon

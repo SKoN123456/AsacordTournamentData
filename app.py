@@ -258,6 +258,13 @@ def get_player_pokemon(tourneyid, playername):
 
     return jsonify(pokemon_names)
 
+@app.route("/getallsets/ <int:tourneyid>/<searchid>", methods=["GET","POST"])
+def getallsets(tourneyid, searchid):
+    set_results = getAllSets(searchid)
+    temp_set = set_results[0]
+        
+    return render_template("allsets.html", tourneyid = tourneyid, user = session["user"], set_results = set_results, temp_set = temp_set)
+
 @app.route("/newset <int:m_tourneyid>/ <int:s_matchid>/ <int:player1id>/ <int:player2id>", methods=["GET","POST"])
 def newset(m_tourneyid, s_matchid, player1id, player2id):
     setNumber = request.form.get("m_setnum")

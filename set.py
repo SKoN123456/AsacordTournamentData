@@ -20,6 +20,19 @@ def getSetList(s_matchid):
     conn.close()
     return match_results, wincount
 
+def getAllSets(searchid):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""SELECT m_matchid, po_pokeid, po_name, pl_playerid, pl_name, m_name, s_setnum, s_points, s_link, ps_k, ps_d, ps_streak, ps_tera
+                FROM "Sets" JOIN "Matches" ON s_matchid = m_matchid JOIN "PokemonSet" ON ps_setid = s_setid JOIN "Pokemon" ON po_pokeid = ps_pokeid 
+                JOIN "Player" ON pl_playerid = po_playerid WHERE ps_pokeid = %s""", (searchid,))
+    set_results = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    return set_results
+
 def newSet(s_matchid, s_player1id, s_player2id, s_winid, s_link, s_date, s_points, s_setnum):
     conn = get_db_connection()
     cursor = conn.cursor()

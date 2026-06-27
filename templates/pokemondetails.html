@@ -62,7 +62,10 @@
         <div class="left-side">
             <div class="container base-window">
                 <div class="flex-vertical">
-                    <div class="titles">{{selectedpokemon[2]}}'s</div>
+                    <div class="flex">
+                        <div class="titles">{{selectedpokemon[2]}}'s</div>
+                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
+                    </div>
                     <div class="flex name-card">
                         <div class="poke-name">
                             {{selectedpokemon[1]}}
@@ -70,7 +73,6 @@
                             <i class='fas fa-star big-star'><div class="dropdown-content">Tera Captain: This Pokemon is allowed make use of the Terastallization mechanic to change its type</div></i>
                             {% endif %}
                         </div>
-                        <button class="view-details detail-button-gap" onclick="document.location='{{ url_for('pokemontoplayer', po_tourneyid = tourneyid, po_playername = selectedpokemon[2]) }}'">Player Details</button>
                     </div>
                     {% if selectedpokemon[13] is not none %}
                     <div class="titles">A.K.A {{selectedpokemon[13]}}</div>
@@ -105,9 +107,6 @@
                 </div>
                 <div>
                     Item: {{selectedpokemon[12]}}
-                </div>
-                <div>
-                    Nature: {{selectedpokemon[18]}}
                 </div>
             </div>
         </div>
@@ -156,15 +155,19 @@
                             </div>
                         </div>
                     </div>
+                    {% if best_sets is not none and best_sets|length > 0 %}
                     <div class="container best-sets-window">
-                        <h2>Best Sets</h2>
-                        {% if best_sets is not none and best_sets|length > 0 %}
+                        <div class="flex">
+                            <h2>Best Sets</h2>
+                            <button class="submit-button sets-button-position" onclick="document.location='{{ url_for('getallsets', tourneyid = tourneyid, searchid = selectedpokemon[0]) }}'">All Sets <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
                         {% for result in best_sets %}
                         <div class="sub-container best-sets-results">
                             <div>{{result[6]}}</div>
                             <div>Round:{{result[4]}}</div>
-                            <div class="flex">
-                                <div>K: {{result[0]}} D: {{result[1]}} R:{{ "%.2f"|format(result[0] / result[1]) if result[1] != 0 else result[0]}}</div>
+                            <div class="flex set-performance-grid">
+                                <div>K: {{result[0]}}</div>
+                                <div>D: {{result[1]}}</div>
                                 <div>Killstreak: {{result[2]}}</div>
                             </div>
                             {% if result[3] is not none%}
@@ -173,8 +176,8 @@
                             <a class="view-details replay-button" href="{{result[5]}}" target="_blank">Watch Replay</a>
                         </div>
                         {% endfor %}
-                        {% endif %}
                     </div>
+                    {% endif %}
                 </div>
                 <div class="flex-vertical">
                     <div class="container usage-window">
@@ -194,7 +197,10 @@
                     </div>
                     <div class="container base-stat-container">
                         {%  if pokemon_api is not none %}
-                        <h2>Base Stats</h2>
+                        <div class="flex">
+                            <h2>Base Stats</h2>
+                            <div class="nature-position">{{selectedpokemon[18]}} Nature</div>
+                        </div>
                         <div class="flex">
                             <div class="stat-name">HP: {{ pokemon_api.stats.hp }}</div>
                             <div class="stat-box" style="width: {{ (selectedStats.hp / 700 * 100)|round }}%;"></div>
@@ -237,7 +243,7 @@
                         <div>
                             {% if note_results is not none and  note_results|length > 0 %}
                             {% for note in note_results %}
-                            <div style="margin-top: 20px">
+                            <div class="note-results">
                                 -"{{note[2]}}"
                             </div>
                             {% endfor %}

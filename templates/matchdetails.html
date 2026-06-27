@@ -124,7 +124,7 @@
 
         .set-size {
             width: 20%;
-            height: 100px;
+            height: 150px;
         }
     </style>
 </head>
@@ -148,6 +148,10 @@
     <div class="container set-container">
         <h2>{{selectedmatch[0]}}</h2>
         <div>{{setwins[1]}}-{{setwins[2]}}</div>
+        <div>{{selectedmatch[1]}}</div>
+        <button class="view-details" onclick="document.location='{{ url_for('playerdetails', pl_tourneyid = tourneyid, pl_playerid = selectedmatch[3]) }}'">View Profile</button>
+        <div>{{selectedmatch[2]}}</div>
+        <button class="view-details" onclick="document.location='{{ url_for('playerdetails', pl_tourneyid = tourneyid, pl_playerid = selectedmatch[4]) }}'">View Profile</button>
 
         <div class="results set-grid">
             {% if set_list is not none and set_list|length > 0 %}
@@ -186,7 +190,7 @@
         </div>
 
         {% if (setwins is none or (setwins[1] < 2 and setwins[2] < 2)) and user[2] %}
-            <a href="#newset" class="submit-button">Add Set</a>
+        <a href="#newset" class="submit-button">Add Set</a>
         {% endif %}
     </div>
 

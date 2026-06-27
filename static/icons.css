@@ -83,6 +83,21 @@
     right: 15px;
 }
 
+.fa-copy {
+    font-size: 18pt;
+    position: relative;
+    bottom: 5px;
+}
+
+.fa-copy:hover {
+    font-weight: bold;
+}
+
+.copy-button {
+    background-color: var(--container-color);
+    border: none;
+}
+
 
 
 

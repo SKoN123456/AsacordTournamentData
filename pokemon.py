@@ -48,7 +48,7 @@ def selectPokemon(pl_tourneyid, po_pokeid):
     selectedpokemon = cursor.fetchone()
 
     cursor.execute("""SELECT ps_k, ps_d, ps_streak, ps_tera, s_setnum, s_link, m_name FROM \"PokemonSet\" JOIN \"Sets\" ON ps_setid = s_setid 
-        JOIN \"Matches\" ON s_matchid = m_matchid WHERE ps_pokeid = %s ORDER BY ps_k Desc LIMIT 3""", (po_pokeid,))
+        JOIN \"Matches\" ON s_matchid = m_matchid WHERE ps_pokeid = %s ORDER BY (ps_k - ps_d) Desc, ps_streak Desc LIMIT 3""", (po_pokeid,))
     best_sets = cursor.fetchall()
 
     cursor.close()
