@@ -84,9 +84,14 @@ header {
 
 .title-header {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .username-label {
     position: absolute;
-    left: 400px;
-}
+    right: 20px;
+    transform: translateY(30%);
+    flex: 0.1;
