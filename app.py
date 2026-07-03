@@ -56,8 +56,8 @@ def tournament(t_tourneyid):
 
     cursor.execute("""
             SELECT po_pokeid, po_name, po_isteracaptain, pl_name, po_tier, COALESCE(SUM(ps_k),0) AS po_k, COALESCE(SUM(ps_d),0) AS po_d,
-            COALESCE(MAX(ps_streak),0) FROM \"Pokemon\" JOIN \"Player\" ON pl_playerid = po_playerid LEFT JOIN \"PokemonSet\" ON po_pokeid = ps_pokeid
-            WHERE (po_tourneyID = %s) GROUP BY po_pokeid, pl_name ORDER BY po_k DESC LIMIT 10;
+            COALESCE(MAX(ps_streak),0) AS po_streak FROM \"Pokemon\" JOIN \"Player\" ON pl_playerid = po_playerid LEFT JOIN \"PokemonSet\" ON po_pokeid = ps_pokeid
+            WHERE (po_tourneyID = %s) GROUP BY po_pokeid, pl_name ORDER BY po_k DESC, po_streak DESC LIMIT 10;
             """, (t_tourneyid,))
     session["killrankings"] = cursor.fetchall()
 
@@ -262,7 +262,7 @@ def get_player_pokemon(tourneyid, playername):
 def getallsets(tourneyid, searchid):
     set_results = getAllSets(searchid)
     temp_set = set_results[0]
-        
+
     return render_template("allsets.html", tourneyid = tourneyid, user = session["user"], set_results = set_results, temp_set = temp_set)
 
 @app.route("/newset <int:m_tourneyid>/ <int:s_matchid>/ <int:player1id>/ <int:player2id>", methods=["GET","POST"])

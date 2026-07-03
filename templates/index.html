@@ -17,12 +17,26 @@
             margin-bottom: 20px;
         }
 
+        .left-side {
+            width: 30%;
+            border-right: 2px solid black;
+            margin-right: 20px;
+        }
+
         #signin {
             z-index: 1;
         }
 
         #login {
             z-index:0;
+        }
+
+        .disclaimer {
+            background-color: rgb(255, 128, 128);
+            border-left: 5px solid red;
+            padding: 5px;
+            width: 90%;
+            font-size: 10pt;
         }
     </style>
     <script>
@@ -54,33 +68,46 @@
     </header>
 
     <div class="container login-container">
-        <div class="flex centering top-buttons">
-            <button onclick="SignUpScreen()" class="submit-button" id="signinbutton">Sign Up</button>
-            <button onclick="LogInScreen()" class="submit-button" id="loginbutton">Log In</button>
-        </div>
+        <div class="flex">
+            <div class="left-side">
+                <div class="flex top-buttons">
+                    <button onclick="SignUpScreen()" class="submit-button" id="signinbutton">Register</button>
+                    <button onclick="LogInScreen()" class="submit-button" id="loginbutton">Log In</button>
+                </div>
 
-        <div id="signin">
-            <h2>Sign In</h2>
-            <form method="POST" action="{{ url_for('user') }}">
-                <label for="u_username">Username</label><br>
-                <input type="text" name="u_username" required><br>
-                <label for="u_password">Password</label><br>
-                <input type="password" name="u_password" required> <br>
+                <div id="signin" class="login-fields">
+                    <h2>Create New Account</h2>
+                    <p class="disclaimer">
+                        Disclaimer: Please do not use any personally identifying information for your username or password.
+                        <br />There are no restrictions on what either can be so just put something you'll remember
+                    </p>
+                    <form method="POST" action="{{ url_for('user') }}">
+                        <label for="u_username">Username</label><br>
+                        <input type="text" name="u_username" required><br>
+                        <label for="u_password">Password</label><br>
+                        <input type="password" name="u_password" required> <br>
 
-                <input class="submit-button" type="submit" name="newuser" value="Submit">
-            </form>
-        </div>
+                        <input class="submit-button" type="submit" name="newuser" value="Submit">
+                    </form>
+                </div>
 
-        <div id="login">
-            <h2>Log In</h2>
-            <form method="POST" action="{{ url_for('user') }}">
-                <label for="u_username">Username</label><br>
-                <input type="text" name="u_username" required><br>
-                <label for="u_password">Password</label><br>
-                <input type="password" name="u_password" required> <br>
+                <div id="login" class="login-fields">
+                    <h2>Log in to Existing Account</h2>
+                    <p class="disclaimer">
+                        Disclaimer: Please do not use any personally identifying information for your username or password.
+                        <br />There are no restrictions on what either can be so just put something you'll remember
+                    </p>
+                    <form method="POST" action="{{ url_for('user') }}">
+                        <label for="u_username">Username</label><br>
+                        <input type="text" name="u_username" required><br>
+                        <label for="u_password">Password</label><br>
+                        <input type="password" name="u_password" required> <br>
 
-                <input class="submit-button" type="submit" name="userlogin" value="Submit">
-            </form>
+                        <input class="submit-button" type="submit" name="userlogin" value="Submit">
+                    </form>
+                </div>
+            </div>
+            <img src="{{ url_for('static', filename='assets/dogburrito.jpg') }}">
         </div>
     </div>
 </body>

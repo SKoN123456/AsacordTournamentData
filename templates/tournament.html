@@ -61,8 +61,13 @@
             {% if user[3] %}
             <a href="#popup" class="settings"><i class="fas fa-gear"></i></a>
             {% endif %}
-            <i class="fa-regular fa-file-lines"></i>
-            <h3 class="username-label">{{user[1]}}</h3>
+            <div class="dropdown username-label">
+                <button class="dropbtn">{{user[1]}}</button>
+                <div class="dropdown-content">
+                    <a href="#">Notes <i class="fa-regular fa-file-lines"></i></a>
+                    <a href="{{url_for('index')}}">Sign Out</a>
+                </div>
+            </div>
         </div>
 
         <div class="flex">
